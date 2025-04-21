@@ -66,7 +66,7 @@ ItsWOLFIX.Journal/
 
 ## Contact
 
-- Discord: [@ItsWOLFIX](https://discord.com/users/981675224795860994)
+- Discord: [7u0l - 𝑺𝒙 𝒲𝒪𝐿𝐹𝐼𝒳](https://discord.com/users/981675224795860994)
 - GitHub: [ItsWOLFIX](https://github.com/itsW0LFIX)
 - LinkedIn: [ItsWOLFIX](https://linkedin.com/in/ItsWOLFIX) - (soon)
 
