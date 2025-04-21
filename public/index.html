@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Its WOLFIX Journal</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="A personal journal about JavaScript, React, and modern web development.">
+</head>
+
+<body>
+
+  <header>
+    <a href="/" class="logo">ItsWOLFIX.Journal</a>
+    <nav>
+      <ul>
+        <li><a href="/public/index.html">Home</a></li>
+        <li><a href="/public/index.html">Posts</a></li>
+        <li><a href="https://github.com/itsW0LFIX">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Notes on modern web development and crafting thoughtful user experiences</h1>
+      <p>Exploring React, JavaScript, and the art of clean code.</p>
+    </section>
+
+    <section>
+      <h2>Latest posts</h2>
+      <div id="latest-posts" class="post-list">
+        <!-- Posts will be loaded dynamically from Firebase -->
+        <div id="loading-indicator">Loading posts...</div>
+      </div>
+    </section>
+
+  </main>
+  <footer>
+    <p>© 2025 ItsWOLFIX.Journal</p>
+    <div class="social-links">
+      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">twitter</a>
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer">github</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">linkedin</a>
+    </div>
+  </footer>
+
+  <!-- Firebase SDK -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-app-compat.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-database-compat.min.js"></script>
+
+  <script>
+    // Firebase configuration - same as in admin.html
+    const firebaseConfig = {
+      apiKey: "AIzaSyAdRj16qIXGF0NlG3SzLbyf3qPDUk4TMHs",
+      authDomain: "itswolfix-journal-dfd86.firebaseapp.com",
+      databaseURL: "https://itswolfix-journal-dfd86-default-rtdb.firebaseio.com",
+      projectId: "itswolfix-journal-dfd86",
+      storageBucket: "itswolfix-journal-dfd86.firebasestorage.app",
+      messagingSenderId: "1068380972611",
+      appId: "1:1068380972611:web:3641e0758b8954839256f6"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    
+    // DOM Elements
+    const postsContainer = document.getElementById('latest-posts');
+    const loadingIndicator = document.getElementById('loading-indicator');
+
+    // Format date for display
+    function formatDate(dateString) {
+      try {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+      } catch (error) {
+        console.error('Error formatting date:', error);
+        return dateString; // Return the original string if formatting fails
+      }
+    }
+
+    // Load posts from Firebase
+    function loadPosts() {
+      console.log('Loading posts from Firebase...');
+      
+      database.ref('posts').once('value')
+        .then((snapshot) => {
+          // Clear loading indicator
+          loadingIndicator.style.display = 'none';
+          
+          if (!snapshot.exists()) {
+            postsContainer.innerHTML = '<p>No posts available yet. Check back soon!</p>';
+            return;
+          }
+
+          // Process posts
+          const posts = [];
+          snapshot.forEach((childSnapshot) => {
+            const post = childSnapshot.val();
+            post.id = childSnapshot.key;
+            posts.push(post);
+          });
+
+          // Sort posts by date (newest first)
+          posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+          
+          // Display up to 6 most recent posts
+          const recentPosts = posts.slice(0, 6);
+          
+          // Clear existing content
+          postsContainer.innerHTML = '';
+          
+          // Create post elements
+          recentPosts.forEach((post) => {
+            const postElement = document.createElement('article');
+            postElement.className = 'post';
+            
+            const metaElement = document.createElement('div');
+            metaElement.className = 'post-meta';
+            metaElement.textContent = formatDate(post.date);
+            
+            const titleElement = document.createElement('h3');
+            const titleLink = document.createElement('a');
+            titleLink.href = `./POSTS/${post.slug}/${post.slug}.html`;
+            titleLink.textContent = post.title;
+            titleElement.appendChild(titleLink);
+            
+            const excerptElement = document.createElement('p');
+            excerptElement.textContent = post.excerpt;
+            
+            const tagsElement = document.createElement('div');
+            tagsElement.className = 'tags';
+            
+            if (post.tags && post.tags.length > 0) {
+              post.tags.forEach((tag) => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'tag';
+                tagElement.textContent = tag;
+                tagsElement.appendChild(tagElement);
+              });
+            }
+            
+            postElement.appendChild(metaElement);
+            postElement.appendChild(titleElement);
+            postElement.appendChild(excerptElement);
+            postElement.appendChild(tagsElement);
+            
+            postsContainer.appendChild(postElement);
+          });
+        })
+        .catch((error) => {
+          console.error('Error loading posts:', error);
+          loadingIndicator.textContent = 'Error loading posts. Please try again later.';
+        });
+    }
+
+    // Load posts when the page is ready
+    document.addEventListener('DOMContentLoaded', loadPosts);
+  </script>
+
+</body>
+
+</html>

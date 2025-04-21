@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - ItsWOLFIX.Journal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/POSTS/posts.css">
+  <!-- <link rel="stylesheet" href="admin.css"> -->
+  <meta name="description" content="Admin dashboard for managing blog content">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+</head>
+<style>
+  /* Admin Panel Styles */
+  .admin-panel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #383838;
+  }
+
+  .admin-panel h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+
+  .admin-panel h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Auth Container */
+  .auth-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #425161;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  /* Buttons */
+  .admin-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .admin-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  .admin-btn:hover {
+    background-color: #e0e0e0;
+  }
+
+  .admin-btn:active {
+    transform: translateY(1px);
+  }
+
+  .admin-btn-primary {
+    background-color: #4a89dc;
+    color: white;
+  }
+
+  .admin-btn-primary:hover {
+    background-color: #3b7dd8;
+  }
+
+  .admin-btn-danger {
+    background-color: #e74c3c;
+    color: white;
+  }
+
+  .admin-btn-danger:hover {
+    background-color: #d62c1a;
+  }
+
+  .admin-btn-secondary {
+    background-color: #5c6bc0;
+    color: white;
+  }
+
+  .admin-btn-secondary:hover {
+    background-color: #4a59b7;
+  }
+
+  .admin-btn-small {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+  }
+
+  /* Post Editor */
+  .post-editor {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .preview-toggle {
+    margin: 1rem 0;
+  }
+
+  .content-preview {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+  }
+
+  .content-preview pre {
+    background-color: #272822;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+
+  /* Post List */
+  .post-list-admin {
+    margin-top: 2rem;
+  }
+
+  .post-list-admin table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+
+  .post-list-admin th,
+  .post-list-admin td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .post-list-admin th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+  }
+
+  .post-list-admin tr:hover {
+    background-color: #f8f9fa;
+  }
+
+  .actions {
+    white-space: nowrap;
+  }
+
+  /* Utility Classes */
+  .hidden {
+    display: none;
+  }
+</style>
+
+<body>
+  <header>
+    <a href="/" class="logo">ItsWOLFIX.Journal</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Posts.html">Posts</a></li>
+        <li><a href="admin.html" class="active">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="admin-panel">
+      <h1>Admin Dashboard</h1>
+
+      <div class="admin-actions">
+        <button id="newPostBtn" class="admin-btn hidden">Create New Post</button>
+        <button id="logoutBtn" class="admin-btn hidden">Logout</button>
+      </div>
+
+      <div id="authContainer" class="auth-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+          </div>
+          <button type="submit" class="admin-btn admin-btn-primary">Login</button>
+        </form>
+      </div>
+
+      <div id="postEditor" class="post-editor hidden">
+        <h2>Post Editor</h2>
+        <form id="postForm">
+          <div class="form-group">
+            <label for="postTitle">Title</label>
+            <input type="text" id="postTitle" required>
+          </div>
+
+          <div class="form-group">
+            <label for="postDate">Date</label>
+            <input type="date" id="postDate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="postTags">Tags (comma separated)</label>
+            <input type="text" id="postTags" placeholder="css, javascript, frontend">
+          </div>
+
+          <div class="form-group">
+            <label for="postExcerpt">Excerpt</label>
+            <textarea id="postExcerpt" rows="2" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="postContent">Content (Markdown)</label>
+            <textarea id="postContent" rows="15" required></textarea>
+          </div>
+
+          <div class="preview-toggle">
+            <button type="button" id="previewBtn" class="admin-btn">Preview</button>
+          </div>
+
+          <div id="contentPreview" class="content-preview hidden"></div>
+
+          <div class="form-actions">
+            <button type="submit" class="admin-btn admin-btn-primary">Save Post</button>
+            <button type="button" id="cancelBtn" class="admin-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="postList" class="post-list-admin hidden">
+        <h2>Manage Posts</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="postsTableBody">
+            <!-- Posts will be loaded here from Firebase -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 ItsWOLFIX.Journal</p>
+    <div class="social-links">
+      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">twitter</a>
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer">github</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">linkedin</a>
+    </div>
+  </footer>
+
+  <!-- Firebase SDK -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-app-compat.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-auth-compat.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-database-compat.min.js"></script>
+
+  <!-- Utility Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+
+  <!-- Custom Scripts -->
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAdRj16qIXGF0NlG3SzLbyf3qPDUk4TMHs",
+      authDomain: "itswolfix-journal-dfd86.firebaseapp.com",
+      databaseURL: "https://itswolfix-journal-dfd86-default-rtdb.firebaseio.com",
+      projectId: "itswolfix-journal-dfd86",
+      storageBucket: "itswolfix-journal-dfd86.firebasestorage.app",
+      messagingSenderId: "1068380972611",
+      appId: "1:1068380972611:web:3641e0758b8954839256f6"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    // DOM Elements
+    const authContainer = document.getElementById('authContainer');
+    const postEditor = document.getElementById('postEditor');
+    const postList = document.getElementById('postList');
+    const loginForm = document.getElementById('loginForm');
+    const postForm = document.getElementById('postForm');
+    const newPostBtn = document.getElementById('newPostBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const previewBtn = document.getElementById('previewBtn');
+    const contentPreview = document.getElementById('contentPreview');
+    const postsTableBody = document.getElementById('postsTableBody');
+
+    // State
+    let currentPostId = null;
+    let isEditMode = false;
+
+    // Debug function to log actions and errors
+    function debug(action, data, error = null) {
+      console.log(`[DEBUG] ${action}:`, data);
+      if (error) {
+        console.error(`[ERROR] ${action}:`, error);
+      }
+    }
+
+    // Authentication state observer
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in
+        debug('User authenticated', user.email);
+        authContainer.classList.add('hidden');
+        postList.classList.remove('hidden');
+        newPostBtn.classList.remove('hidden');
+        logoutBtn.classList.remove('hidden');
+        loadPosts();
+      } else {
+        // User is signed out
+        debug('User signed out');
+        authContainer.classList.remove('hidden');
+        postList.classList.add('hidden');
+        postEditor.classList.add('hidden');
+        newPostBtn.classList.add('hidden');
+        logoutBtn.classList.add('hidden');
+      }
+    });
+
+    // Login form submission
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      debug('Attempting login', email);
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Login successful
+          debug('Login successful', userCredential.user.email);
+          loginForm.reset();
+        })
+        .catch((error) => {
+          debug('Login error', error.message, error);
+          alert(`Login Error: ${error.message}`);
+        });
+    });
+
+    // Logout button
+    logoutBtn.addEventListener('click', () => {
+      debug('Attempting logout');
+      auth.signOut()
+        .then(() => {
+          debug('Logout successful');
+        })
+        .catch((error) => {
+          debug('Logout error', error.message, error);
+          console.error('Sign Out Error', error);
+        });
+    });
+
+    // New Post button
+    newPostBtn.addEventListener('click', () => {
+      debug('Creating new post form');
+      currentPostId = null;
+      isEditMode = false;
+      postForm.reset();
+      document.getElementById('postDate').valueAsDate = new Date();
+      postList.classList.add('hidden');
+      postEditor.classList.remove('hidden');
+      contentPreview.classList.add('hidden');
+    });
+
+    // Cancel button
+    cancelBtn.addEventListener('click', () => {
+      debug('Canceling post edit/creation');
+      postEditor.classList.add('hidden');
+      postList.classList.remove('hidden');
+      postForm.reset();
+    });
+
+    // Preview button
+    previewBtn.addEventListener('click', () => {
+      const content = document.getElementById('postContent').value;
+      debug('Previewing content', content.substring(0, 50) + '...');
+      contentPreview.innerHTML = marked.parse(content);
+      contentPreview.classList.toggle('hidden');
+
+      // Highlight any code blocks in the preview
+      Prism.highlightAllUnder(contentPreview);
+    });
+
+    // Post form submission
+    postForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById('postTitle').value;
+      const date = document.getElementById('postDate').value;
+      const tagsInput = document.getElementById('postTags').value;
+      const tags = tagsInput ? tagsInput.split(',').map(tag => tag.trim()) : [];
+      const excerpt = document.getElementById('postExcerpt').value;
+      const content = document.getElementById('postContent').value;
+
+      const post = {
+        title,
+        date,
+        tags,
+        excerpt,
+        content,
+        slug: createSlug(title),
+        updatedAt: new Date().toISOString()
+      };
+
+      debug('Post form submitted', {
+        title,
+        date,
+        tagsCount: tags.length,
+        isEditMode,
+        currentPostId
+      });
+
+      savePost(post);
+    });
+
+    // Create URL-friendly slug from title
+    function createSlug(title) {
+      return title
+        .toLowerCase()
+        .replace(/[^\w\s]/g, '')
+        .replace(/\s+/g, '_');
+    }
+
+    // Save post to Firebase
+    function savePost(post) {
+      // Verify user is authenticated
+      const user = auth.currentUser;
+      if (!user) {
+        debug('Save post error', 'User not authenticated');
+        alert('You must be logged in to save posts.');
+        return;
+      }
+
+      let postRef;
+
+      try {
+        if (isEditMode && currentPostId) {
+          // Update existing post
+          debug('Updating existing post', currentPostId);
+          postRef = database.ref(`posts/${currentPostId}`);
+
+          postRef.update(post)
+            .then(() => {
+              debug('Post updated successfully', currentPostId);
+              alert('Post updated successfully!');
+              postEditor.classList.add('hidden');
+              postList.classList.remove('hidden');
+              loadPosts();
+            })
+            .catch((error) => {
+              debug('Error updating post', error.message, error);
+              alert(`Error updating post: ${error.message}`);
+            });
+        } else {
+          // Create new post
+          debug('Creating new post');
+          postRef = database.ref('posts').push();
+          post.createdAt = new Date().toISOString();
+
+          postRef.set(post)
+            .then(() => {
+              debug('Post created successfully', postRef.key);
+              alert('Post created successfully!');
+              postEditor.classList.add('hidden');
+              postList.classList.remove('hidden');
+              loadPosts();
+            })
+            .catch((error) => {
+              debug('Error creating post', error.message, error);
+              alert(`Error creating post: ${error.message}`);
+            });
+        }
+      } catch (error) {
+        debug('Exception in savePost', error.message, error);
+        alert(`An error occurred: ${error.message}`);
+      }
+    }
+
+    // Load posts from Firebase
+    function loadPosts() {
+      debug('Loading posts');
+
+      try {
+        database.ref('posts').once('value')
+          .then((snapshot) => {
+            debug('Posts loaded', snapshot.numChildren());
+            postsTableBody.innerHTML = '';
+
+            if (!snapshot.exists()) {
+              debug('No posts found');
+              const row = document.createElement('tr');
+              const cell = document.createElement('td');
+              cell.colSpan = 3;
+              cell.textContent = 'No posts found. Create your first post!';
+              cell.style.textAlign = 'center';
+              row.appendChild(cell);
+              postsTableBody.appendChild(row);
+              return;
+            }
+
+            const posts = [];
+            snapshot.forEach((childSnapshot) => {
+              const post = childSnapshot.val();
+              post.id = childSnapshot.key;
+              posts.push(post);
+            });
+
+            // Sort posts by date (newest first)
+            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            posts.forEach((post) => {
+              const row = document.createElement('tr');
+
+              const titleCell = document.createElement('td');
+              titleCell.textContent = post.title;
+              row.appendChild(titleCell);
+
+              const dateCell = document.createElement('td');
+              dateCell.textContent = formatDate(post.date);
+              row.appendChild(dateCell);
+
+              const actionsCell = document.createElement('td');
+              actionsCell.className = 'actions';
+
+              const editBtn = document.createElement('button');
+              editBtn.className = 'admin-btn admin-btn-small';
+              editBtn.textContent = 'Edit';
+              editBtn.addEventListener('click', () => editPost(post));
+              actionsCell.appendChild(editBtn);
+
+              const deleteBtn = document.createElement('button');
+              deleteBtn.className = 'admin-btn admin-btn-small admin-btn-danger';
+              deleteBtn.textContent = 'Delete';
+              deleteBtn.addEventListener('click', () => deletePost(post.id, post.title));
+              actionsCell.appendChild(deleteBtn);
+
+              const viewBtn = document.createElement('button');
+              viewBtn.className = 'admin-btn admin-btn-small admin-btn-secondary';
+              viewBtn.textContent = 'View';
+              viewBtn.addEventListener('click', () => {
+                const slug = post.slug || createSlug(post.title);
+                window.open(`./POSTS/${slug}/${slug}.html`, '_blank');
+              });
+              actionsCell.appendChild(viewBtn);
+
+              row.appendChild(actionsCell);
+              postsTableBody.appendChild(row);
+            });
+          })
+          .catch((error) => {
+            debug('Error loading posts', error.message, error);
+            alert(`Error loading posts: ${error.message}`);
+          });
+      } catch (error) {
+        debug('Exception in loadPosts', error.message, error);
+        alert(`An error occurred while loading posts: ${error.message}`);
+      }
+    }
+
+    // Format date for display
+    function formatDate(dateString) {
+      try {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+      } catch (error) {
+        debug('Error formatting date', dateString, error);
+        return dateString; // Return the original string if formatting fails
+      }
+    }
+
+    // Edit post
+    function editPost(post) {
+      debug('Editing post', post.id);
+      currentPostId = post.id;
+      isEditMode = true;
+
+      document.getElementById('postTitle').value = post.title || '';
+      document.getElementById('postDate').value = post.date || '';
+      document.getElementById('postTags').value = post.tags ? post.tags.join(', ') : '';
+      document.getElementById('postExcerpt').value = post.excerpt || '';
+      document.getElementById('postContent').value = post.content || '';
+
+      postList.classList.add('hidden');
+      postEditor.classList.remove('hidden');
+      contentPreview.classList.add('hidden');
+    }
+
+    // Delete post
+    function deletePost(postId, postTitle) {
+      debug('Attempting to delete post', postId);
+
+      if (confirm(`Are you sure you want to delete "${postTitle}"?`)) {
+        try {
+          database.ref(`posts/${postId}`).remove()
+            .then(() => {
+              debug('Post deleted successfully', postId);
+              alert('Post deleted successfully!');
+            })
+            .catch((error) => {
+              debug('Error deleting post', error.message, error);
+              alert(`Error deleting post: ${error.message}`);
+            });
+        } catch (error) {
+          debug('Exception in deletePost', error.message, error);
+          alert(`An error occurred while deleting: ${error.message}`);
+        }
+      }
+    }
+
+    // Check database permission
+    function checkDatabasePermission() {
+      const testRef = database.ref('.info/connected');
+      testRef.once('value')
+        .then(snapshot => {
+          debug('Database connection test', snapshot.val() ? 'Connected' : 'Disconnected');
+        })
+        .catch(error => {
+          debug('Database permission error', error.message, error);
+          alert(`Database permission error: ${error.message}. Please check your Firebase rules.`);
+        });
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      debug('App initialized');
+      checkDatabasePermission();
+    });
+  </script>
+
+
+</body>
+
+</html>
