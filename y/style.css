@@ -1,0 +1,336 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #222222;
+  --accent-color: #5f4b8b;
+  --muted-color: #777777;
+  --border-color: #eaeaea;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* Default theme = Daylight */
+body.daylight {
+  --bg-color: #ffffff;
+  --text-color: #222222;
+  --accent-color: #5f4b8b;
+  --muted-color: #777777;
+  --border-color: #eaeaea;
+}
+
+/* Night Howl theme */
+body.night-howl {
+  --bg-color: #0f111a;
+  --text-color: #d8e1ea;
+  --accent-color: #9575cd;
+  --muted-color: #a0aec0;
+  --border-color: #2d3748;
+}
+
+/* Night Mind theme */
+body.night-mind {
+  --bg-color: #181221;
+  --accent-color: #FFBAAD;
+  --text-color: #E4DEED;
+  --muted-color: #E4DEED;
+  --border-color: #2d3748;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.7;
+  font-size: 1.05rem;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  scroll-behavior: smooth;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+a:hover {
+  border-bottom: 1px solid var(--accent-color);
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  font-family: var(--font-mono);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* Theme toggle styles */
+.theme-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.theme-button {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-button:hover {
+  background-color: var(--border-color);
+}
+
+.theme-button.active {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.hero {
+  margin-bottom: 5rem;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.hero p {
+  color: var(--muted-color);
+  font-size: 1.1rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.post h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.post-meta {
+  font-size: 0.85rem;
+  color: var(--muted-color);
+  font-family: var(--font-mono);
+}
+
+.post p {
+  margin-top: 0.5rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--muted-color);
+}
+
+.tag:not(:last-child)::after {
+  content: "•";
+  margin-left: 0.5rem;
+  color: var(--muted-color);
+}
+
+/* See more link style */
+.see-more-link {
+  display: inline-block;
+  margin: 1rem 0 3rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  border-bottom: none;
+  transition: transform 0.2s ease;
+}
+
+.see-more-link:hover {
+  border-bottom: none;
+  transform: translateX(5px);
+}
+
+footer {
+  margin-top: 6rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--muted-color);
+  font-size: 0.85rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.social-links a {
+  color: var(--muted-color);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Code block styling */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--border-color);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+pre {
+  background-color: var(--border-color);
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Blog post specific styles */
+.blog-post {
+  max-width: 100%;
+}
+
+.blog-post h1 {
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.blog-post h2 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+
+.blog-post p {
+  margin-bottom: 1.25rem;
+}
+
+.blog-post ol,
+.blog-post ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.blog-post li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-post .post-meta {
+  font-size: 0.85rem;
+  color: var(--muted-color);
+  font-family: var(--font-mono);
+  margin-bottom: 1rem;
+}
+
+.blog-post .tags {
+  margin-bottom: 2rem;
+}
+
+/* Fix for original tag display */
+.tags[data-tags] .tag {
+  margin-right: 0.5rem;
+}
+
+/* For backwards compatibility with your original JavaScript tag generation */
+.tags[data-tags] .tag::after {
+  content: "";
+  margin-left: 0;
+}
+
+/* Relaxing scroll effect */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) var(--bg-color);
+}
+
+/* Webkit browsers custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 20px;
+  border: 2px solid var(--bg-color);
+}

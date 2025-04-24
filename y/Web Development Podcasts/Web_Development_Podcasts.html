@@ -5,13 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-        Web Development Podcasts - My Code Journal
+        Its WOLFIX Journal
     </title>
-
-    <meta name="description" content="Stay up to date with web development and entertained with these top podcasts."/>
+    <link rel="icon" href="/icon2.png" type="image/icon type">
+    <link rel="stylesheet" href="Web_Development_Podcasts.css">
+    <meta name="description" content="Stay up to date with web development and entertained with these top podcasts." />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
-    <link rel="stylesheet" href="/public/style.css">
-    <link rel="stylesheet" href="/public/POSTS/posts.css">
+
     <style>
         .blog-post img {
             max-width: 100%;
@@ -45,20 +45,28 @@
             }
         }
     </style>
+
 </head>
 
 <body>
     <header>
-        <a href="/" class="logo">ItsWOLFIX.Journal</a>
+        <a href="/index.html" class="logo">
+          <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
+          ItsWOLFIX.Journal</a>
         <nav aria-label="Main navigation">
             <ul>
-                <li><a href="/public/index.html">Home</a></li>
-                <li><a href="/public/index.html">Posts</a></li>
+                <a href="/index.html">Home</a>
+                <a href="/Posts.html">Posts</a>
                 <li><a href="https://github.com/itsW0LFIX">About</a></li>
             </ul>
         </nav>
     </header>
 
+    <div class="theme-toggle">
+        <button id="daylight" class="theme-button active">🌞 Daylight</button>
+        <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+        <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+    </div>
     <main>
         <article class="blog-post">
             <header>
@@ -237,13 +245,15 @@
         <p>© 2025 ItsWOLFIX.Journal</p>
         <div class="social-links">
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">twitter</a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">github</a>
+            <a href="https://github.com/itsW0LFIX" target="_blank" rel="noopener noreferrer">github</a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">linkedin</a>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
+
+    <script src="Web_Development_Podcasts.js"></script>
 </body>
 
 </html>
