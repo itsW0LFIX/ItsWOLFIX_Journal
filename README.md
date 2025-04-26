@@ -6,6 +6,11 @@ A modern web development blog focused on ethical design, CSS features, offline c
 
 ItsWOLFIX.Journal is a personal web development journal documenting notes on modern web development and crafting thoughtful user experiences. This project explores React, JavaScript, and the art of clean code through a collection of educational articles and resources.
 
+## Hosted Link
+
+You can access the Journal here: [HERE](https://itswolfix-journal.web.app/)
+
+
 ## Project Structure
 
 ```
