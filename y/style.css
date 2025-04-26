@@ -334,3 +334,336 @@ html {
   border-radius: 20px;
   border: 2px solid var(--bg-color);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* Add to your style.css file */
+
+/* Code styling */
+.code-container {
+  position: relative;
+  margin: 2rem 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: rgba(var(--accent-color-rgb), 0.1);
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.code-language {
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--accent-color);
+}
+
+.copy-button {
+  background-color: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Override pre styling */
+.code-container pre {
+  margin: 0;
+  padding: 1rem;
+  border-radius: 0;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Code lines */
+.code-line {
+  display: block;
+  position: relative;
+  padding-left: 0.5rem;
+  border-left: 3px solid transparent;
+}
+
+.code-line:hover {
+  background-color: rgba(var(--accent-color-rgb), 0.05);
+  border-left-color: var(--accent-color);
+}
+
+/* Language-specific styling for different programming languages */
+.language-javascript .keyword,
+.language-js .keyword {
+  color: #c792ea;
+}
+
+.language-html .tag {
+  color: #f07178;
+}
+
+.language-css .property {
+  color: #82aaff;
+}
+
+/* Mobile Navigation */
+.hamburger-menu {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 100;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: var(--text-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  background-color: var(--bg-color);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  padding: 6rem 2rem 2rem;
+  transition: right 0.3s ease-in-out;
+  z-index: 90;
+}
+
+.mobile-nav.active {
+  right: 0;
+}
+
+.mobile-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.mobile-nav a {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  display: block;
+  padding: 0.5rem 0;
+}
+
+/* Hamburger animation */
+.hamburger-menu.active .hamburger-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-menu.active .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.active .hamburger-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Overlay when mobile nav is open */
+body.nav-open::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 80;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 767px) {
+  .hamburger-menu {
+      display: block;
+  }
+
+  header nav {
+      display: none;
+  }
+
+  body {
+      padding-top: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-nav {
+      display: none;
+  }
+}
+
+/* Improved Footer */
+footer {
+  margin-top: 6rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.footer-section h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.footer-section p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: var(--muted-color);
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.social-links a {
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav li {
+  margin-bottom: 0.5rem;
+}
+
+/* Continued from previous footer CSS */
+.footer-nav a {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--accent-color);
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.footer-tag {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  background-color: rgba(var(--accent-color-rgb), 0.1);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+}
+
+.footer-tag:hover {
+  background-color: var(--accent-color);
+  color: white;
+  border-bottom: none;
+}
+
+.subscribe-form {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.subscribe-form input {
+  flex: 1;
+  padding: 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px 0 0 4px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+}
+
+.subscribe-form button {
+  padding: 0.6rem 1rem;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.subscribe-form button:hover {
+  background-color: var(--accent-color);
+  opacity: 0.9;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--muted-color);
+}
+
+.footer-meta {
+  font-style: italic;
+}
+
+@media (max-width: 767px) {
+  .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+  }
+
+  .footer-bottom {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+  }
+}

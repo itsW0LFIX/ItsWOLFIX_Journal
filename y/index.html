@@ -1,122 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Its WOLFIX Journal</title>
+    <link rel="icon" href="/icon2.png" type="image/icon type" />
+    <link rel="stylesheet" href="style.css" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Its WOLFIX Journal</title>
-  <link rel="icon" href="/icon2.png" type="image/icon type">
-  <link rel="stylesheet" href="style.css">
+    <meta
+      name="description"
+      content="A personal journal about JavaScript, React, and modern web development."
+    />
+  </head>
 
-  <meta name="description" content="A personal journal about JavaScript, React, and modern web development.">
-</head>
-
-<body>
-
-  <header>
-    <a href="/index.html" class="logo">
-      <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
-      ItsWOLFIX.Journal</a>
-    <nav aria-label="Main navigation">
+  <body>
+    <header>
+      <a href="/index.html" class="logo">
+        <img
+          style="width: 25px; margin: -6px"
+          src="/icon2.png"
+          alt="icon logo"
+        />
+        ItsWOLFIX.Journal</a
+      >
+      <nav aria-label="Main navigation">
         <ul>
-            <a href="/index.html">Home</a>
-            <a href="/Posts.html">Posts</a>
-            <li><a href="https://github.com/itsW0LFIX">About</a></li>
+          <a href="/index.html">Home</a>
+          <a href="/Posts.html">Posts</a>
+          <li><a href="https://github.com/itsW0LFIX">About</a></li>
         </ul>
-    </nav>
-</header>
+      </nav>
+    </header>
 
-  <div class="theme-toggle">
-    <button id="daylight" class="theme-button active">🌞 Daylight</button>
-    <button id="night-howl" class="theme-button">🐺 Night Howl</button>
-    <button id="night-mind" class="theme-button">🧠 Night Mind</button>
-  </div>
-
-  <main>
-    <section class="hero">
-      <h1>Notes on modern web development and crafting thoughtful user experiences</h1>
-      <p>Exploring React, JavaScript, and the art of clean code.</p>
-    </section>
-
-    <section>
-      <h2>Latest posts</h2>
-      <div class="post-list">
-
-        <article class="post">
-          <div class="post-meta">April 20, 2025</div>
-          <h3><a href="Web Development Podcasts/Web_Development_Podcasts.html">Web Development Podcasts</a></h3>
-          <p>Stay up to date with web development and entertained with these top podcasts for developers.</p>
-          <div class="tags">
-            <span class="tag">resources</span>
-            <span class="tag">podcasts</span>
-            <span class="tag">learning</span>
-          </div>
-        </article>
-      
-        <article class="post">
-          <div class="post-meta">April 25, 2025</div>
-          <h3><a href="Web Animation Techniques/Web_Animation_Techniques.html">Web Animation Techniques with CSS and JavaScript</a></h3>
-          <p>Creating elegant, performant animations for modern web interfaces using CSS and JavaScript.</p>
-          <div class="tags">
-            <span class="tag">css</span>
-            <span class="tag">javascript</span>
-            <span class="tag">animation</span>
-          </div>
-        </article>
-        
-        <article class="post">
-          <div class="post-meta">Abril 21, 2025</div>
-          <h3><a href="Ethical Web Design Principles/Ethical_Web_Design_Principles.html">Ethical Web Design Principles</a></h3>
-          <p>Exploring privacy-focused design, sustainable web practices, and accessibility as an ethical imperative</p>
-          <div class="tags">
-            <span class="tag">ethics</span>
-            <span class="tag">privacy</span>
-            <span class="tag">accessibility</span>
-            <span class="tag">sustainability</span>
-          </div>
-        </article>
-        
-        <article class="post">
-          <div class="post-meta">Abril 20, 2025</div>
-          <h3><a href="Sustainable Digital Product Design/Sustainable_Digital_Product_Design.html">Sustainable Digital Product Design</a></h3>
-          <p>Reducing digital carbon footprints, energy-efficient web design, and environmentally conscious development choices.</p>
-          <div class="tags">
-            <span class="tag">sustainability</span>
-            <span class="tag">performance</span>
-            <span class="tag">optimization</span>
-            <span class="tag">green-web</span>
-          </div>
-        </article>
-
-        <article class="post">
-          <div class="post-meta">May 3, 2025</div>
-          <h3><a href="Modern CSS Features/Modern_CSS_Features.html">Modern CSS Features You Should Be Using Today</a></h3>
-          <p>Powerful CSS capabilities that solve complex layout and design challenges with less code.</p>
-          <div class="tags">
-            <span class="tag">css</span>
-            <span class="tag">web-design</span>
-            <span class="tag">frontend</span>
-          </div>
-        </article>
-        
-
-      </div>
-      <a href="/Posts.html" class="see-more-link">See more posts →</a>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>© 2025 ItsWOLFIX.Journal</p>
-    <div class="social-links">
-      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">twitter</a>
-      <a href="https://github.com/itsW0LFIX" target="_blank" rel="noopener noreferrer">github</a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">linkedin</a>
+    <div class="theme-toggle">
+      <button id="daylight" class="theme-button active">🌞 Daylight</button>
+      <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+      <button id="night-mind" class="theme-button">🧠 Night Mind</button>
     </div>
-    <p>The program is under continuous development and downloading !!!</p>
-  </footer>
-  
-  <script src="theme.js"></script>
-</body>
 
+    <main>
+      <section class="hero">
+        <h1>
+          Notes on modern web development and crafting thoughtful user
+          experiences
+        </h1>
+        <p>Exploring React, JavaScript, and the art of clean code.</p>
+      </section>
+
+      <section>
+        <h2>Latest posts</h2>
+        <div class="post-list">
+          <article class="post">
+            <div class="post-meta">April 20, 2025</div>
+            <h3>
+              <a href="Web Development Podcasts/Web_Development_Podcasts.html"
+                >Web Development Podcasts</a
+              >
+            </h3>
+            <p>
+              Stay up to date with web development and entertained with these
+              top podcasts for developers.
+            </p>
+            <div class="tags">
+              <span class="tag">resources</span>
+              <span class="tag">podcasts</span>
+              <span class="tag">learning</span>
+            </div>
+          </article>
+
+          <article class="post">
+            <div class="post-meta">April 25, 2025</div>
+            <h3>
+              <a href="Web Animation Techniques/Web_Animation_Techniques.html"
+                >Web Animation Techniques with CSS and JavaScript</a
+              >
+            </h3>
+            <p>
+              Creating elegant, performant animations for modern web interfaces
+              using CSS and JavaScript.
+            </p>
+            <div class="tags">
+              <span class="tag">css</span>
+              <span class="tag">javascript</span>
+              <span class="tag">animation</span>
+            </div>
+          </article>
+
+          <article class="post">
+            <div class="post-meta">Abril 21, 2025</div>
+            <h3>
+              <a
+                href="Ethical Web Design Principles/Ethical_Web_Design_Principles.html"
+                >Ethical Web Design Principles</a
+              >
+            </h3>
+            <p>
+              Exploring privacy-focused design, sustainable web practices, and
+              accessibility as an ethical imperative
+            </p>
+            <div class="tags">
+              <span class="tag">ethics</span>
+              <span class="tag">privacy</span>
+              <span class="tag">accessibility</span>
+              <span class="tag">sustainability</span>
+            </div>
+          </article>
+
+          <article class="post">
+            <div class="post-meta">Abril 20, 2025</div>
+            <h3>
+              <a
+                href="Sustainable Digital Product Design/Sustainable_Digital_Product_Design.html"
+                >Sustainable Digital Product Design</a
+              >
+            </h3>
+            <p>
+              Reducing digital carbon footprints, energy-efficient web design,
+              and environmentally conscious development choices.
+            </p>
+            <div class="tags">
+              <span class="tag">sustainability</span>
+              <span class="tag">performance</span>
+              <span class="tag">optimization</span>
+              <span class="tag">green-web</span>
+            </div>
+          </article>
+
+          <article class="post">
+            <div class="post-meta">May 3, 2025</div>
+            <h3>
+              <a href="Modern CSS Features/Modern_CSS_Features.html"
+                >Modern CSS Features You Should Be Using Today</a
+              >
+            </h3>
+            <p>
+              Powerful CSS capabilities that solve complex layout and design
+              challenges with less code.
+            </p>
+            <div class="tags">
+              <span class="tag">css</span>
+              <span class="tag">web-design</span>
+              <span class="tag">frontend</span>
+            </div>
+          </article>
+        </div>
+        <a href="/Posts.html" class="see-more-link">See more posts →</a>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>ItsWOLFIX.Journal</h4>
+          <p>
+            Notes on modern web development and crafting thoughtful user
+            experiences.
+          </p>
+          <div class="social-links">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Twitter</a
+            >
+            <a
+              href="https://github.com/itsW0LFIX"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub</a
+            >
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn</a
+            >
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Navigation</h4>
+          <ul class="footer-nav">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/Posts.html">All Posts</a></li>
+            <li><a href="https://github.com/itsW0LFIX">About</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Popular Tags</h4>
+          <div class="tag-cloud">
+            <a href="/Posts.html" class="footer-tag">javascript</a>
+            <a href="/Posts.html" class="footer-tag">css</a>
+            <a href="/Posts.html" class="footer-tag">react</a>
+            <a href="/Posts.html" class="footer-tag">accessibility</a>
+            <a href="/Posts.html" class="footer-tag">performance</a>
+            <a href="/Posts.html" class="footer-tag">sustainability</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Subscribe</h4>
+          <p>Get notified about new posts and updates.</p>
+          <form class="subscribe-form" id="subscribe-form">
+            <input type="email" placeholder="Your email" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+        
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 ItsWOLFIX.Journal</p>
+        <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
+      </div>
+    </footer>
+
+    <script src="theme.js"></script>
+
+  </body>
 </html>

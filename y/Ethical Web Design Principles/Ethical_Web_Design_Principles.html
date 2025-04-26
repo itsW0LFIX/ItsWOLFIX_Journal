@@ -1,71 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-        Its WOLFIX Journal
-    </title>
-      <link rel="icon" href="/icon2.png" type="image/icon type">
-    <link rel="stylesheet" href="Ethical_Web_Design_Principles.css">
+    <title>Its WOLFIX Journal</title>
+    <link rel="icon" href="/icon2.png" type="image/icon type" />
+    <link rel="stylesheet" href="/style.css" />
+    <meta name="description" content="Exploring privacy-focused design, sustainable web practices, and accessibility as an ethical imperative."/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css"/>
+  </head>
+  <body>
 
-    <meta name="description"
-        content="Exploring privacy-focused design, sustainable web practices, and accessibility as an ethical imperative." />
-    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
-
-</head>
-<body>
     <header>
-        <a href="/index.html" class="logo">
-          <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
-          ItsWOLFIX.Journal</a>
-        <nav aria-label="Main navigation">
-            <ul>
-                <a href="/index.html">Home</a>
-                <a href="/Posts.html">Posts</a>
-                <li><a href="https://github.com/itsW0LFIX">About</a></li>
-            </ul>
-        </nav>
+      <a href="/index.html" class="logo">
+        <img
+          style="width: 25px; margin: -6px"
+          src="/icon2.png"
+          alt="icon logo"
+        />
+        ItsWOLFIX.Journal</a
+      >
+      <nav aria-label="Main navigation">
+        <ul>
+          <a href="/index.html">Home</a>
+          <a href="/Posts.html">Posts</a>
+          <li><a href="https://github.com/itsW0LFIX">About</a></li>
+        </ul>
+      </nav>
     </header>
+
     <div class="theme-toggle">
       <button id="daylight" class="theme-button active">🌞 Daylight</button>
       <button id="night-howl" class="theme-button">🐺 Night Howl</button>
       <button id="night-mind" class="theme-button">🧠 Night Mind</button>
     </div>
 
-
     <main>
-        <article class="blog-post">
-            <header>
-                <div class="post-meta">Abril 21, 2025</div>
-                <h1>Ethical Web Design Principles</h1>
-                <div class="tags">
-                    <span class="tag">ethics</span>
-                    <span class="tag">privacy</span>
-                    <span class="tag">accessibility</span>
-                    <span class="tag">sustainability</span>
-                </div>
-            </header>
+      <article class="blog-post">
+        <header>
+          <div class="post-meta">Abril 21, 2025</div>
+          <h1>Ethical Web Design Principles</h1>
+          <div class="tags">
+            <span class="tag">ethics</span>
+            <span class="tag">privacy</span>
+            <span class="tag">accessibility</span>
+            <span class="tag">sustainability</span>
+          </div>
+        </header>
 
-            <section>
-                <p>
-                    As web developers and designers, we wield significant influence over people's digital experiences. This power comes with responsibility. Ethical web design isn't just about following rules or meeting compliance requirements—it's about actively making choices that respect users, their privacy, and the planet.
-                </p>
+        <section>
+          <p>
+            As web developers and designers, we wield significant influence over
+            people's digital experiences. This power comes with responsibility.
+            Ethical web design isn't just about following rules or meeting
+            compliance requirements—it's about actively making choices that
+            respect users, their privacy, and the planet.
+          </p>
 
-                <h2>Privacy as a Core Design Value</h2>
-                <p>
-                    In a world of constant data collection, privacy-focused design has become essential. Users increasingly value transparency and control over their information. Building with privacy in mind means more than just adding a cookie consent banner.
-                </p>
+          <h2>Privacy as a Core Design Value</h2>
+          <p>
+            In a world of constant data collection, privacy-focused design has
+            become essential. Users increasingly value transparency and control
+            over their information. Building with privacy in mind means more
+            than just adding a cookie consent banner.
+          </p>
 
-                <p>
-                    Consider implementing these privacy-centric approaches:
-                </p>
+          <p>Consider implementing these privacy-centric approaches:</p>
 
-<pre><code class="language-html">
+          <pre><code class="language-javascript">
 <!-- Privacy-respecting analytics approach -->
-< >
+<script>
   // Only collect anonymous, aggregated data
   // No fingerprinting, no tracking across sites
   const analyticsConfig = {
@@ -74,19 +78,24 @@
     respect_dnt: true,  // Respect Do Not Track
     storage_duration: 7  // Days to retain data
   };
-< /script>
+</script>
 </code></pre>
 
-                <p>
-                    Data minimization should be your default stance. Only collect what's necessary, be transparent about your collection practices, and give users meaningful control over their data.
-                </p>
+          <p>
+            Data minimization should be your default stance. Only collect what's
+            necessary, be transparent about your collection practices, and give
+            users meaningful control over their data.
+          </p>
 
-                <h2>Digital Sustainability</h2>
-                <p>
-                    The environmental impact of digital products is often overlooked. Every byte transferred, every CPU cycle consumed, contributes to carbon emissions. Sustainable web design means creating efficient, lightweight experiences.
-                </p>
+          <h2>Digital Sustainability</h2>
+          <p>
+            The environmental impact of digital products is often overlooked.
+            Every byte transferred, every CPU cycle consumed, contributes to
+            carbon emissions. Sustainable web design means creating efficient,
+            lightweight experiences.
+          </p>
 
-<pre><code class="language-css">
+          <pre><code class="language-css">
 /* Sustainable image loading technique */
 .lazy-image {
   background: #eee;  /* Placeholder color */
@@ -109,25 +118,31 @@
 }
 </code></pre>
 
-                <p>
-                    Strategies for more sustainable websites include:
-                </p>
-                <ol>
-                    <li>Optimizing images and using modern formats like WebP</li>
-                    <li>Implementing proper caching strategies</li>
-                    <li>Minimizing JavaScript and CSS</li>
-                    <li>Using system fonts rather than custom web fonts where possible</li>
-                    <li>Choosing green hosting providers powered by renewable energy</li>
-                </ol>
+          <p>Strategies for more sustainable websites include:</p>
+          <ol>
+            <li>Optimizing images and using modern formats like WebP</li>
+            <li>Implementing proper caching strategies</li>
+            <li>Minimizing JavaScript and CSS</li>
+            <li>
+              Using system fonts rather than custom web fonts where possible
+            </li>
+            <li>
+              Choosing green hosting providers powered by renewable energy
+            </li>
+          </ol>
 
-                <h2>Accessibility as an Ethical Imperative</h2>
-                <p>
-                    Accessibility is not optional—it's a fundamental ethical responsibility. The web was designed to be universally accessible, and we should honor that founding principle. When we build inaccessible websites, we actively exclude people with disabilities from digital spaces.
-                </p>
+          <h2>Accessibility as an Ethical Imperative</h2>
+          <p>
+            Accessibility is not optional—it's a fundamental ethical
+            responsibility. The web was designed to be universally accessible,
+            and we should honor that founding principle. When we build
+            inaccessible websites, we actively exclude people with disabilities
+            from digital spaces.
+          </p>
 
-<pre><code class="language-html">
+          <pre><code class="language-html">
 // Good button example
-< button 
+< button
   aria-label="Submit form" 
   class="primary-btn" 
   type="submit">
@@ -140,23 +155,24 @@
 < /div>
 </code></pre>
 
-                <p>
-                    Integrating accessibility means:
-                </p>
-                <ol>
-                    <li>Writing semantic HTML</li>
-                    <li>Ensuring proper keyboard navigation</li>
-                    <li>Maintaining adequate color contrast</li>
-                    <li>Providing text alternatives for non-text content</li>
-                    <li>Testing with assistive technologies</li>
-                </ol>
+          <p>Integrating accessibility means:</p>
+          <ol>
+            <li>Writing semantic HTML</li>
+            <li>Ensuring proper keyboard navigation</li>
+            <li>Maintaining adequate color contrast</li>
+            <li>Providing text alternatives for non-text content</li>
+            <li>Testing with assistive technologies</li>
+          </ol>
 
-                <h2>Dark Patterns: What Not to Do</h2>
-                <p>
-                    Dark patterns are design tricks that manipulate users into doing things they might not otherwise do. These deceptive practices might boost short-term metrics but erode user trust and can damage reputation.
-                </p>
+          <h2>Dark Patterns: What Not to Do</h2>
+          <p>
+            Dark patterns are design tricks that manipulate users into doing
+            things they might not otherwise do. These deceptive practices might
+            boost short-term metrics but erode user trust and can damage
+            reputation.
+          </p>
 
-<pre><code class="language-javascript">
+          <pre><code class="language-javascript">
 // Example of ethical cookie consent implementation
 function setupCookieConsent() {
   // Default to most privacy-respecting option
@@ -174,50 +190,120 @@ function setupCookieConsent() {
 }
 </code></pre>
 
-                <p>
-                    Common dark patterns to avoid include:
-                </p>
-                <ol>
-                    <li>Forced continuity (making cancellation difficult)</li>
-                    <li>Hidden costs revealed only at checkout</li>
-                    <li>Misleading information hierarchy that obscures important details</li>
-                    <li>Guilt-inducing opt-out language</li>
-                    <li>Disguised advertisements that look like content</li>
-                </ol>
+          <p>Common dark patterns to avoid include:</p>
+          <ol>
+            <li>Forced continuity (making cancellation difficult)</li>
+            <li>Hidden costs revealed only at checkout</li>
+            <li>
+              Misleading information hierarchy that obscures important details
+            </li>
+            <li>Guilt-inducing opt-out language</li>
+            <li>Disguised advertisements that look like content</li>
+          </ol>
 
-                <h2>Designing for Digital Wellbeing</h2>
-                <p>
-                    Our interfaces can either support healthy digital habits or exploit human psychology for engagement at any cost. Ethical design considers the psychological impact of features and patterns.
-                </p>
-                
-                <p>
-                    Consider implementing:
-                </p>
-                <ol>
-                    <li>Usage timers or reminders for time-consuming applications</li>
-                    <li>Focus modes that minimize distractions</li>
-                    <li>Transparent notification settings that don't default to maximum interruption</li>
-                    <li>Content warnings for potentially disturbing material</li>
-                </ol>
+          <h2>Designing for Digital Wellbeing</h2>
+          <p>
+            Our interfaces can either support healthy digital habits or exploit
+            human psychology for engagement at any cost. Ethical design
+            considers the psychological impact of features and patterns.
+          </p>
 
-                <h2>Conclusion</h2>
-                <p>
-                    Ethical web design requires conscious decision-making throughout the development process. It means sometimes saying "no" to features or techniques that might boost engagement but harm users. By embracing privacy, accessibility, sustainability, and wellbeing as core values, we can create digital experiences that respect humanity in all its diversity.
-                </p>
-                <p>
-                    In my next post, I'll explore practical tools and frameworks for implementing these principles in your everyday workflow, including accessibility checkers, sustainable web design metrics, and privacy assessment methodologies.
-                </p>
-            </section>
-        </article>
+          <p>Consider implementing:</p>
+          <ol>
+            <li>Usage timers or reminders for time-consuming applications</li>
+            <li>Focus modes that minimize distractions</li>
+            <li>
+              Transparent notification settings that don't default to maximum
+              interruption
+            </li>
+            <li>Content warnings for potentially disturbing material</li>
+          </ol>
+
+          <h2>Conclusion</h2>
+          <p>
+            Ethical web design requires conscious decision-making throughout the
+            development process. It means sometimes saying "no" to features or
+            techniques that might boost engagement but harm users. By embracing
+            privacy, accessibility, sustainability, and wellbeing as core
+            values, we can create digital experiences that respect humanity in
+            all its diversity.
+          </p>
+          <p>
+            In my next post, I'll explore practical tools and frameworks for
+            implementing these principles in your everyday workflow, including
+            accessibility checkers, sustainable web design metrics, and privacy
+            assessment methodologies.
+          </p>
+        </section>
+      </article>
     </main>
 
     <footer>
-        <p>© 2025 ItsWOLFIX.Journal</p>
-        <div class="social-links">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">twitter</a>
-            <a href="https://github.com/itsW0LFIX" target="_blank" rel="noopener noreferrer">github</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">linkedin</a>
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>ItsWOLFIX.Journal</h4>
+          <p>
+            Notes on modern web development and crafting thoughtful user
+            experiences.
+          </p>
+          <div class="social-links">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Twitter</a
+            >
+            <a
+              href="https://github.com/itsW0LFIX"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub</a
+            >
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn</a
+            >
+          </div>
         </div>
+
+        <div class="footer-section">
+          <h4>Navigation</h4>
+          <ul class="footer-nav">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/Posts.html">All Posts</a></li>
+            <li><a href="https://github.com/itsW0LFIX">About</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Popular Tags</h4>
+          <div class="tag-cloud">
+            <a href="/Posts.html" class="footer-tag">javascript</a>
+            <a href="/Posts.html" class="footer-tag">css</a>
+            <a href="/Posts.html" class="footer-tag">react</a>
+            <a href="/Posts.html" class="footer-tag">accessibility</a>
+            <a href="/Posts.html" class="footer-tag">performance</a>
+            <a href="/Posts.html" class="footer-tag">sustainability</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Subscribe</h4>
+          <p>Get notified about new posts and updates.</p>
+          <form class="subscribe-form" id="subscribe-form">
+            <input type="email" placeholder="Your email" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+        
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 ItsWOLFIX.Journal</p>
+        <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
+      </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
@@ -225,9 +311,6 @@ function setupCookieConsent() {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
-
-
-<script src="Ethical_Web_Design_Principles.js"></script>
-</body>
-
+    <script src="/theme.js"></script>
+  </body>
 </html>
