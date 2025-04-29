@@ -2,206 +2,698 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Its WOLFIX Journal</title>
-  <link rel="icon" href="/icon2.png" type="image/icon type">
-  <link rel="stylesheet" href="style.css">
-  <meta name="description" content="A personal journal about JavaScript, React, and modern web development.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Its WOLFIX Journal</title>
+    <link rel="icon" href="/icon2.png" type="image/icon type">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="A personal journal about JavaScript, React, and modern web development.">
 </head>
+<style>
+    /* Base layout */
+    body {
+        max-width: 100%;
+        padding: 0;
+    }
 
+    /* Header bar styling */
+    header {
+        background-color: var(--card-bg-color);
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        border-bottom: none;
+        font-weight: 600;
+    }
+
+    .logo:hover {
+        border-bottom: none;
+    }
+
+    /* Search bar styling */
+    .search-container {
+        flex: 1;
+        max-width: 500px;
+        margin: 0 2rem;
+        position: relative;
+    }
+
+    .search-bar {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    .search-bar:focus {
+        outline: none;
+        border-color: var(--accent-color);
+    }
+
+    /* Navigation styling */
+    nav {
+        display: flex;
+        align-items: center;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+        margin-right: 2rem;
+        margin-bottom: 0;
+    }
+
+    nav li {
+        margin-bottom: 0;
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin: 2rem 0;
+    }
+
+    .theme-button {
+        background: none;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        font-family: var(--font-sans);
+        color: var(--text-color);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .theme-button:hover {
+        background-color: var(--border-color);
+    }
+
+    .theme-button.active {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+    }
+
+    /* Main content layout */
+    main {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Category filters */
+    .category-filters {
+        display: flex;
+        justify-content: right;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .category-button {
+        background-color: var(--button-bg-color);
+        color: var(--button-text-color);
+        border: none;
+        border-radius: 20px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .category-button.active {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+    .category-button:hover:not(.active) {
+        background-color: var(--button-hover-bg-color);
+    }
+
+    /* Post grid and cards */
+
+
+    .post-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 16px;
+        margin-bottom: 3rem;
+    }
+
+    .post-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 16px;
+        margin-bottom: 3rem;
+    }
+
+    .post-card {
+        background-color: var(--card-bg-color);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border: 1px solid var(--border-color);
+        display: flex;
+        padding: 12px;
+        align-items: flex-start;
+        height: 100%;
+    }
+
+    .post-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .post-icon-container {
+        display: flex;
+        align-items: flex-start;
+        margin-right: 14px;
+        flex-shrink: 0;
+    }
+
+    .post-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background-color: var(--icon-bg-color);
+    }
+
+    .post-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .post-header {
+        margin-bottom: 10px;
+    }
+
+    .post-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: var(--text-color);
+    }
+
+    .post-description {
+        font-size: 0.8rem;
+        line-height: 1.4;
+        color: var(--muted-color);
+    }
+
+    .post-footer {
+        margin-top: auto;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .post-action {
+        display: inline-block;
+        color: var(--accent-color);
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        border: 1px solid var(--border-color);
+        padding: 3px 12px;
+        border-radius: 12px;
+        transition: background-color 0.2s;
+    }
+
+    .post-action:hover {
+        background-color: var(--action-hover-bg-color);
+        border-bottom: none;
+    }
+
+
+    .post-meta {
+        margin-bottom: 6px;
+        font-size: 0.8rem;
+    }
+
+
+    /* Post footer with tags and action */
+    .post-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 16px;
+        border-top: 1px solid var(--border-color);
+        /* background-color: var(--action-bg-color); */
+    }
+
+    .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        flex: 1;
+    }
+
+    .post-tag {
+        font-size: 0.65rem;
+        background-color: var(--tag-bg-color);
+        color: var(--tag-text-color);
+        padding: 2px 6px;
+        border-radius: 10px;
+    }
+
+
+    /* No results message */
+    .no-results {
+        text-align: center;
+        grid-column: 1 / -1;
+        padding: 2rem;
+        color: var(--muted-color);
+        font-style: italic;
+    }
+
+    /* Utility classes */
+    .hidden {
+        display: none;
+    }
+
+    /* Theme variables */
+    :root {
+        --card-bg-color: #ffffff;
+        --icon-bg-color: rgba(95, 75, 139, 0.1);
+        --tag-bg-color: rgba(95, 75, 139, 0.08);
+        --tag-text-color: #5f4b8b;
+        --action-bg-color: rgba(95, 75, 139, 0.03);
+        --action-hover-bg-color: rgba(95, 75, 139, 0.08);
+        --button-bg-color: #f0f0f0;
+        --button-text-color: #666;
+        --button-hover-bg-color: #e0e0e0;
+        --accent-color-rgb: 95, 75, 139;
+    }
+
+    body.night-howl {
+        --card-bg-color: #1a1d2a;
+        --icon-bg-color: rgba(149, 117, 205, 0.15);
+        --tag-bg-color: rgba(149, 117, 205, 0.15);
+        --tag-text-color: #9575cd;
+        --action-bg-color: rgba(149, 117, 205, 0.05);
+        --action-hover-bg-color: rgba(149, 117, 205, 0.1);
+        --button-bg-color: #2d3748;
+        --button-text-color: #d8e1ea;
+        --button-hover-bg-color: #3a4a5e;
+        --accent-color-rgb: 149, 117, 205;
+    }
+
+    body.night-mind {
+        --card-bg-color: #221b2d;
+        --icon-bg-color: rgba(255, 186, 173, 0.15);
+        --tag-bg-color: rgba(255, 186, 173, 0.15);
+        --tag-text-color: #FFBAAD;
+        --action-bg-color: rgba(255, 186, 173, 0.05);
+        --action-hover-bg-color: rgba(255, 186, 173, 0.1);
+        --button-bg-color: #2d2037;
+        --button-text-color: #E4DEED;
+        --button-hover-bg-color: #3a2a48;
+        --accent-color-rgb: 255, 186, 173;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .search-container {
+            margin: 0 1rem;
+        }
+
+        nav ul {
+            margin-right: 1rem;
+            gap: 1rem;
+        }
+
+        main {
+            padding: 1rem;
+        }
+
+        .post-footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .post-action {
+            align-self: flex-end;
+        }
+
+        .post-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
 <body>
+    <header>
+        <a href="/index.html" class="logo">
+            <img style="width: 25px; margin-right: 8px;" src="icon2.png" alt="icon logo">
+            ItsWOLFIX.Journal
+        </a>
 
-  <header>
-    <a href="/index.html" class="logo">
-      <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
-      ItsWOLFIX.Journal</a>
-    <nav aria-label="Main navigation">
-        <ul>
-          
-            <a href="/index.html">home</a>
-            <a href="/Posts.html">Posts</a>
-            <a href="/projects.html">Projects</a>
-            <li><a href="https://github.com/itsW0LFIX">About</a></li>
-        </ul>
-    </nav>
-</header>
+        <div class="search-container">
+            <input type="search" id="post-search" class="search-bar" placeholder="Search posts..." aria-label="Search">
+        </div>
 
-  <div class="theme-toggle">
-    <button id="daylight" class="theme-button active">🌞 Daylight</button>
-    <button id="night-howl" class="theme-button">🐺 Night Howl</button>
-    <button id="night-mind" class="theme-button">🧠 Night Mind</button>
-  </div>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/Posts.html">Posts</a></li>
+                <li><a href="/projects.html">Projects</a></li>
+                <li><a href="https://github.com/itsW0LFIX">About</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
+    <div class="theme-toggle">
+        <button id="daylight" class="theme-button active">🌞 Daylight</button>
+        <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+        <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+    </div>
 
-    <section>
-      <h2>All posts</h2>
-      <div class="post-list">
+    <main>
+        <section>
+            <div class="category-filters">
+                <button class="category-button active" data-category="all">All</button>
+                <button class="category-button" data-category="tutorials">Tutorials</button>
+                <button class="category-button" data-category="tech">Technology</button>
+                <button class="category-button" data-category="design">Design</button>
+                <button class="category-button" data-category="other">Other</button>
+            </div>
 
-        <!-- 2.1 Posts -->
-        <article class="post">
-          <div class="post-meta">Abril 21, 2025</div>
-          <h3><a href="2.1Posts-Ethical Web Design Principles/Ethical_Web_Design_Principles.html">Ethical Web Design Principles</a></h3>
-          <p>Exploring privacy-focused design, sustainable web practices, and accessibility as an ethical imperative</p>
-          <div class="tags">
-            <span class="tag">ethics</span>
-            <span class="tag">privacy</span>
-            <span class="tag">accessibility</span>
-            <span class="tag">sustainability</span>
-          </div>
-        </article>
+            <div class="post-grid" id="posts-container">
+                <!-- 2.1 Posts -->
+                <div class="post-card" data-categories="design ethics" data-title="Ethical Web Design Principles"
+                    data-tags="ethics privacy accessibility">
+                    <div class="post-icon-container">
+                        <div class="post-icon" style="background-color: rgba(130, 80, 223, 0.1);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="color: #8250df;">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">Ethical Web Design Principles</h3>
+                            <p class="post-description">Exploring privacy-focused design, sustainable web practices, and
+                                accessibility as an ethical imperative</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="2.1Posts-Ethical Web Design Principles/Ethical_Web_Design_Principles.html"
+                                class="post-action">Open</a>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- new --> <!-- 2.2 Posts -->
-        <article class="post">
-          <div class="post-meta">April 26, 2025</div>
-          <h3><a href="2.2Posts-Firebase Hosting/Firebase-Hosting.html">Firebase Hosting</a></h3>
-          <p>Firebase Hosting: Building and Deploying High-Performance Web Applications.</p>
-          <div class="tags">
-            <span class="tag">firebase</span>
-            <span class="tag">hosting</span>
-            <span class="tag">deployment</span>
-            <span class="tag">performance</span>
-            <span class="tag">web</span>
-          </div>
-        </article>
+                <!-- 2.2 Posts -->
+                <div class="post-card" data-categories="tech tutorials" data-title="Firebase Hosting"
+                    data-tags="firebase hosting deployment">
+                    <div class="post-icon-container">
+                        <div class="post-icon" style="background-color: rgba(251, 146, 60, 0.1);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="color: #fb923c;">
+                                <path d="m6 9 6-6 6 6"></path>
+                                <path d="M12 3v18"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">Firebase Hosting</h3>
+                            <p class="post-description">Firebase Hosting: Building and Deploying High-Performance Web
+                                Applications.</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="2.2Posts-Firebase Hosting/Firebase-Hosting.html" class="post-action">Open</a>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- 2.3 Posts -->
-        <article class="post">
-          <div class="post-meta">May 3, 2025</div>
-          <h3><a href="2.3Posts-Modern CSS Features/Modern_CSS_Features.html">Modern CSS Features You Should Be Using Today</a></h3>
-          <p>Powerful CSS capabilities that solve complex layout and design challenges with less code.</p>
-          <div class="tags">
-            <span class="tag">css</span>
-            <span class="tag">web-design</span>
-            <span class="tag">frontend</span>
-          </div>
-        </article>
+                <!-- 2.3 Posts -->
+                <div class="post-card" data-categories="design tech"
+                    data-title="Modern CSS Features You Should Be Using Today" data-tags="css web-design frontend">
+                    <div class="post-icon-container">
+                        <div class="post-icon" style="background-color: rgba(14, 165, 233, 0.1);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="color: #0ea5e9;">
+                                <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z">
+                                </path>
+                                <path d="m8 10 4 4 4-4"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">Modern CSS Features You Should Be Using Today</h3>
+                            <p class="post-description">Powerful CSS capabilities that solve complex layout and design
+                                challenges with less code.</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="2.3Posts-Modern CSS Features/Modern_CSS_Features.html" class="post-action">Open</a>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- 2.4 Posts -->
-        <article class="post">
-          <div class="post-meta">May 10, 2025</div>
-          <h3><a href="2.4Posts-Offline Capable Web Applications/Offline_Capable_Web_Applications.html">Building Offline-Capable Web Applications</a></h3>
-          <p>Create resilient web apps that work regardless of network conditions using service workers and modern APIs.</p>
-          <div class="tags">
-            <span class="tag">progressive-web-apps</span>
-            <span class="tag">javascript</span>
-            <span class="tag">performance</span>
-          </div>
-        </article>
+                <!-- 2.4 Posts -->
+                <div class="post-card" data-categories="tech tutorials"
+                    data-title="Building Offline-Capable Web Applications" data-tags="progressive-web-apps javascript">
+                    <div class="post-icon-container">
+                        <div class="post-icon" style="background-color: rgba(34, 197, 94, 0.1);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="color: #22c55e;">
+                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">Building Offline-Capable Web Applications</h3>
+                            <p class="post-description">Create resilient web apps that work regardless of network
+                                conditions using service workers and modern APIs.</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="2.4Posts-Offline Capable Web Applications/Offline_Capable_Web_Applications.html"
+                                class="post-action">Open</a>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- 2.5 Posts -->
-        <article class="post">
-          <div class="post-meta">Abril 20, 2025</div>
-          <h3><a href="2.5Posts-Sustainable Digital Product Design/Sustainable_Digital_Product_Design.html">Sustainable Digital Product Design</a></h3>
-          <p>Reducing digital carbon footprints, energy-efficient web design, and environmentally conscious development choices.</p>
-          <div class="tags">
-            <span class="tag">sustainability</span>
-            <span class="tag">performance</span>
-            <span class="tag">optimization</span>
-            <span class="tag">green-web</span>
-          </div>
-        </article>
+                <!-- 2.5 Posts -->
+                <div class="post-card" data-categories="design" data-title="Sustainable Digital Product Design"
+                    data-tags="sustainability performance green-web">
+                    <div class="post-icon-container">
+                        <div class="post-icon" style="background-color: rgba(16, 185, 129, 0.1);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="color: #10b981;">
+                                <path d="M2 22v-5l5-5 5 5-5 5z"></path>
+                                <path d="M9.5 14.5 16 8"></path>
+                                <path d="m17 2 5 5-5 5-5-5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">Sustainable Digital Product Design</h3>
+                            <p class="post-description">Reducing digital carbon footprints, energy-efficient web design,
+                                and environmentally conscious development choices.</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="2.5Posts-Sustainable Digital Product Design/Sustainable_Digital_Product_Design.html"
+                                class="post-action">Open</a>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- 2.6 Posts -->
-        <article class="post">
-          <div class="post-meta">April 25, 2025</div>
-          <h3><a href="2.6Posts-Web Animation Techniques/Web_Animation_Techniques.html">Web Animation Techniques with CSS and JavaScript</a></h3>
-          <p>Creating elegant, performant animations for modern web interfaces using CSS and JavaScript.</p>
-          <div class="tags">
-            <span class="tag">css</span>
-            <span class="tag">javascript</span>
-            <span class="tag">animation</span>
-          </div>
-        </article>
+                <div class="post-card" data-categories="design tech"
+                    data-title="Web Animation Techniques with CSS and JavaScript" data-tags="css javascript animation">
+                    <div class="post-icon-container">
+                        <div class="post-icon" style="background-color: rgba(236, 72, 153, 0.1);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="color: #ec4899;">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">Web Animation Techniques with CSS and JavaScript</h3>
+                            <p class="post-description">Creating elegant, performant animations for modern web
+                                interfaces using CSS and JavaScript.</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="2.6Posts-Web Animation Techniques/Web_Animation_Techniques.html"
+                                class="post-action">Open</a>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- 2.7 Posts -->
-        <article class="post">
-          <div class="post-meta">April 20, 2025</div>
-          <h3><a href="2.7Posts-Web Development Podcasts/Web_Development_Podcasts.html">Web Development Podcasts</a></h3>
-          <p>Stay up to date with web development and entertained with these top podcasts for developers.</p>
-          <div class="tags">
-            <span class="tag">resources</span>
-            <span class="tag">podcasts</span>
-            <span class="tag">learning</span>
-          </div>
-        </article>
+                <!-- 2.7 Posts -->
+                <div class="post-card" data-categories="other" data-title="Web Development Podcasts"
+                    data-tags="resources podcasts learning">
+                    <div class="post-icon-container">
+                        <div class="post-icon" style="background-color: rgba(139, 92, 246, 0.1);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="color: #8b5cf6;">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">Web Development Podcasts</h3>
+                            <p class="post-description">Stay up to date with web development and entertained with these
+                                top podcasts for developers.</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="2.7Posts-Web Development Podcasts/Web_Development_Podcasts.html"
+                                class="post-action">Open</a>
+                        </div>
+                    </div>
+                </div>
 
-      </div>
+                <!-- No results message -->
+                <div class="no-results hidden">
+                    <p>No posts match your search. Try different keywords or categories.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    </section>
-    
-  </main>
+    <footer style="padding: 20px;">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>ItsWOLFIX.Journal</h4>
+                <p>Notes on modern web development and crafting thoughtful user experiences.</p>
+                <div class="social-links">
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+                    <a href="https://github.com/itsW0LFIX" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+            </div>
 
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-section">
-        <h4>ItsWOLFIX.Journal</h4>
-        <p>
-          Notes on modern web development and crafting thoughtful user
-          experiences.
-        </p>
-        <div class="social-links">
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Twitter</a
-          >
-          <a
-            href="https://github.com/itsW0LFIX"
-            target="_blank"
-            rel="noopener noreferrer"
-            >GitHub</a
-          >
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            >LinkedIn</a
-          >
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <ul class="footer-nav">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/Posts.html">All Posts</a></li>
+                    <li><a href="https://github.com/itsW0LFIX">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Subscribe</h4>
+                <p>Get notified about new posts and updates.</p>
+                <form class="subscribe-form" id="subscribe-form">
+                    <input type="email" placeholder="Your email" required />
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
         </div>
-      </div>
 
-      <div class="footer-section">
-        <h4>Navigation</h4>
-        <ul class="footer-nav">
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="/Posts.html">All Posts</a></li>
-          <li><a href="https://github.com/itsW0LFIX">About</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h4>Popular Tags</h4>
-        <div class="tag-cloud">
-          <a href="/Posts.html" class="footer-tag">javascript</a>
-          <a href="/Posts.html" class="footer-tag">css</a>
-          <a href="/Posts.html" class="footer-tag">react</a>
-          <a href="/Posts.html" class="footer-tag">accessibility</a>
-          <a href="/Posts.html" class="footer-tag">performance</a>
-          <a href="/Posts.html" class="footer-tag">sustainability</a>
+        <div class="footer-bottom">
+            <p>© 2025 ItsWOLFIX.Journal</p>
+            <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
         </div>
-      </div>
+    </footer>
 
-      <div class="footer-section">
-        <h4>Subscribe</h4>
-        <p>Get notified about new posts and updates.</p>
-        <form class="subscribe-form" id="subscribe-form">
-          <input type="email" placeholder="Your email" required />
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
-      
-    </div>
+    <script src="theme.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get elements
+            const categoryButtons = document.querySelectorAll('.category-button');
+            const postCards = document.querySelectorAll('.post-card');
+            const searchInput = document.getElementById('post-search');
+            const noResultsElement = document.querySelector('.no-results');
 
-    <div class="footer-bottom">
-      <p>© 2025 ItsWOLFIX.Journal</p>
-      <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
-    </div>
-  </footer>
+            // Current active category
+            let activeCategory = 'all';
+            let searchQuery = '';
 
-  <script src="theme.js"></script>
+            // Search functionality
+            searchInput.addEventListener('input', function () {
+                searchQuery = this.value.toLowerCase().trim();
+                filterPosts();
+            });
+
+            // Category button events
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    activeCategory = this.dataset.category;
+                    filterPosts();
+                });
+            });
+
+            // Post filtering function
+            function filterPosts() {
+                let visibleCount = 0;
+
+                postCards.forEach(card => {
+                    const cardTitle = card.dataset.title?.toLowerCase() || '';
+                    const cardTags = card.dataset.tags?.toLowerCase() || '';
+                    const cardCategories = card.dataset.categories?.toLowerCase() || '';
+                    const cardText = card.querySelector('.post-description')?.textContent.toLowerCase() || '';
+
+                    const matchesSearch = searchQuery === '' ||
+                        cardTitle.includes(searchQuery) ||
+                        cardTags.includes(searchQuery) ||
+                        cardText.includes(searchQuery);
+
+                    const matchesCategory = activeCategory === 'all' ||
+                        cardCategories.includes(activeCategory);
+
+                    if (matchesSearch && matchesCategory) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+
+                        // Animate card
+                        card.style.opacity = '0.6';
+                        card.style.transform = 'scale(0.95)';
+
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0) scale(1)';
+                        }, 100);
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                noResultsElement.classList.toggle('hidden', visibleCount > 0);
+            }
+        });
+    </script>
 </body>
 
 </html>
