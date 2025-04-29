@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Its WOLFIX Journal - Discord Clone</title>
+    <link rel="icon" href="/icon2.png" type="image/icon type">
+    <link rel="stylesheet" href="/style.css">
+    <meta name="description"
+        content="A detailed look at my Discord Clone UI/UX design project featuring dynamic server navigation, chat interfaces, and responsive design.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" />
+</head>
+
+<body>
+
+    <header>
+        <a href="/index.html" class="logo">
+            <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
+            ItsWOLFIX.Journal</a>
+        <nav aria-label="Main navigation">
+            <ul>
+                <a href="/index.html">Home</a>
+                <a href="/Posts.html">Posts</a>
+                <a href="/projects.html">Projects</a>
+                <li><a href="https://github.com/itsW0LFIX">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="theme-toggle">
+        <button id="daylight" class="theme-button active">🌞 Daylight</button>
+        <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+        <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+    </div>
+
+    <main>
+        <article class="blog-post">
+            <header>
+                <div class="post-meta">April 29, 2025</div>
+                <h1>Discord Clone - Chat Interface Design</h1>
+                <div class="tags">
+                    <span class="tag">ui</span>
+                    <span class="tag">design</span>
+                    <span class="tag">html</span>
+                    <span class="tag">css</span>
+                    <span class="tag">javascript</span>
+                    <span class="tag">firebase</span>
+                </div>
+            </header>
+
+            <section>
+                <p>
+                    Creating an effective chat interface requires careful attention to both aesthetic design and
+                    functional user experience. In this project, I've built a Discord clone that replicates the core
+                    features of Discord's intuitive interface while adding my own touches to enhance usability.
+                </p>
+
+                <div class="project-info">
+                    <p><strong>Project Type:</strong> UI/UX Design<br>
+                        <strong>Tools Used:</strong> HTML, CSS, JavaScript, Firebase, Git<br>
+                        <strong>Status:</strong> In Progress<br>
+                        <strong>Demo:</strong> <a href="https://who-is-wolfix.web.app/" target="_blank"
+                            rel="noopener noreferrer">Live Preview</a><br>
+                        <strong>Source Code:</strong> <a href="https://github.com/itsW0LFIX/discord-clone"
+                            target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+                    </p>
+                </div>
+
+                <h2>Project Overview</h2>
+                <p>
+                    This project recreates the Discord chat interface with attention to the details that make Discord so
+                    effective for community communication. The design focuses on the key components that make Discord
+                    intuitive: server navigation, channel organization, and a clean chat experience.
+                </p>
+
+                <div class="project-screenshots">
+                    <figure>
+                        <img style="width: 500px;" src="images/Login.webp"
+                            alt="Discord Clone Login Interface" />
+                        <figcaption>Login interface with QR code option and traditional credentials</figcaption>
+                    </figure>
+
+                    <figure>
+                        <img style="width: 250px;" src="images/Server-navigation-sidebar.png"alt="Server navigation sidebar" />
+                        <figcaption>Server navigation with notification indicators</figcaption>
+                    </figure>
+
+                    <figure>
+                        <img style="width: 500px;" src="images/preview1.webp" alt="Full chat interface" />
+                        <figcaption>Main chat interface with channel list, message area, and user sidebar</figcaption>
+                    </figure>
+                </div>
+
+                <h2>Key Features</h2>
+
+                <h3>Servers Sidebar 🖥️</h3>
+                <p>
+                    The servers sidebar provides quick access to different communities with distinctive visual
+                    identities:
+                </p>
+                <ul>
+                    <li>Server icons with hover effects for interactive navigation</li>
+                    <li>Status indicators showing notification counts and server activity</li>
+                    <li>Clean vertical layout that maximizes space efficiency</li>
+                </ul>
+
+                <pre><code class="language-css">
+/* Snippet for server icon styling */
+.server-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #36393f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  transition: border-radius 0.2s ease-out;
+}
+
+.server-icon:hover {
+  border-radius: 16px;
+  background-color: #5865f2;
+}
+
+.server-icon.active {
+  border-radius: 16px;
+}
+
+.server-icon.unread::after {
+  content: '';
+  position: absolute;
+  left: -6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+</code></pre>
+
+                <h3>Channel Navigation 🗂️</h3>
+                <p>
+                    Channel organization helps users navigate complex server structures:
+                </p>
+                <ul>
+                    <li>Collapsible category groups for text and voice channels</li>
+                    <li>Visual distinction between channel types with appropriate icons</li>
+                    <li>Unread indicators and active channel highlighting</li>
+                </ul>
+
+                <h3>Chat Interface 💬</h3>
+                <p>
+                    The chat area prioritizes readability and interaction:
+                </p>
+                <ul>
+                    <li>Message grouping by user and timestamp for cleaner conversations</li>
+                    <li>Hover actions for emoji reactions, replies, and message management</li>
+                    <li>Integrated user avatars and status indicators</li>
+                </ul>
+
+                <pre><code class="language-javascript">
+// Sample code for message grouping logic
+function shouldGroupMessage(currentMsg, prevMsg) {
+    // can you see all code on github
+}
+
+function renderMessage(message, prevMessage) {
+    // can you see all code on github
+}
+</code></pre>
+
+                <h3>Dynamic Search 🔎</h3>
+                <p>
+                    The search functionality enables quick user discovery:
+                </p>
+                <ul>
+                    <li>Real-time filtering as you type with immediate visual feedback</li>
+                    <li>Search by Discord ID with specific user cards in results</li>
+                    <li>Detailed user information display on selection</li>
+                </ul>
+
+                <h3>Responsive Design 📱</h3>
+                <p>
+                    The interface adapts seamlessly across device sizes:
+                </p>
+                <ul>
+                    <li>Mobile-friendly navigation with collapsible sidebars</li>
+                    <li>Responsive layout that prioritizes the chat area on smaller screens</li>
+                    <li>Touch-friendly interaction targets for mobile users</li>
+                </ul>
+
+                <h2>Implementation Details</h2>
+
+                <h3>File Structure</h3>
+                <pre><code class="language-text">
+discord-clone/
+├── icons/
+├── images/
+├── imgs/
+│   ├── avatars/
+│   └── servers/
+├── styles/
+├── channels-sidebar.css
+├── chat-sidebar.css
+├── chat.css
+├── home.html
+├── index.html
+├── modal.css
+└── script.js
+├── servers-sidebar.css
+├── styles.css
+├── theme.css
+├── other files about hosting/
+</code></pre>
+
+                <h3>Firebase Integration</h3>
+                <p>
+                    The project uses Firebase for hosting and will eventually incorporate real-time database
+                    functionality for actual chat capabilities. Currently, the Firebase implementation focuses on
+                    hosting and user authentication simulation.
+                </p>
+
+                <h2>Challenges & Solutions</h2>
+
+                <h3>Message Grouping</h3>
+                <p>
+                    One of the most challenging aspects was implementing Discord's message grouping system, which
+                    combines messages from the same user within a short time window. The solution involved tracking
+                    message timestamps and author IDs to determine when to visually group messages versus showing full
+                    message headers.
+                </p>
+
+                <h3>Responsive Layout</h3>
+                <p>
+                    Creating a responsive layout that works well on both desktop and mobile required careful
+                    consideration of component priority. The solution uses CSS grid and flexbox with strategic
+                    breakpoints to collapse less essential elements on smaller screens.
+                </p>
+
+                <h2>Future Enhancements</h2>
+                <p>
+                    While the current implementation focuses on UI/UX, future versions will include:
+                </p>
+                <ul>
+                    <li>Real-time chat functionality using Firebase Realtime Database</li>
+                    <li>User authentication and persistent profiles</li>
+                    <li>Rich text formatting and embedding</li>
+                    <li>Voice channel functionality</li>
+                    <li>Custom emoji support</li>
+                </ul>
+
+                <h2>Conclusion</h2>
+                <p>
+                    This Discord clone demonstrates how careful attention to interface design can create intuitive
+                    communication platforms. By focusing on the key components that make Discord successful—clear
+                    navigation, organized channels, and clean message presentation—this project provides a solid
+                    foundation for a fully functional chat application.
+                </p>
+                <p>
+                    The project is open source and continues to evolve. Contributions and feedback are welcome through
+                    the GitHub repository.
+                </p>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>ItsWOLFIX.Journal</h4>
+                <p>
+                    Notes on modern web development and crafting thoughtful user
+                    experiences.
+                </p>
+                <div class="social-links">
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+                    <a href="https://github.com/itsW0LFIX" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <ul class="footer-nav">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/Posts.html">All Posts</a></li>
+                    <li><a href="https://github.com/itsW0LFIX">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Popular Tags</h4>
+                <div class="tag-cloud">
+                    <a href="/Posts.html" class="footer-tag">javascript</a>
+                    <a href="/Posts.html" class="footer-tag">css</a>
+                    <a href="/Posts.html" class="footer-tag">react</a>
+                    <a href="/Posts.html" class="footer-tag">accessibility</a>
+                    <a href="/Posts.html" class="footer-tag">performance</a>
+                    <a href="/Posts.html" class="footer-tag">sustainability</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Subscribe</h4>
+                <p>Get notified about new posts and updates.</p>
+                <form class="subscribe-form" id="subscribe-form">
+                    <input type="email" placeholder="Your email" required />
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 ItsWOLFIX.Journal</p>
+            <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
+    <script src="/theme.js"></script>
+</body>
+
+</html>
