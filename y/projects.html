@@ -362,6 +362,7 @@
     }
 </style>
 <!-- Better responsive adjustments for very small screens  -->
+
 <style>
     @media (max-width: 450px) {
 
@@ -431,6 +432,64 @@
         /* Main content padding */
         main {
             padding: 0.5rem;
+        }
+    }
+</style>
+
+<!-- new style footer -->
+<style>
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+
+    .footer-section h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .footer-section p {
+        margin-bottom: 15px;
+    }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 8px;
+    }
+
+    .footer-section a {
+        color: #5ea3ff;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+        color: #90c2ff;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #333;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .footer-content {
+            grid-template-columns: 1fr;
         }
     }
 </style>
@@ -535,40 +594,59 @@
         </section>
     </main>
 
-    <footer style="padding: 20px;">
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h4>ItsWOLFIX.Journal</h4>
-                <p>Notes on modern web development and crafting thoughtful user experiences.</p>
-                <div class="social-links">
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-                    <a href="https://github.com/itsW0LFIX" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <!-- new footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About Section -->
+                <div class="footer-section">
+                    <h3>About WOLFIX Journal</h3>
+                    <p>A community-driven platform focused on technology, science, and innovation.</p>
+                    <a href="/community.html">Learn more about us</a>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h3>GitHub Resources</h3>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CODE_OF_CONDUCT.md">Code of
+                                Conduct</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CONTRIBUTING.md">Contributing
+                                Guidelines</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/ISSUE_TEMPLATE/bug_report.md">Report
+                                a Bug</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md">Submit
+                                a Pull Request</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Connect Section -->
+                <div class="footer-section">
+                    <h3>Connect with Us</h3>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/WOLFIX-Journal">GitHub</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/itsW0LFIX">Contact Us</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="footer-section">
-                <h4>Navigation</h4>
-                <ul class="footer-nav">
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="/Posts.html">All Posts</a></li>
-                    <li><a href="https://github.com/itsW0LFIX">About</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2025 WOLFIX Journal. All rights reserved.</p>
             </div>
-
-            <div class="footer-section">
-                <h4>Subscribe</h4>
-                <p>Get notified about new posts and updates.</p>
-                <form class="subscribe-form" id="subscribe-form">
-                    <input type="email" placeholder="Your email" required />
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>© 2025 ItsWOLFIX.Journal</p>
-            <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
         </div>
     </footer>
 

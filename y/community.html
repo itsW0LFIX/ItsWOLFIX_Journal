@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community - WOLFIX Journal</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header styles */
+    .page-header {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    .page-header h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+    
+    .page-header p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Main content styles */
+    .main-content {
+      padding: 60px 0;
+    }
+    
+    .section {
+      margin-bottom: 60px;
+    }
+    
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #333;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #4169e1;
+    }
+    
+    .resource-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #1a1a1a;
+    }
+    
+    .card p {
+      margin-bottom: 20px;
+      color: #555;
+    }
+    
+    .card-link {
+      display: inline-block;
+      text-decoration: none;
+      color: #4169e1;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    
+    .card-link:hover {
+      color: #1e40af;
+    }
+    
+    /* Join section styles */
+    .join-section {
+      background-color: #4169e1;
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .join-section h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+    
+    .join-section p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 0 auto 25px;
+    }
+    
+    .button {
+      display: inline-block;
+      background-color: white;
+      color: #4169e1;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .button:hover {
+      background-color: #f0f0f0;
+    }
+    
+    /* Media queries */
+    @media (max-width: 768px) {
+      .resource-cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .page-header h1 {
+        font-size: 28px;
+      }
+      
+      .section-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Join the WOLFIX Journal Community</h1>
+      <p>Connect, contribute, and collaborate with developers and innovators around the world</p>
+    </div>
+  </header>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- GitHub Resources Section -->
+      <section class="section">
+        <h2 class="section-title">GitHub Resources</h2>
+        <div class="resource-cards">
+          <!-- Code of Conduct Card -->
+          <div class="card">
+            <h3>Code of Conduct</h3>
+            <p>Our community guidelines that ensure WOLFIX Journal is a welcoming and inclusive space for everyone.</p>
+            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CODE_OF_CONDUCT.md" class="card-link">View Code of Conduct →</a>
+          </div>
+          
+          <!-- Contributing Card -->
+          <div class="card">
+            <h3>Contributing Guidelines</h3>
+            <p>Learn how to contribute to WOLFIX Journal projects and make your first pull request.</p>
+            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CONTRIBUTING.md" class="card-link">View Contributing Guidelines →</a>
+          </div>
+          
+          <!-- Report Bug Card -->
+          <div class="card">
+            <h3>Report a Bug</h3>
+            <p>Found a bug in one of our projects? Help us improve by submitting a bug report.</p>
+            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/ISSUE_TEMPLATE/bug_report.md" class="card-link">Report a Bug →</a>
+          </div>
+          
+          <!-- Pull Request Card -->
+          <div class="card">
+            <h3>Submit Pull Requests</h3>
+            <p>Ready to contribute code? Learn how to submit your changes through a pull request.</p>
+            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md" class="card-link">Pull Request Guidelines →</a>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Join the Community CTA -->
+      <section class="join-section">
+        <div class="container">
+          <h2>Ready to Get Involved?</h2>
+          <p>Join our GitHub organization and start contributing to open source projects that matter.</p>
+          <a href="https://github.com/WOLFIX-Journal" class="button">Visit our GitHub Organization</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>
