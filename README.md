@@ -20,22 +20,30 @@ You can access the Journal here: [HERE](https://itswolfix-journal.web.app/)
 ItsWOLFIX.Journal/
 ├── images/
 ├── POSTS/
-│   ├── Ethical Web Design Principles/
+│   ├── 1.1Projects-discord-clone/
+│   │   ├── images/
+│   │   └── discord-clone.html
+│   ├── 1.2Projects-events-gaming-platform/
+│   │   └── events-gaming-platform.html
+│   ├── 2.1Posts-Ethical Web Design Principles/
 │   │   └── Ethical_Web_Design_Principles.html
-│   ├── Modern CSS Features/
+│   ├── 2.2Posts-Firebase Hosting/
+│   │   └── Firebase-Hosting.html
+│   ├── 2.3Posts-Modern CSS Features/
 │   │   └── Modern_CSS_Features.html
-│   ├── Offline Capable Web Applications/
+│   ├── 2.4Posts-Offline Capable Web Applications/
 │   │   └── Offline_Capable_Web_Applications.html
-│   ├── Sustainable Digital Product Design/
+│   ├── 2.5Posts-Sustainable Digital Product Design/
 │   │   └── Sustainable_Digital_Product_Design.html
-│   ├── Web Animation Techniques/
+│   ├── 2.6Posts-Web Animation Techniques/
 │   │   └── Web_Animation_Techniques.html
-│   └── Web Development Podcasts/
+│   └── 2.7Posts-Web Development Podcasts/
 │       └── Web_Development_Podcasts.html
-├── posts.css
+├── icon2.png
 ├── index.html
 ├── Posts.html
-└── styles.css
+├── projects.html
+└── style.css
 ```
 
 ## Features
