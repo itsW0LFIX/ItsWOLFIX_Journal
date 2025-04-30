@@ -2,61 +2,68 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Its WOLFIX Journal
-    </title>
-    <link rel="icon" href="/icon2.png" type="image/icon type">
-    <link rel="stylesheet" href="/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    Its WOLFIX Journal
+  </title>
+  <link rel="icon" href="/icon2.png" type="image/icon type">
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/footer.css">
 
-    <meta name="description"
-        content="A guide to the latest CSS features that solve common design challenges and make your code more maintainable." />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+  <meta name="description"
+    content="A guide to the latest CSS features that solve common design challenges and make your code more maintainable." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
 </head>
+
 <body>
   <header>
     <a href="/index.html" class="logo">
       <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
       ItsWOLFIX.Journal</a>
     <nav aria-label="Main navigation">
-        <ul>
-            <a href="/index.html">Home</a>
-            <a href="/Posts.html">Posts</a>
-            <a href="/projects.html">Projects</a>
-            <li><a href="https://github.com/itsW0LFIX">About</a></li>
-        </ul>
+      <ul>
+        <a href="/index.html">Home</a>
+        <a href="/Posts.html">Posts</a>
+        <a href="/projects.html">Projects</a>
+        <li><a href="https://github.com/itsW0LFIX">About</a></li>
+      </ul>
     </nav>
-</header>
+  </header>
 
-<div class="theme-toggle">
-  <button id="daylight" class="theme-button active">🌞 Daylight</button>
-  <button id="night-howl" class="theme-button">🐺 Night Howl</button>
-  <button id="night-mind" class="theme-button">🧠 Night Mind</button>
-</div>
-    <main>
-        <article class="blog-post">
-            <header>
-                <div class="post-meta">May 3, 2025</div>
-                <h1>Modern CSS Features You Should Be Using Today</h1>
-                <div class="tags">
-                    <span class="tag">css</span>
-                    <span class="tag">web-design</span>
-                    <span class="tag">frontend</span>
-                </div>
-            </header>
+  <div class="theme-toggle">
+    <button id="daylight" class="theme-button active">🌞 Daylight</button>
+    <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+    <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+  </div>
 
-            <section>
-                <p>
-                    CSS has evolved dramatically in recent years, with powerful new features that solve long-standing design challenges. Many developers are still using outdated approaches or reaching for JavaScript solutions when modern CSS could handle the task more efficiently.
-                </p>
+  <main>
+    <article class="blog-post">
+      <header>
+        <div class="post-meta">May 3, 2025</div>
+        <h1>Modern CSS Features You Should Be Using Today</h1>
+        <div class="tags">
+          <span class="tag">css</span>
+          <span class="tag">web-design</span>
+          <span class="tag">frontend</span>
+        </div>
+      </header>
 
-                <h2>Container Queries: Beyond Media Queries</h2>
-                <p>
-                    While media queries let us adapt layouts based on viewport size, container queries allow components to respond to their own container's size. This is perfect for reusable components that might appear in different contexts:
-                </p>
+      <section>
+        <p>
+          CSS has evolved dramatically in recent years, with powerful new features that solve long-standing design
+          challenges. Many developers are still using outdated approaches or reaching for JavaScript solutions when
+          modern CSS could handle the task more efficiently.
+        </p>
 
-<pre><code class="language-css">
+        <h2>Container Queries: Beyond Media Queries</h2>
+        <p>
+          While media queries let us adapt layouts based on viewport size, container queries allow components to respond
+          to their own container's size. This is perfect for reusable components that might appear in different
+          contexts:
+        </p>
+
+        <pre><code class="language-css">
 .card-container {
   container-type: inline-size;
   container-name: card;
@@ -77,16 +84,18 @@
 }
 </code></pre>
 
-                <p>
-                    This approach means components can adapt based on their container's width rather than the viewport, making truly responsive components possible.
-                </p>
+        <p>
+          This approach means components can adapt based on their container's width rather than the viewport, making
+          truly responsive components possible.
+        </p>
 
-                <h2>CSS Grid and Subgrid</h2>
-                <p>
-                    CSS Grid revolutionized web layouts, but subgrid takes it further by allowing nested grids to participate in the parent grid's track sizing:
-                </p>
+        <h2>CSS Grid and Subgrid</h2>
+        <p>
+          CSS Grid revolutionized web layouts, but subgrid takes it further by allowing nested grids to participate in
+          the parent grid's track sizing:
+        </p>
 
-<pre><code class="language-css">
+        <pre><code class="language-css">
 .main-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -101,16 +110,17 @@
 }
 </code></pre>
 
-                <p>
-                    With subgrid, you can align elements across different components without complex calculations or JavaScript interventions.
-                </p>
+        <p>
+          With subgrid, you can align elements across different components without complex calculations or JavaScript
+          interventions.
+        </p>
 
-                <h2>Custom Properties (CSS Variables)</h2>
-                <p>
-                    CSS variables enable truly dynamic styling that was previously only possible with preprocessors or JavaScript:
-                </p>
+        <h2>Custom Properties (CSS Variables)</h2>
+        <p>
+          CSS variables enable truly dynamic styling that was previously only possible with preprocessors or JavaScript:
+        </p>
 
-<pre><code class="language-css">
+        <pre><code class="language-css">
 :root {
   --primary-color: #5f4b8b;
   --spacing-unit: 8px;
@@ -128,16 +138,18 @@
 }
 </code></pre>
 
-                <p>
-                    Unlike preprocessor variables, CSS custom properties are dynamic and can be changed at runtime, enabling theming, responsive adjustments, and even animations without JavaScript.
-                </p>
+        <p>
+          Unlike preprocessor variables, CSS custom properties are dynamic and can be changed at runtime, enabling
+          theming, responsive adjustments, and even animations without JavaScript.
+        </p>
 
-                <h2>Logical Properties</h2>
-                <p>
-                    Logical properties make internationalization easier by describing layout in terms of flow direction rather than physical direction:
-                </p>
+        <h2>Logical Properties</h2>
+        <p>
+          Logical properties make internationalization easier by describing layout in terms of flow direction rather
+          than physical direction:
+        </p>
 
-<pre><code class="language-css">
+        <pre><code class="language-css">
 /* Old approach */
 .box {
   margin-left: 1rem;
@@ -151,16 +163,18 @@
 }
 </code></pre>
 
-                <p>
-                    When working with languages that read from right to left, logical properties automatically adapt without requiring separate stylesheets.
-                </p>
+        <p>
+          When working with languages that read from right to left, logical properties automatically adapt without
+          requiring separate stylesheets.
+        </p>
 
-                <h2>The Modern Box Model: aspect-ratio</h2>
-                <p>
-                    The new <code>aspect-ratio</code> property solves the long-standing challenge of maintaining proportional dimensions:
-                </p>
+        <h2>The Modern Box Model: aspect-ratio</h2>
+        <p>
+          The new <code>aspect-ratio</code> property solves the long-standing challenge of maintaining proportional
+          dimensions:
+        </p>
 
-<pre><code class="language-css">
+        <pre><code class="language-css">
 .video-container {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -173,16 +187,18 @@
 }
 </code></pre>
 
-                <p>
-                    This elegant solution replaces complex percentage padding hacks that were previously needed to maintain aspect ratios.
-                </p>
+        <p>
+          This elegant solution replaces complex percentage padding hacks that were previously needed to maintain aspect
+          ratios.
+        </p>
 
-                <h2>Scroll Snap</h2>
-                <p>
-                    Creating smooth scrolling experiences used to require JavaScript, but CSS scroll snap provides native functionality:
-                </p>
+        <h2>Scroll Snap</h2>
+        <p>
+          Creating smooth scrolling experiences used to require JavaScript, but CSS scroll snap provides native
+          functionality:
+        </p>
 
-<pre><code class="language-css">
+        <pre><code class="language-css">
 .carousel {
   scroll-snap-type: x mandatory;
   overflow-x: scroll;
@@ -195,94 +211,86 @@
 }
 </code></pre>
 
-                <p>
-                    This creates touch-friendly, performant scrolling interfaces with minimal code.
-                </p>
+        <p>
+          This creates touch-friendly, performant scrolling interfaces with minimal code.
+        </p>
 
-                <h2>Conclusion</h2>
-                <p>
-                    Modern CSS has addressed many of the pain points that previously required JavaScript solutions or complex workarounds. By embracing these new features, you can write more maintainable code, improve performance, and reduce dependencies.
-                </p>
-                <p>
-                    In my next post, I'll explore advanced CSS animation techniques that leverage these modern features to create engaging user experiences without sacrificing performance.
-                </p>
-            </section>
-        </article>
-    </main>
+        <h2>Conclusion</h2>
+        <p>
+          Modern CSS has addressed many of the pain points that previously required JavaScript solutions or complex
+          workarounds. By embracing these new features, you can write more maintainable code, improve performance, and
+          reduce dependencies.
+        </p>
+        <p>
+          In my next post, I'll explore advanced CSS animation techniques that leverage these modern features to create
+          engaging user experiences without sacrificing performance.
+        </p>
+      </section>
+    </article>
+  </main>
 
-    <footer>
-      <div class="footer-grid">
-        <div class="footer-section">
-          <h4>ItsWOLFIX.Journal</h4>
-          <p>
-            Notes on modern web development and crafting thoughtful user
-            experiences.
-          </p>
-          <div class="social-links">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Twitter</a
-            >
-            <a
-              href="https://github.com/itsW0LFIX"
-              target="_blank"
-              rel="noopener noreferrer"
-              >GitHub</a
-            >
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              >LinkedIn</a
-            >
-          </div>
+    <!-- new footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About Section -->
+                <div class="footer-section">
+                    <h3>About WOLFIX Journal</h3>
+                    <p>A community-driven platform focused on technology, science, and innovation.</p>
+                    <a href="/community.html">Learn more about us</a>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h3>GitHub Resources</h3>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CODE_OF_CONDUCT.md">Code of
+                                Conduct</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CONTRIBUTING.md">Contributing
+                                Guidelines</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/ISSUE_TEMPLATE/bug_report.md">Report
+                                a Bug</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md">Submit
+                                a Pull Request</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Connect Section -->
+                <div class="footer-section">
+                    <h3>Connect with Us</h3>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/WOLFIX-Journal">GitHub</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/itsW0LFIX">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 WOLFIX Journal. All rights reserved.</p>
+            </div>
         </div>
-
-        <div class="footer-section">
-          <h4>Navigation</h4>
-          <ul class="footer-nav">
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/Posts.html">All Posts</a></li>
-            <li><a href="https://github.com/itsW0LFIX">About</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h4>Popular Tags</h4>
-          <div class="tag-cloud">
-            <a href="/Posts.html" class="footer-tag">javascript</a>
-            <a href="/Posts.html" class="footer-tag">css</a>
-            <a href="/Posts.html" class="footer-tag">react</a>
-            <a href="/Posts.html" class="footer-tag">accessibility</a>
-            <a href="/Posts.html" class="footer-tag">performance</a>
-            <a href="/Posts.html" class="footer-tag">sustainability</a>
-          </div>
-        </div>
-
-        <div class="footer-section">
-          <h4>Subscribe</h4>
-          <p>Get notified about new posts and updates.</p>
-          <form class="subscribe-form" id="subscribe-form">
-            <input type="email" placeholder="Your email" required />
-            <button type="submit">Subscribe</button>
-          </form>
-        </div>
-        
-      </div>
-
-      <div class="footer-bottom">
-        <p>© 2025 ItsWOLFIX.Journal</p>
-        <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
-      </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
 
-    <script src="/theme.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
+
+  <script src="/theme.js"></script>
 </body>
 
 </html>
