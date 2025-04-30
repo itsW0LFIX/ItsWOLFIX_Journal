@@ -361,6 +361,79 @@
         }
     }
 </style>
+<!-- Better responsive adjustments for very small screens  -->
+<style>
+@media (max-width: 450px) {
+    /* Keep menu in header but adjust layout */
+    header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /* Logo centered at top */
+    .logo {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+    
+    /* Full width search bar */
+    .search-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 8px 0;
+        order: 3;
+    }
+    
+    /* Navigation menu - horizontal layout with smaller text */
+    nav {
+        width: 100%;
+        order: 2;
+    }
+    
+    nav ul {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 0;
+        margin: 5px 0;
+        gap: 10px;
+    }
+    
+    nav ul li {
+        margin: 0;
+    }
+    
+    nav ul li a {
+        font-size: 0.85rem;
+        padding: 5px;
+    }
+    
+    /* Category filters */
+    .category-filters {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .category-button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+    
+    /* Main content padding */
+    main {
+        padding: 0.5rem;
+    }
+}
+
+</style>
 <body>
     <header>
         <a href="/index.html" class="logo">
