@@ -2,140 +2,644 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Its WOLFIX Journal</title>
-  <link rel="icon" href="/icon2.png" type="image/icon type">
-  <link rel="stylesheet" href="style.css">
-  <meta name="description" content="A personal journal about JavaScript, React, and modern web development.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Its WOLFIX Journal</title>
+    <link rel="icon" href="/icon2.png" type="image/icon type">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="A personal journal about JavaScript, React, and modern web development.">
 </head>
+<style>
+    /* Base layout */
+    body {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    /* Header bar styling */
+    header {
+        background-color: var(--card-bg-color);
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        border-bottom: none;
+        font-weight: 600;
+    }
+
+    .logo:hover {
+        border-bottom: none;
+    }
+
+    /* Search bar styling */
+    .search-container {
+        flex: 1;
+        max-width: 500px;
+        margin: 0 2rem;
+        position: relative;
+    }
+
+    .search-bar {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    .search-bar:focus {
+        outline: none;
+        border-color: var(--accent-color);
+    }
+
+    /* Navigation styling */
+    nav {
+        display: flex;
+        align-items: center;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+        margin-right: 2rem;
+        margin-bottom: 0;
+    }
+
+    nav li {
+        margin-bottom: 0;
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin: 2rem 0;
+    }
+
+    .theme-button {
+        background: none;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        font-family: var(--font-sans);
+        color: var(--text-color);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .theme-button:hover {
+        background-color: var(--border-color);
+    }
+
+    .theme-button.active {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+    }
+
+    /* Main content layout */
+    main {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Category filters */
+    .category-filters {
+        display: flex;
+        justify-content: right;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .category-button {
+        background-color: var(--button-bg-color);
+        color: var(--button-text-color);
+        border: none;
+        border-radius: 20px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .category-button.active {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+    .category-button:hover:not(.active) {
+        background-color: var(--button-hover-bg-color);
+    }
+
+    /* Post grid and cards */
+
+
+    .post-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 16px;
+        margin-bottom: 3rem;
+    }
+
+    .post-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 16px;
+        margin-bottom: 3rem;
+    }
+
+    .post-card {
+        background-color: var(--card-bg-color);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border: 1px solid var(--border-color);
+        display: flex;
+        padding: 12px;
+        align-items: flex-start;
+        height: 100%;
+    }
+
+    .post-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .post-icon-container {
+        display: flex;
+        align-items: flex-start;
+        margin-right: 14px;
+        flex-shrink: 0;
+    }
+
+    .post-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background-color: var(--icon-bg-color);
+    }
+
+    .post-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .post-header {
+        margin-bottom: 10px;
+    }
+
+    .post-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: var(--text-color);
+    }
+
+    .post-description {
+        font-size: 0.8rem;
+        line-height: 1.4;
+        color: var(--muted-color);
+    }
+
+    .post-footer {
+        margin-top: auto;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .post-action {
+        display: inline-block;
+        color: var(--accent-color);
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        border: 1px solid var(--border-color);
+        padding: 3px 12px;
+        border-radius: 12px;
+        transition: background-color 0.2s;
+    }
+
+    .post-action:hover {
+        background-color: var(--action-hover-bg-color);
+        border-bottom: none;
+    }
+
+
+    .post-meta {
+        margin-bottom: 6px;
+        font-size: 0.8rem;
+    }
+
+
+    /* Post footer with tags and action */
+    .post-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 16px;
+        border-top: 1px solid var(--border-color);
+        /* background-color: var(--action-bg-color); */
+    }
+
+    .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        flex: 1;
+    }
+
+    .post-tag {
+        font-size: 0.65rem;
+        background-color: var(--tag-bg-color);
+        color: var(--tag-text-color);
+        padding: 2px 6px;
+        border-radius: 10px;
+    }
+
+
+    /* No results message */
+    .no-results {
+        text-align: center;
+        grid-column: 1 / -1;
+        padding: 2rem;
+        color: var(--muted-color);
+        font-style: italic;
+    }
+
+    /* Utility classes */
+    .hidden {
+        display: none;
+    }
+
+    /* Theme variables */
+    :root {
+        --card-bg-color: #ffffff;
+        --icon-bg-color: rgba(95, 75, 139, 0.1);
+        --tag-bg-color: rgba(95, 75, 139, 0.08);
+        --tag-text-color: #5f4b8b;
+        --action-bg-color: rgba(95, 75, 139, 0.03);
+        --action-hover-bg-color: rgba(95, 75, 139, 0.08);
+        --button-bg-color: #f0f0f0;
+        --button-text-color: #666;
+        --button-hover-bg-color: #e0e0e0;
+        --accent-color-rgb: 95, 75, 139;
+    }
+
+    body.night-howl {
+        --card-bg-color: #1a1d2a;
+        --icon-bg-color: rgba(149, 117, 205, 0.15);
+        --tag-bg-color: rgba(149, 117, 205, 0.15);
+        --tag-text-color: #9575cd;
+        --action-bg-color: rgba(149, 117, 205, 0.05);
+        --action-hover-bg-color: rgba(149, 117, 205, 0.1);
+        --button-bg-color: #2d3748;
+        --button-text-color: #d8e1ea;
+        --button-hover-bg-color: #3a4a5e;
+        --accent-color-rgb: 149, 117, 205;
+    }
+
+    body.night-mind {
+        --card-bg-color: #221b2d;
+        --icon-bg-color: rgba(255, 186, 173, 0.15);
+        --tag-bg-color: rgba(255, 186, 173, 0.15);
+        --tag-text-color: #FFBAAD;
+        --action-bg-color: rgba(255, 186, 173, 0.05);
+        --action-hover-bg-color: rgba(255, 186, 173, 0.1);
+        --button-bg-color: #2d2037;
+        --button-text-color: #E4DEED;
+        --button-hover-bg-color: #3a2a48;
+        --accent-color-rgb: 255, 186, 173;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .search-container {
+            margin: 0 1rem;
+        }
+
+        nav ul {
+            margin-right: 1rem;
+            gap: 1rem;
+        }
+
+        main {
+            padding: 1rem;
+        }
+
+        .post-footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .post-action {
+            align-self: flex-end;
+        }
+
+        .post-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+<!-- Better responsive adjustments for very small screens  -->
+<style>
+    @media (max-width: 450px) {
+
+        /* Keep menu in header but adjust layout */
+        header {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 8px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Logo centered at top */
+        .logo {
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        /* Full width search bar */
+        .search-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 8px 0;
+            order: 3;
+        }
+
+        /* Navigation menu - horizontal layout with smaller text */
+        nav {
+            width: 100%;
+            order: 2;
+        }
+
+        nav ul {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 0;
+            margin: 5px 0;
+            gap: 10px;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            font-size: 0.85rem;
+            padding: 5px;
+        }
+
+        /* Category filters */
+        .category-filters {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .category-button {
+            font-size: 0.8rem;
+            padding: 6px 12px;
+        }
+
+        /* Main content padding */
+        main {
+            padding: 0.5rem;
+        }
+    }
+</style>
 
 <body>
+    <header>
+        <a href="/index.html" class="logo">
+            <img style="width: 25px; margin-right: 8px;" src="icon2.png" alt="icon logo">
+            ItsWOLFIX.Journal
+        </a>
 
-  <header>
-    <a href="/index.html" class="logo">
-      <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
-      ItsWOLFIX.Journal</a>
-    <nav aria-label="Main navigation">
-      <ul>
-        <a href="/index.html">Home</a>
-        <a href="/Posts.html">Posts</a>
-        <a href="/projects.html">Projects</a>
-        <li><a href="https://github.com/itsW0LFIX">About</a></li>
-      </ul>
-    </nav>
-  </header>
+        <div class="search-container">
+            <input type="search" id="post-search" class="search-bar" placeholder="Search posts..." aria-label="Search">
+        </div>
 
-  <div class="theme-toggle">
-    <button id="daylight" class="theme-button active">🌞 Daylight</button>
-    <button id="night-howl" class="theme-button">🐺 Night Howl</button>
-    <button id="night-mind" class="theme-button">🧠 Night Mind</button>
-  </div>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/Posts.html">Posts</a></li>
+                <li><a href="/projects.html">Projects</a></li>
+                <li><a href="https://github.com/itsW0LFIX">About</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
+    <div class="theme-toggle">
+        <button id="daylight" class="theme-button active">🌞 Daylight</button>
+        <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+        <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+    </div>
 
-    <section>
-
-      <h2>All Projects</h2>
-
-      <div class="post-list">
-
-        <!-- Discord Clone -->
-        <article class="post">
-          <div class="post-meta">April 29, 2025</div>
-          <h3><a href="1.1Projects-discord-clone/discord-clone.html">Discord Clone - Chat Interface Design</a></h3>
-          <p>A UI/UX design project recreating Discord's chat interface with server navigation, channel organization,
-            and responsive design</p>
-          <div class="tags">
-            <span class="tag">ui</span>
-            <span class="tag">design</span>
-            <span class="tag">javascript</span>
-          </div>
-        </article>
-
-        <article class="post">
-          <div class="post-meta">April 30, 2025</div>
-          <h3><a href="1.2Projects-events-gaming-platform/events-gaming-platform.html">Events Gaming Platform - Community Tournament Management</a></h3>
-          <p>A full-stack web application for organizing gaming tournaments, managing teams, and fostering community engagement</p>
-          <div class="tags">
-            <span class="tag">react</span>
-            <span class="tag">firebase</span>
-            <span class="tag">gaming</span>
-          </div>
-        </article>
-
-        <!-- Test -->
-          <!-- <article class="post">
-            <div class="post-meta">---- --, ----</div>
-            <h3><a href="project-name.html">--------</a></h3>
-            <p>----- ------ ----------- -----</p>
-            <div class="tags">
-              <span class="tag">----</span>
-              <span class="tag">----</span>
-              <span class="tag">----</span>
+    <main>
+        <section>
+            <div class="category-filters">
+                <button class="category-button active" data-category="all">All</button>
+                <button class="category-button" data-category="ui">ui</button>
+                <button class="category-button" data-category="firebase">Hosting</button>
+                <button class="category-button" data-category="design">Design</button>
+                <button class="category-button" data-category="other">Other</button>
             </div>
-          </article> -->
 
-      </div>
+            <div class="post-grid" id="posts-container">
+                
+                <!-- Discord Clone -->
+                <div class="post-card" data-categories="ui design firebase" data-title="Firebase Hosting"
+                    data-tags="firebase hosting deployment">
 
-    </section>
+                    <div class="post-icon-container">
+                        <div class="post-icon" style="background-color: rgba(59, 130, 246, 0.1);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="color: #3b82f6;">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                    </div>
 
-  </main>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">Discord Clone - Chat Interface Design</h3>
+                            <p class="post-description">A UI/UX design project recreating Discord's chat interface with
+                                server navigation, channel organization,
+                                and responsive design</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="1.1Projects-discord-clone/discord-clone.html" class="post-action">Open</a>
+                        </div>
+                    </div>
 
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-section">
-        <h4>ItsWOLFIX.Journal</h4>
-        <p>
-          Notes on modern web development and crafting thoughtful user
-          experiences.
-        </p>
-        <div class="social-links">
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-          <a href="https://github.com/itsW0LFIX" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+                
+                <!-- Events Gaming Platform -->
+                <div class="post-card" data-categories="ui firebase " data-title="Firebase Hosting"
+                    data-tags="firebase hosting deployment">
+
+                    <div class="post-icon-container">
+                        <div class="post-icon" style="background-color: rgba(14, 165, 233, 0.1);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="color: #0ea5e9;">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">Events Gaming Platform - Community Tournament Management</h3>
+                            <p class="post-description">A full-stack web application for organizing gaming tournaments,
+                                managing teams, and fostering community engagement</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="1.2Projects-events-gaming-platform/events-gaming-platform.html" class="post-action">Open</a>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: 20px;">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>ItsWOLFIX.Journal</h4>
+                <p>Notes on modern web development and crafting thoughtful user experiences.</p>
+                <div class="social-links">
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+                    <a href="https://github.com/itsW0LFIX" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <ul class="footer-nav">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/Posts.html">All Posts</a></li>
+                    <li><a href="https://github.com/itsW0LFIX">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Subscribe</h4>
+                <p>Get notified about new posts and updates.</p>
+                <form class="subscribe-form" id="subscribe-form">
+                    <input type="email" placeholder="Your email" required />
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
         </div>
-      </div>
 
-      <div class="footer-section">
-        <h4>Navigation</h4>
-        <ul class="footer-nav">
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="/Posts.html">All Posts</a></li>
-          <li><a href="https://github.com/itsW0LFIX">About</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h4>Popular Tags</h4>
-        <div class="tag-cloud">
-          <a href="/Posts.html" class="footer-tag">javascript</a>
-          <a href="/Posts.html" class="footer-tag">css</a>
-          <a href="/Posts.html" class="footer-tag">react</a>
-          <a href="/Posts.html" class="footer-tag">accessibility</a>
-          <a href="/Posts.html" class="footer-tag">performance</a>
-          <a href="/Posts.html" class="footer-tag">sustainability</a>
+        <div class="footer-bottom">
+            <p>© 2025 ItsWOLFIX.Journal</p>
+            <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
         </div>
-      </div>
+    </footer>
 
-      <div class="footer-section">
-        <h4>Subscribe</h4>
-        <p>Get notified about new posts and updates.</p>
-        <form class="subscribe-form" id="subscribe-form">
-          <input type="email" placeholder="Your email" required />
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
+    <script src="theme.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get elements
+            const categoryButtons = document.querySelectorAll('.category-button');
+            const postCards = document.querySelectorAll('.post-card');
+            const searchInput = document.getElementById('post-search');
+            const noResultsElement = document.querySelector('.no-results');
 
-    </div>
+            // Current active category
+            let activeCategory = 'all';
+            let searchQuery = '';
 
-    <div class="footer-bottom">
-      <p>© 2025 ItsWOLFIX.Journal</p>
-      <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
-    </div>
-  </footer>
+            // Search functionality
+            searchInput.addEventListener('input', function () {
+                searchQuery = this.value.toLowerCase().trim();
+                filterPosts();
+            });
 
-  <script src="theme.js"></script>
+            // Category button events
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    activeCategory = this.dataset.category;
+                    filterPosts();
+                });
+            });
+
+            // Post filtering function
+            function filterPosts() {
+                let visibleCount = 0;
+
+                postCards.forEach(card => {
+                    const cardTitle = card.dataset.title?.toLowerCase() || '';
+                    const cardTags = card.dataset.tags?.toLowerCase() || '';
+                    const cardCategories = card.dataset.categories?.toLowerCase() || '';
+                    const cardText = card.querySelector('.post-description')?.textContent.toLowerCase() || '';
+
+                    const matchesSearch = searchQuery === '' ||
+                        cardTitle.includes(searchQuery) ||
+                        cardTags.includes(searchQuery) ||
+                        cardText.includes(searchQuery);
+
+                    const matchesCategory = activeCategory === 'all' ||
+                        cardCategories.includes(activeCategory);
+
+                    if (matchesSearch && matchesCategory) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+
+                        // Animate card
+                        card.style.opacity = '0.6';
+                        card.style.transform = 'scale(0.95)';
+
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0) scale(1)';
+                        }, 100);
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                noResultsElement.classList.toggle('hidden', visibleCount > 0);
+            }
+        });
+    </script>
 </body>
 
 </html>

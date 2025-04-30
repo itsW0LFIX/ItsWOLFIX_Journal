@@ -11,7 +11,20 @@
         content="A detailed look at my Discord Clone UI/UX design project featuring dynamic server navigation, chat interfaces, and responsive design.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" />
 </head>
+<style>
+    /* Add this to your CSS file (perhaps in style.css or create a new responsive.css) */
+.project-screenshots img {
+  max-width: 100%;
+  height: auto;
+  width: auto; /* Override any inline width */
+}
 
+@media screen and (max-width: 768px) {
+  .project-screenshots figure {
+    margin: 1rem 0;
+  }
+}
+</style>
 <body>
 
     <header>
@@ -76,18 +89,18 @@
 
                 <div class="project-screenshots">
                     <figure>
-                        <img style="width: 500px;" src="images/Login.webp"
+                        <img src="images/Login.webp"
                             alt="Discord Clone Login Interface" />
                         <figcaption>Login interface with QR code option and traditional credentials</figcaption>
                     </figure>
 
                     <figure>
-                        <img style="width: 250px;" src="images/Server-navigation-sidebar.png"alt="Server navigation sidebar" />
+                        <img src="images/Server-navigation-sidebar.png"alt="Server navigation sidebar" />
                         <figcaption>Server navigation with notification indicators</figcaption>
                     </figure>
 
                     <figure>
-                        <img style="width: 500px;" src="images/preview1.webp" alt="Full chat interface" />
+                        <img src="images/preview1.webp" alt="Full chat interface" />
                         <figcaption>Main chat interface with channel list, message area, and user sidebar</figcaption>
                     </figure>
                 </div>

@@ -11,7 +11,20 @@
         content="A detailed look at my Events Gaming Platform project featuring event management, team creation, and community engagement features.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" />
 </head>
+<style>
+    /* Add this to your CSS file (perhaps in style.css or create a new responsive.css) */
+.project-screenshots img {
+  max-width: 100%;
+  height: auto;
+  width: auto; /* Override any inline width */
+}
 
+@media screen and (max-width: 768px) {
+  .project-screenshots figure {
+    margin: 1rem 0;
+  }
+}
+</style>
 <body>
 
     <header>
@@ -76,22 +89,17 @@
 
                 <div class="project-screenshots">
                     <figure>
-                        <img style="width: 500px;" src="gaming-platform-img/home-page.webp"
+                        <img src="images/home-page.png"
                             alt="Events Gaming Platform Home Page" />
                         <figcaption>Home page showcasing featured events and navigation options</figcaption>
                     </figure>
 
                     <figure>
-                        <img style="width: 500px;" src="gaming-platform-img/event-creation.webp"
+                        <img src="images/event-creation.png"
                             alt="Event Creation Interface" />
-                        <figcaption>Intuitive event creation interface with game selection and rules setup</figcaption>
+                        <figcaption>Example of one game from the all games</figcaption>
                     </figure>
 
-                    <figure>
-                        <img style="width: 500px;" src="gaming-platform-img/team-management.webp"
-                            alt="Team Management Dashboard" />
-                        <figcaption>Team management dashboard with member statistics and roles</figcaption>
-                    </figure>
                 </div>
 
                 <h2>Key Features</h2>
