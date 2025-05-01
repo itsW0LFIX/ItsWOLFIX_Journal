@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        Its WOLFIX Journal
+    </title>
+    <link rel="icon" href="/icon2.png" type="image/icon type">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/footer.css">
+    <meta name="description"
+        content="The fastest way to find misbehaving elements on the page using the outline trick in CSS." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+    <style>
+        .project-screenshots img {
+            max-width: 100%;
+            height: auto;
+            width: auto;
+        }
+
+        @media screen and (max-width: 768px) {
+            .project-screenshots figure {
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="/index.html" class="logo">
+            <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
+            ItsWOLFIX.Journal</a>
+        <nav aria-label="Main navigation">
+            <ul>
+                <a href="/index.html">Home</a>
+                <a href="/Posts.html">Posts</a>
+                <a href="/projects.html">Projects</a>
+                <li><a href="https://github.com/itsW0LFIX">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="theme-toggle">
+        <button id="daylight" class="theme-button active">🌞 Daylight</button>
+        <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+        <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+    </div>
+
+    <main>
+        <article class="blog-post">
+            <header>
+                <div class="post-meta">May 2, 2025</div>
+                <h1>Simple Trick To Debug Your CSS</h1>
+                <div class="tags">
+                    <span class="tag">css</span>
+                    <span class="tag">debugging</span>
+                    <span class="tag">web-development</span>
+                    <span class="tag">tricks</span>
+                </div>
+            </header>
+
+            <section>
+                <h2 id="the-outline-trick">The Outline Trick</h2>
+                <p>
+                    The fastest way to find misbehaving elements on the page is using the
+                    <code>outline</code> trick in CSS. This helps you find issues such as overflowing
+                    elements quickly, but more importantly it gives you a visual of the entire
+                    page.
+                </p>
+                <div class="project-screenshots">
+                    <img src="images/css-debug.webp" alt="Debugging CSS" loading="lazy">
+                </div>
+
+                <p>
+                    You can use <code>outline</code> to set an outline on every element, which isn't going to
+                    affect the layout compared to using <code>border</code> — unless you specify
+                    <code>box-sizing: border-box</code>.
+                </p>
+
+                <pre><code class="language-css">
+* {
+  outline: 1px solid tomato;
+}
+</code></pre>
+
+                <p>
+                    You can also add a <code>background</code> property, or use different
+                    <code>outline</code> colors for nested elements, if you want to make things more
+                    readable:
+                </p>
+
+                <pre><code class="language-css">
+* {
+  outline: 1px solid tomato;
+}
+
+* * {
+  outline: 1px solid black;
+}
+
+* * * {
+  outline: 1px solid white;
+}
+</code></pre>
+
+                <h2 id="creating-a-bookmarklet">Creating A Bookmarklet</h2>
+                <p>
+                    You can turn this helper into a JavaScript bookmarklet, and use it when you need it. The
+                    only thing you have to do is create a regular bookmark in your browser, and include this
+                    code.
+                </p>
+                <div class="project-screenshots">
+                    <img src="images/bookmarklet.webp" alt="Bookmarklet" loading="lazy">
+                </div>
+
+                <pre><code class="language-javascript">
+javascript: (function () {
+  const headElement = document.head;
+  const styleElement = document.createElement('style');
+  styleElement.setAttribute('debug-css', '');
+  styleElement.innerText = '* { outline: 1px solid tomato; }';
+
+  const debugElement = headElement.querySelector('[debug-css]');
+  if (debugElement) return debugElement.remove();
+
+  headElement.append(styleElement);
+})();
+</code></pre>
+
+                <p>
+                    The code uses an <a
+                        href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">IIFE</a> to create a
+                    <code>&lt;style&gt;</code> tag, append it to the <code>&lt;head&gt;</code> element, and checks
+                    if the element exists to toggle it.
+                </p>
+
+                <h2>Why This Method Works Better Than DevTools</h2>
+                <p>
+                    While browser DevTools offer ways to inspect elements, this outline trick provides several advantages:
+                </p>
+                <ol>
+                    <li>It shows all elements at once, giving you a complete visual map of your page structure</li>
+                    <li>It reveals hidden overflow issues that might only appear in certain screen sizes</li>
+                    <li>It helps identify nesting problems and unexpected element relationships</li>
+                    <li>It works consistently across all browsers</li>
+                    <li>The bookmarklet makes it instantly available on any site you're working on</li>
+                </ol>
+
+                <h2>Extending The Technique</h2>
+                <p>
+                    You can enhance this debugging approach with additional techniques:
+                </p>
+
+                <pre><code class="language-css">
+/* Highlight elements with overflow issues */
+* {
+  outline: 1px solid tomato;
+  overflow: visible !important;
+}
+
+/* Identify z-index stacking contexts */
+* {
+  outline: 1px solid tomato;
+  z-index: auto !important;
+}
+
+/* Debug flexbox layouts */
+* {
+  outline: 1px solid tomato;
+}
+[class*="flex"] {
+  background-color: rgba(0, 100, 255, 0.1) !important;
+}
+</code></pre>
+
+                <p>
+                    These variations can help isolate specific types of layout problems when you're dealing with
+                    complex CSS issues.
+                </p>
+
+                <h2>Conclusion</h2>
+                <p>
+                    The CSS outline debugging trick is one of those simple yet powerful techniques that should be in every
+                    web developer's toolkit. It takes just seconds to implement but can save hours of debugging time,
+                    especially when working with complicated layouts.
+                </p>
+                <p>
+                    Next time you're scratching your head over a CSS layout issue, try adding this one line of code
+                    before diving into the browser's developer tools. You might be surprised at how quickly you can spot
+                    the problem!
+                </p>
+                <p>That's it! 😄</p>
+            </section>
+
+            <section class="comments-section">
+                <h2>Comments</h2>
+
+                <div id="comments-list">
+                    <p class="no-comments">Be the first to comment!</p>
+                </div>
+
+                <div class="comment-form-container">
+                    <h3>Leave a Comment</h3>
+                    <form id="comment-form">
+                        <div class="form-group">
+                            <label for="name-input">Name</label>
+                            <input type="text" id="name-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email-input">Email (will not be published)</label>
+                            <input type="email" id="email-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comment-input">Comment</label>
+                            <textarea id="comment-input" rows="4" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">Submit Comment</button>
+                    </form>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- About Section -->
+                <div class="footer-section">
+                    <h3>About WOLFIX Journal</h3>
+                    <p>A community-driven platform focused on technology, science, and innovation.</p>
+                    <a href="/community.html">Learn more about us</a>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="footer-section">
+                    <h3>GitHub Resources</h3>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CODE_OF_CONDUCT.md">Code of
+                                Conduct</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CONTRIBUTING.md">Contributing
+                                Guidelines</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/ISSUE_TEMPLATE/bug_report.md">Report
+                                a Bug</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md">Submit
+                                a Pull Request</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Connect Section -->
+                <div class="footer-section">
+                    <h3>Connect with Us</h3>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/WOLFIX-Journal">GitHub</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/itsW0LFIX">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 WOLFIX Journal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="/wolfix-firebase.js"></script>
+    <script src="/theme.js"></script>
+</body>
+
+</html>
