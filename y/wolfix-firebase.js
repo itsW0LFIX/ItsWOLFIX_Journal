@@ -439,32 +439,53 @@ function loadAnalytics() {
     });
     
     // Average time on site - fixed calculation
-    timeSpentRef.on('value', function(snapshot) {
-      const timeData = snapshot.val() || {};
-      let totalSeconds = 0;
-      let totalVisits = 0;
-      
-      // Calculate total time and visits
-      Object.values(timeData).forEach(function(data) {
-        if (data && typeof data === 'object') {
-          totalSeconds += Number(data.totalSeconds) || 0;
-          totalVisits += Number(data.visits) || 0;
-        }
-      });
-      
-      // Calculate and format average time
-      let avgTimeText = '0m 0s';
-      if (totalVisits > 0) {
-        const avgSeconds = Math.round(totalSeconds / totalVisits);
-        const minutes = Math.floor(avgSeconds / 60);
-        const seconds = avgSeconds % 60;
-        avgTimeText = `${minutes}m ${seconds}s`;
+  // Average time on site - fixed calculation
+  timeSpentRef.on('value', function(snapshot) {
+    const timeData = snapshot.val() || {};
+    let totalSeconds = 0;
+    let totalVisits = 0;
+    
+    // Calculate total time and visits
+    Object.values(timeData).forEach(function(data) {
+      if (data && typeof data === 'object') {
+        totalSeconds += Number(data.totalSeconds) || 0;
+        totalVisits += Number(data.visits) || 0;
       }
-      
-      // Update the display
-      avgTimeEl.textContent = avgTimeText;
-      console.log("Average time updated:", avgTimeText, "Total seconds:", totalSeconds, "Total visits:", totalVisits);
     });
+    
+    // Calculate and format average time
+    let avgTimeText = '0m 0s';
+    if (totalVisits > 0) {
+      const avgSeconds = Math.round(totalSeconds / totalVisits);
+      const minutes = Math.floor(avgSeconds / 60);
+      const seconds = avgSeconds % 60;
+      avgTimeText = `${minutes}m ${seconds}s`;
+    }
+    
+    // Format total time
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const displayMinutes = totalMinutes % 60;
+    const displaySeconds = totalSeconds % 60;
+    
+    let totalTimeText = '';
+    if (totalHours > 0) {
+      totalTimeText = `${totalHours}h ${displayMinutes}m`;
+    } else {
+      totalTimeText = `${totalMinutes}m ${displaySeconds}s`;
+    }
+    
+    // Update the displays
+    avgTimeEl.textContent = avgTimeText;
+    
+    // Update total time display if the element exists
+    const totalTimeEl = document.getElementById('total-time');
+    if (totalTimeEl) {
+      totalTimeEl.textContent = totalTimeText;
+    }
+    
+    console.log("Average time updated:", avgTimeText, "Total time:", totalTimeText, "Total seconds:", totalSeconds, "Total visits:", totalVisits);
+  });
     
     // Pages table - fixed to ensure proper data loading
     function updatePagesTable() {
@@ -681,3 +702,5 @@ function setupCommentFilters() {
     // Initial filtering
     filterComments();
   }
+
+  
