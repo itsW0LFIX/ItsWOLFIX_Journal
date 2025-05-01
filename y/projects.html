@@ -10,13 +10,12 @@
     <meta name="description" content="A personal journal about JavaScript, React, and modern web development.">
 </head>
 <style>
-    /* Base layout */
+
     body {
         max-width: 100%;
         padding: 0;
     }
 
-    /* Header bar styling */
     header {
         background-color: var(--card-bg-color);
         padding: 1rem 2rem;
@@ -41,7 +40,6 @@
         border-bottom: none;
     }
 
-    /* Search bar styling */
     .search-container {
         flex: 1;
         max-width: 500px;
@@ -63,7 +61,6 @@
         border-color: var(--accent-color);
     }
 
-    /* Navigation styling */
     nav {
         display: flex;
         align-items: center;
@@ -81,7 +78,6 @@
         margin-bottom: 0;
     }
 
-    /* Theme toggle */
     .theme-toggle {
         display: flex;
         justify-content: center;
@@ -110,14 +106,12 @@
         color: var(--accent-color);
     }
 
-    /* Main content layout */
     main {
         padding: 2rem;
         max-width: 1200px;
         margin: 0 auto;
     }
 
-    /* Category filters */
     .category-filters {
         display: flex;
         justify-content: right;
@@ -144,9 +138,6 @@
     .category-button:hover:not(.active) {
         background-color: var(--button-hover-bg-color);
     }
-
-    /* Post grid and cards */
-
 
     .post-grid {
         display: grid;
@@ -250,15 +241,12 @@
         font-size: 0.8rem;
     }
 
-
-    /* Post footer with tags and action */
     .post-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 10px 16px;
         border-top: 1px solid var(--border-color);
-        /* background-color: var(--action-bg-color); */
     }
 
     .post-tags {
@@ -276,7 +264,6 @@
         border-radius: 10px;
     }
 
-
     /* No results message */
     .no-results {
         text-align: center;
@@ -286,12 +273,10 @@
         font-style: italic;
     }
 
-    /* Utility classes */
     .hidden {
         display: none;
     }
 
-    /* Theme variables */
     :root {
         --card-bg-color: #ffffff;
         --icon-bg-color: rgba(95, 75, 139, 0.1);
@@ -331,7 +316,6 @@
         --accent-color-rgb: 255, 186, 173;
     }
 
-    /* Responsive adjustments */
     @media (max-width: 768px) {
         .search-container {
             margin: 0 1rem;
@@ -361,8 +345,7 @@
         }
     }
 </style>
-<!-- Better responsive adjustments for very small screens  -->
-
+<!-- very small screens  -->
 <style>
     @media (max-width: 450px) {
 
@@ -435,7 +418,6 @@
         }
     }
 </style>
-
 <!-- new style footer -->
 <style>
     .container {
@@ -495,6 +477,7 @@
 </style>
 
 <body>
+
     <header>
         <a href="/index.html" class="logo">
             <img style="width: 25px; margin-right: 8px;" src="icon2.png" alt="icon logo">
@@ -532,7 +515,7 @@
             </div>
 
             <div class="post-grid" id="posts-container">
-                
+
                 <!-- Discord Clone -->
                 <div class="post-card" data-categories="ui design firebase" data-title="Firebase Hosting"
                     data-tags="firebase hosting deployment">
@@ -561,7 +544,7 @@
                     </div>
 
                 </div>
-                
+
                 <!-- Events Gaming Platform -->
                 <div class="post-card" data-categories="ui firebase " data-title="Firebase Hosting"
                     data-tags="firebase hosting deployment">
@@ -584,17 +567,17 @@
                                 managing teams, and fostering community engagement</p>
                         </div>
                         <div class="post-footer">
-                            <a href="1.2Projects-events-gaming-platform/events-gaming-platform.html" class="post-action">Open</a>
+                            <a href="1.2Projects-events-gaming-platform/events-gaming-platform.html"
+                                class="post-action">Open</a>
                         </div>
                     </div>
 
                 </div>
-                
+
             </div>
         </section>
     </main>
 
-    <!-- new footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -650,10 +633,8 @@
         </div>
     </footer>
 
-    <script src="theme.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Get elements
             const categoryButtons = document.querySelectorAll('.category-button');
             const postCards = document.querySelectorAll('.post-card');
             const searchInput = document.getElementById('post-search');
@@ -718,11 +699,13 @@
             }
         });
     </script>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-    <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="wolfix-firebase.js"></script>
+    <script src="theme.js"></script>
+    <script src="wolfix-firebase.js"></script>
+
 </body>
 
 </html>

@@ -2,17 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Its WOLFIX Journal
-    </title>
-    <link rel="icon" href="/icon2.png" type="image/icon type">
-    <link rel="stylesheet" href="/style.css"/>
-    <link rel="stylesheet" href="/footer.css">
-    <meta name="description"
-        content="Creating resilient web applications that work without an internet connection using service workers and modern browser APIs." />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    Its WOLFIX Journal
+  </title>
+  <link rel="icon" href="/icon2.png" type="image/icon type">
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/footer.css">
+  <meta name="description"
+    content="Creating resilient web applications that work without an internet connection using service workers and modern browser APIs." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
 
 </head>
 
@@ -22,44 +22,47 @@
       <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
       ItsWOLFIX.Journal</a>
     <nav aria-label="Main navigation">
-        <ul>
-            <a href="/index.html">Home</a>
-            <a href="/Posts.html">Posts</a>
-            <a href="/projects.html">Projects</a>
-            <li><a href="https://github.com/itsW0LFIX">About</a></li>
-        </ul>
+      <ul>
+        <a href="/index.html">Home</a>
+        <a href="/Posts.html">Posts</a>
+        <a href="/projects.html">Projects</a>
+        <li><a href="https://github.com/itsW0LFIX">About</a></li>
+      </ul>
     </nav>
-</header>
+  </header>
 
-<div class="theme-toggle">
-  <button id="daylight" class="theme-button active">🌞 Daylight</button>
-  <button id="night-howl" class="theme-button">🐺 Night Howl</button>
-  <button id="night-mind" class="theme-button">🧠 Night Mind</button>
-</div>
+  <div class="theme-toggle">
+    <button id="daylight" class="theme-button active">🌞 Daylight</button>
+    <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+    <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+  </div>
 
-    <main>
-        <article class="blog-post">
-            <header>
-                <div class="post-meta">May 10, 2025</div>
-                <h1>Building Offline-Capable Web Applications</h1>
-                <div class="tags">
-                    <span class="tag">progressive-web-apps</span>
-                    <span class="tag">javascript</span>
-                    <span class="tag">performance</span>
-                </div>
-            </header>
+  <main>
+    <article class="blog-post">
+      <header>
+        <div class="post-meta">May 10, 2025</div>
+        <h1>Building Offline-Capable Web Applications</h1>
+        <div class="tags">
+          <span class="tag">progressive-web-apps</span>
+          <span class="tag">javascript</span>
+          <span class="tag">performance</span>
+        </div>
+      </header>
 
-            <section>
-                <p>
-                    In today's mobile-first world, users expect web applications to work regardless of their network conditions. Building offline-capable applications isn't just about accommodating users with poor connectivity—it's about creating resilient experiences that feel like native apps.
-                </p>
+      <section>
+        <p>
+          In today's mobile-first world, users expect web applications to work regardless of their network conditions.
+          Building offline-capable applications isn't just about accommodating users with poor connectivity—it's about
+          creating resilient experiences that feel like native apps.
+        </p>
 
-                <h2>The Service Worker Foundation</h2>
-                <p>
-                    Service workers act as proxies between the web application and the network, enabling offline functionality, background syncing, and push notifications. Here's how to register a basic service worker:
-                </p>
+        <h2>The Service Worker Foundation</h2>
+        <p>
+          Service workers act as proxies between the web application and the network, enabling offline functionality,
+          background syncing, and push notifications. Here's how to register a basic service worker:
+        </p>
 
-<pre><code class="language-javascript">
+        <pre><code class="language-javascript">
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/service-worker.js')
@@ -73,12 +76,12 @@ if ('serviceWorker' in navigator) {
 }
 </code></pre>
 
-                <h2>Caching Strategies</h2>
-                <p>
-                    The core of offline capability is implementing the right caching strategy for different resources:
-                </p>
+        <h2>Caching Strategies</h2>
+        <p>
+          The core of offline capability is implementing the right caching strategy for different resources:
+        </p>
 
-<pre><code class="language-javascript">
+        <pre><code class="language-javascript">
 // Inside service-worker.js
 const CACHE_NAME = 'app-v1';
 const STATIC_ASSETS = [
@@ -136,12 +139,12 @@ self.addEventListener('fetch', event => {
 });
 </code></pre>
 
-                <h2>Handling Dynamic Data</h2>
-                <p>
-                    For applications that deal with dynamic data, IndexedDB provides a client-side database solution:
-                </p>
+        <h2>Handling Dynamic Data</h2>
+        <p>
+          For applications that deal with dynamic data, IndexedDB provides a client-side database solution:
+        </p>
 
-<pre><code class="language-javascript">
+        <pre><code class="language-javascript">
 function saveTasksToIndexedDB(tasks) {
   const dbPromise = indexedDB.open('tasks-db', 1, upgradeDB => {
     if (!upgradeDB.objectStoreNames.contains('tasks')) {
@@ -171,12 +174,13 @@ function loadTasksFromIndexedDB() {
 }
 </code></pre>
 
-                <h2>Background Sync</h2>
-                <p>
-                    For operations that require server interaction (like posting data), the Background Sync API ensures requests complete even when connectivity is restored after the user has left your app:
-                </p>
+        <h2>Background Sync</h2>
+        <p>
+          For operations that require server interaction (like posting data), the Background Sync API ensures requests
+          complete even when connectivity is restored after the user has left your app:
+        </p>
 
-<pre><code class="language-javascript">
+        <pre><code class="language-javascript">
 function postDataWithBackgroundSync(data) {
   // First try the direct approach
   return fetch('/api/data', {
@@ -222,12 +226,12 @@ self.addEventListener('sync', event => {
 });
 </code></pre>
 
-                <h2>App Manifest for "Add to Home Screen"</h2>
-                <p>
-                    To provide a more app-like experience, include a Web App Manifest:
-                </p>
+        <h2>App Manifest for "Add to Home Screen"</h2>
+        <p>
+          To provide a more app-like experience, include a Web App Manifest:
+        </p>
 
-<pre><code class="language-json">
+        <pre><code class="language-json">
 {
   "name": "Task Manager",
   "short_name": "Tasks",
@@ -250,124 +254,123 @@ self.addEventListener('sync', event => {
 }
 </code></pre>
 
-                <h2>User Experience Considerations</h2>
-                <p>Technology alone isn't enough—design your application with offline-first principles:</p>
-                <ol>
-                    <li>Provide clear indicators of network status</li>
-                    <li>Cache essential functionality and content first</li>
-                    <li>Gracefully degrade features when offline rather than disabling them entirely</li>
-                    <li>Use optimistic UI updates with background synchronization</li>
-                </ol>
+        <h2>User Experience Considerations</h2>
+        <p>Technology alone isn't enough—design your application with offline-first principles:</p>
+        <ol>
+          <li>Provide clear indicators of network status</li>
+          <li>Cache essential functionality and content first</li>
+          <li>Gracefully degrade features when offline rather than disabling them entirely</li>
+          <li>Use optimistic UI updates with background synchronization</li>
+        </ol>
 
-                <h2>Conclusion</h2>
-                <p>
-                    Building offline-capable web applications requires thoughtful architecture and an understanding of service workers, caching strategies, and client-side storage. When implemented well, these techniques create resilient applications that provide value to users regardless of network conditions.
-                </p>
-                <p>
-                    In my next post, I'll explore techniques for testing offline functionality and debugging service workers, which can be challenging due to their background execution context and lifecycle.
-                </p>
-            </section>
+        <h2>Conclusion</h2>
+        <p>
+          Building offline-capable web applications requires thoughtful architecture and an understanding of service
+          workers, caching strategies, and client-side storage. When implemented well, these techniques create resilient
+          applications that provide value to users regardless of network conditions.
+        </p>
+        <p>
+          In my next post, I'll explore techniques for testing offline functionality and debugging service workers,
+          which can be challenging due to their background execution context and lifecycle.
+        </p>
+      </section>
 
-            
-            <section class="comments-section">
-              <h2>Comments</h2>
-              
-              <div id="comments-list">
-                <!-- Comments will be loaded here -->
-                <p class="no-comments">Be the first to comment!</p>
-              </div>
-              
-              <div class="comment-form-container">
-                <h3>Leave a Comment</h3>
-                <form id="comment-form">
-                  <div class="form-group">
-                    <label for="name-input">Name</label>
-                    <input type="text" id="name-input" required>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="email-input">Email (will not be published)</label>
-                    <input type="email" id="email-input" required>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="comment-input">Comment</label>
-                    <textarea id="comment-input" rows="4" required></textarea>
-                  </div>
-                  
-                  <button type="submit" class="submit-button">Submit Comment</button>
-                </form>
-              </div>
-            </section>
-        </article>
-    </main>
 
-    <!-- new footer -->
-    <footer class="footer">
-      <div class="container">
-          <div class="footer-content">
-              <!-- About Section -->
-              <div class="footer-section">
-                  <h3>About WOLFIX Journal</h3>
-                  <p>A community-driven platform focused on technology, science, and innovation.</p>
-                  <a href="/community.html">Learn more about us</a>
-              </div>
+      <section class="comments-section">
+        <h2>Comments</h2>
 
-              <!-- Resources Section -->
-              <div class="footer-section">
-                  <h3>GitHub Resources</h3>
-                  <ul>
-                      <li>
-                          <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CODE_OF_CONDUCT.md">Code of
-                              Conduct</a>
-                      </li>
-                      <li>
-                          <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CONTRIBUTING.md">Contributing
-                              Guidelines</a>
-                      </li>
-                      <li>
-                          <a
-                              href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/ISSUE_TEMPLATE/bug_report.md">Report
-                              a Bug</a>
-                      </li>
-                      <li>
-                          <a
-                              href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md">Submit
-                              a Pull Request</a>
-                      </li>
-                  </ul>
-              </div>
+        <div id="comments-list">
+          <p class="no-comments">Be the first to comment!</p>
+        </div>
 
-              <!-- Connect Section -->
-              <div class="footer-section">
-                  <h3>Connect with Us</h3>
-                  <ul>
-                      <li>
-                          <a href="https://github.com/WOLFIX-Journal">GitHub</a>
-                      </li>
-                      <li>
-                          <a href="https://github.com/itsW0LFIX">Contact Us</a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
+        <div class="comment-form-container">
+          <h3>Leave a Comment</h3>
+          <form id="comment-form">
+            <div class="form-group">
+              <label for="name-input">Name</label>
+              <input type="text" id="name-input" required>
+            </div>
 
-          <div class="footer-bottom">
-              <p>&copy; 2025 WOLFIX Journal. All rights reserved.</p>
-          </div>
+            <div class="form-group">
+              <label for="email-input">Email (will not be published)</label>
+              <input type="email" id="email-input" required>
+            </div>
+
+            <div class="form-group">
+              <label for="comment-input">Comment</label>
+              <textarea id="comment-input" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">Submit Comment</button>
+          </form>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <!-- About Section -->
+        <div class="footer-section">
+          <h3>About WOLFIX Journal</h3>
+          <p>A community-driven platform focused on technology, science, and innovation.</p>
+          <a href="/community.html">Learn more about us</a>
+        </div>
+
+        <!-- Resources Section -->
+        <div class="footer-section">
+          <h3>GitHub Resources</h3>
+          <ul>
+            <li>
+              <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CODE_OF_CONDUCT.md">Code of
+                Conduct</a>
+            </li>
+            <li>
+              <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CONTRIBUTING.md">Contributing
+                Guidelines</a>
+            </li>
+            <li>
+              <a href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/ISSUE_TEMPLATE/bug_report.md">Report
+                a Bug</a>
+            </li>
+            <li>
+              <a href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md">Submit
+                a Pull Request</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Connect Section -->
+        <div class="footer-section">
+          <h3>Connect with Us</h3>
+          <ul>
+            <li>
+              <a href="https://github.com/WOLFIX-Journal">GitHub</a>
+            </li>
+            <li>
+              <a href="https://github.com/itsW0LFIX">Contact Us</a>
+            </li>
+          </ul>
+        </div>
       </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 WOLFIX Journal. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-json.min.js"></script>
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="/wolfix-firebase.js"></script>
-    <script src="/theme.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-json.min.js"></script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="/wolfix-firebase.js"></script>
+  <script src="/theme.js"></script>
 </body>
 
 </html>

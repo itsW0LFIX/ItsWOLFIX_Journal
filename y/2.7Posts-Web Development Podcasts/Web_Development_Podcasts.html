@@ -25,7 +25,6 @@
             transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Visual pop on hover */
         .blog-post img:hover {
             transform: scale(1.015);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
@@ -52,8 +51,8 @@
 <body>
     <header>
         <a href="/index.html" class="logo">
-          <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
-          ItsWOLFIX.Journal</a>
+            <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
+            ItsWOLFIX.Journal</a>
         <nav aria-label="Main navigation">
             <ul>
                 <a href="/index.html">Home</a>
@@ -241,41 +240,40 @@
                 </p>
             </section>
 
-            
+
             <section class="comments-section">
                 <h2>Comments</h2>
-                
+
                 <div id="comments-list">
-                  <!-- Comments will be loaded here -->
-                  <p class="no-comments">Be the first to comment!</p>
+                    <p class="no-comments">Be the first to comment!</p>
                 </div>
-                
+
                 <div class="comment-form-container">
-                  <h3>Leave a Comment</h3>
-                  <form id="comment-form">
-                    <div class="form-group">
-                      <label for="name-input">Name</label>
-                      <input type="text" id="name-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="email-input">Email (will not be published)</label>
-                      <input type="email" id="email-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="comment-input">Comment</label>
-                      <textarea id="comment-input" rows="4" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-button">Submit Comment</button>
-                  </form>
+                    <h3>Leave a Comment</h3>
+                    <form id="comment-form">
+                        <div class="form-group">
+                            <label for="name-input">Name</label>
+                            <input type="text" id="name-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email-input">Email (will not be published)</label>
+                            <input type="email" id="email-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comment-input">Comment</label>
+                            <textarea id="comment-input" rows="4" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">Submit Comment</button>
+                    </form>
                 </div>
-              </section>
+            </section>
         </article>
     </main>
 
-    <!-- new footer -->
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -331,14 +329,14 @@
         </div>
     </footer>
 
-  
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="/wolfix-firebase.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="/wolfix-firebase.js"></script>
     <script src="/theme.js"></script>
 </body>
 

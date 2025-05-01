@@ -31,9 +31,9 @@
     </header>
 
     <div class="theme-toggle">
-      <button id="daylight" class="theme-button active">🌞 Daylight</button>
-      <button id="night-howl" class="theme-button">🐺 Night Howl</button>
-      <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+        <button id="daylight" class="theme-button active">🌞 Daylight</button>
+        <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+        <button id="night-mind" class="theme-button">🧠 Night Mind</button>
     </div>
 
     <main>
@@ -51,7 +51,10 @@
 
             <section>
                 <p>
-                    While we often think of environmental impact in terms of physical products, digital products also have a significant carbon footprint. The internet consumes about 416.2 TWh of electricity per year—more than the entire United Kingdom. As developers and designers, we can make choices that dramatically reduce the environmental impact of our digital products.
+                    While we often think of environmental impact in terms of physical products, digital products also
+                    have a significant carbon footprint. The internet consumes about 416.2 TWh of electricity per
+                    year—more than the entire United Kingdom. As developers and designers, we can make choices that
+                    dramatically reduce the environmental impact of our digital products.
                 </p>
 
                 <h2>Understanding Digital Carbon Footprints</h2>
@@ -64,7 +67,8 @@
                     <li>Client devices that process and display information</li>
                 </ol>
                 <p>
-                    Inefficient code, heavy assets, and wasteful processes multiply energy consumption across all these touchpoints. Simply put: the heavier your website, the larger its carbon footprint.
+                    Inefficient code, heavy assets, and wasteful processes multiply energy consumption across all these
+                    touchpoints. Simply put: the heavier your website, the larger its carbon footprint.
                 </p>
 
                 <h2>Measuring Your Site's Environmental Impact</h2>
@@ -72,7 +76,7 @@
                     Before optimizing, you need to measure. Several tools can help quantify your site's carbon impact:
                 </p>
 
-<pre><code class="language-javascript">
+                <pre><code class="language-javascript">
 // Example of how you might implement carbon calculation
 function calculatePageCarbonFootprint() {
   const totalBytes = performanceEntries.reduce((total, entry) => {
@@ -90,15 +94,18 @@ function calculatePageCarbonFootprint() {
 </code></pre>
 
                 <p>
-                    Tools like Website Carbon Calculator, EcoGrader, and Ecoping can provide insights into your site's emissions, while Lighthouse and WebPageTest help identify performance issues that typically correlate with higher energy usage.
+                    Tools like Website Carbon Calculator, EcoGrader, and Ecoping can provide insights into your site's
+                    emissions, while Lighthouse and WebPageTest help identify performance issues that typically
+                    correlate with higher energy usage.
                 </p>
 
                 <h2>Optimizing Images for Sustainability</h2>
                 <p>
-                    Images typically account for the largest portion of web page weight. Proper optimization can reduce file sizes by 70% or more without perceptible quality loss.
+                    Images typically account for the largest portion of web page weight. Proper optimization can reduce
+                    file sizes by 70% or more without perceptible quality loss.
                 </p>
 
-<pre><code class="language-html">
+                <pre><code class="language-html">
 // Modern image optimization approach
 < picture>
   // WebP for browsers that support it
@@ -136,10 +143,11 @@ function calculatePageCarbonFootprint() {
 
                 <h2>Efficient JavaScript</h2>
                 <p>
-                    JavaScript is particularly energy-intensive because it requires processing on both server and client. Heavy JavaScript frameworks often consume significant battery life on mobile devices.
+                    JavaScript is particularly energy-intensive because it requires processing on both server and
+                    client. Heavy JavaScript frameworks often consume significant battery life on mobile devices.
                 </p>
 
-<pre><code class="language-javascript">
+                <pre><code class="language-javascript">
 // Instead of importing entire libraries
 // import { map, filter, reduce } from 'lodash';
 
@@ -163,7 +171,8 @@ const sum = even.reduce((total, n) => total + n, 0);
 
                 <h2>Green Hosting Solutions</h2>
                 <p>
-                    Where your code runs matters as much as how it runs. Data centers vary dramatically in their energy efficiency and carbon intensity.
+                    Where your code runs matters as much as how it runs. Data centers vary dramatically in their energy
+                    efficiency and carbon intensity.
                 </p>
                 <p>
                     When choosing hosting providers, consider:
@@ -177,10 +186,11 @@ const sum = even.reduce((total, n) => total + n, 0);
 
                 <h2>Designing for Efficient User Journeys</h2>
                 <p>
-                    The most sustainable code is code that never runs. Design efficient user journeys that help people accomplish tasks quickly with minimal page loads and transitions.
+                    The most sustainable code is code that never runs. Design efficient user journeys that help people
+                    accomplish tasks quickly with minimal page loads and transitions.
                 </p>
 
-<pre><code class="language-css">
+                <pre><code class="language-css">
 /* Progressive enhancement example */
 .card {
   display: flex;
@@ -211,10 +221,11 @@ const sum = even.reduce((total, n) => total + n, 0);
 
                 <h2>Caching and Edge Computing</h2>
                 <p>
-                    Proper caching reduces unnecessary data transfers and server processing. Distributing assets via CDNs or edge networks reduces distance data must travel.
+                    Proper caching reduces unnecessary data transfers and server processing. Distributing assets via
+                    CDNs or edge networks reduces distance data must travel.
                 </p>
 
-<pre><code class="language-html">
+                <pre><code class="language-html">
 // Example cache control headers 
 // In .htaccess or server config 
 //
@@ -234,48 +245,51 @@ const sum = even.reduce((total, n) => total + n, 0);
 
                 <h2>Conclusion</h2>
                 <p>
-                    Sustainable web development isn't just an ethical choice—it often results in faster, more efficient products that users prefer. By optimizing assets, streamlining code, choosing green hosting, and designing efficient user journeys, we can dramatically reduce the carbon footprint of our digital products.
+                    Sustainable web development isn't just an ethical choice—it often results in faster, more efficient
+                    products that users prefer. By optimizing assets, streamlining code, choosing green hosting, and
+                    designing efficient user journeys, we can dramatically reduce the carbon footprint of our digital
+                    products.
                 </p>
                 <p>
-                    In my next post, I'll explore practical tools for measuring and monitoring your site's energy efficiency, along with a case study of how we reduced our own site's carbon emissions by 70% through targeted optimizations.
+                    In my next post, I'll explore practical tools for measuring and monitoring your site's energy
+                    efficiency, along with a case study of how we reduced our own site's carbon emissions by 70% through
+                    targeted optimizations.
                 </p>
             </section>
 
-            
+
             <section class="comments-section">
                 <h2>Comments</h2>
-                
+
                 <div id="comments-list">
-                  <!-- Comments will be loaded here -->
-                  <p class="no-comments">Be the first to comment!</p>
+                    <p class="no-comments">Be the first to comment!</p>
                 </div>
-                
+
                 <div class="comment-form-container">
-                  <h3>Leave a Comment</h3>
-                  <form id="comment-form">
-                    <div class="form-group">
-                      <label for="name-input">Name</label>
-                      <input type="text" id="name-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="email-input">Email (will not be published)</label>
-                      <input type="email" id="email-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="comment-input">Comment</label>
-                      <textarea id="comment-input" rows="4" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-button">Submit Comment</button>
-                  </form>
+                    <h3>Leave a Comment</h3>
+                    <form id="comment-form">
+                        <div class="form-group">
+                            <label for="name-input">Name</label>
+                            <input type="text" id="name-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email-input">Email (will not be published)</label>
+                            <input type="email" id="email-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comment-input">Comment</label>
+                            <textarea id="comment-input" rows="4" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">Submit Comment</button>
+                    </form>
                 </div>
-              </section>
+            </section>
         </article>
     </main>
 
-    <!-- new footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -331,16 +345,15 @@ const sum = even.reduce((total, n) => total + n, 0);
         </div>
     </footer>
 
-  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="/wolfix-firebase.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="/wolfix-firebase.js"></script>
     <script src="/theme.js"></script>
 </body>
 

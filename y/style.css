@@ -195,7 +195,6 @@ h2 {
   color: var(--muted-color);
 }
 
-/* See more link style */
 .see-more-link {
   display: inline-block;
   margin: 1rem 0 3rem;
@@ -255,7 +254,7 @@ pre code {
   padding: 0;
 }
 
-/* Blog post specific styles */
+/* Blog post */
 .blog-post {
   max-width: 100%;
 }
@@ -299,18 +298,16 @@ pre code {
   margin-bottom: 2rem;
 }
 
-/* Fix for original tag display */
+
 .tags[data-tags] .tag {
   margin-right: 0.5rem;
 }
 
-/* For backwards compatibility with your original JavaScript tag generation */
 .tags[data-tags] .tag::after {
   content: "";
   margin-left: 0;
 }
 
-/* Relaxing scroll effect */
 html {
   scroll-behavior: smooth;
 }
@@ -320,7 +317,6 @@ html {
   scrollbar-color: var(--accent-color) var(--bg-color);
 }
 
-/* Webkit browsers custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -335,20 +331,6 @@ html {
   border: 2px solid var(--bg-color);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-/* Add to your style.css file */
-
-/* Code styling */
 .code-container {
   position: relative;
   margin: 2rem 0;
@@ -392,7 +374,6 @@ html {
   color: white;
 }
 
-/* Override pre styling */
 .code-container pre {
   margin: 0;
   padding: 1rem;
@@ -403,7 +384,6 @@ html {
   overflow-y: auto;
 }
 
-/* Code lines */
 .code-line {
   display: block;
   position: relative;
@@ -416,7 +396,6 @@ html {
   border-left-color: var(--accent-color);
 }
 
-/* Language-specific styling for different programming languages */
 .language-javascript .keyword,
 .language-js .keyword {
   color: #c792ea;
@@ -430,7 +409,6 @@ html {
   color: #82aaff;
 }
 
-/* Mobile Navigation */
 .hamburger-menu {
   display: none;
   background: none;
@@ -481,7 +459,6 @@ html {
   padding: 0.5rem 0;
 }
 
-/* Hamburger animation */
 .hamburger-menu.active .hamburger-bar:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
@@ -494,7 +471,6 @@ html {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Overlay when mobile nav is open */
 body.nav-open::after {
   content: '';
   position: fixed;
@@ -506,7 +482,6 @@ body.nav-open::after {
   z-index: 80;
 }
 
-/* Media queries for responsive design */
 @media (max-width: 767px) {
   .hamburger-menu {
       display: block;
@@ -575,7 +550,6 @@ footer {
   margin-bottom: 0.5rem;
 }
 
-/* Continued from previous footer CSS */
 .footer-nav a {
   color: var(--text-color);
   font-size: 0.9rem;
@@ -667,8 +641,6 @@ footer {
       text-align: center;
   }
 }
-
-
 
 /* Comments styles */
 .comments-section {
@@ -803,7 +775,6 @@ footer {
 }
 
 /* comment-filters */
-
 .comment-filters {
   display: flex;
   margin-bottom: 1.5rem;

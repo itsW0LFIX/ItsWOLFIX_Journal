@@ -13,19 +13,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" />
 </head>
 <style>
-    /* Add this to your CSS file (perhaps in style.css or create a new responsive.css) */
-.project-screenshots img {
-  max-width: 100%;
-  height: auto;
-  width: auto; /* Override any inline width */
-}
+    .project-screenshots img {
+        max-width: 100%;
+        height: auto;
+        width: auto;
+    }
 
-@media screen and (max-width: 768px) {
-  .project-screenshots figure {
-    margin: 1rem 0;
-  }
-}
+    @media screen and (max-width: 768px) {
+        .project-screenshots figure {
+            margin: 1rem 0;
+        }
+    }
 </style>
+
 <body>
 
     <header>
@@ -90,13 +90,12 @@
 
                 <div class="project-screenshots">
                     <figure>
-                        <img src="images/Login.webp"
-                            alt="Discord Clone Login Interface" />
+                        <img src="images/Login.webp" alt="Discord Clone Login Interface" />
                         <figcaption>Login interface with QR code option and traditional credentials</figcaption>
                     </figure>
 
                     <figure>
-                        <img src="images/Server-navigation-sidebar.png"alt="Server navigation sidebar" />
+                        <img src="images/Server-navigation-sidebar.png" alt="Server navigation sidebar" />
                         <figcaption>Server navigation with notification indicators</figcaption>
                     </figure>
 
@@ -277,41 +276,39 @@ discord-clone/
                 </p>
             </section>
 
-            
+
             <section class="comments-section">
                 <h2>Comments</h2>
-                
+
                 <div id="comments-list">
-                  <!-- Comments will be loaded here -->
-                  <p class="no-comments">Be the first to comment!</p>
+                    <p class="no-comments">Be the first to comment!</p>
                 </div>
-                
+
                 <div class="comment-form-container">
-                  <h3>Leave a Comment</h3>
-                  <form id="comment-form">
-                    <div class="form-group">
-                      <label for="name-input">Name</label>
-                      <input type="text" id="name-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="email-input">Email (will not be published)</label>
-                      <input type="email" id="email-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="comment-input">Comment</label>
-                      <textarea id="comment-input" rows="4" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-button">Submit Comment</button>
-                  </form>
+                    <h3>Leave a Comment</h3>
+                    <form id="comment-form">
+                        <div class="form-group">
+                            <label for="name-input">Name</label>
+                            <input type="text" id="name-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email-input">Email (will not be published)</label>
+                            <input type="email" id="email-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comment-input">Comment</label>
+                            <textarea id="comment-input" rows="4" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">Submit Comment</button>
+                    </form>
                 </div>
-              </section>
+            </section>
         </article>
     </main>
 
-    <!-- new footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -374,9 +371,9 @@ discord-clone/
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
     <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="/wolfix-firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="/wolfix-firebase.js"></script>
     <script src="/theme.js"></script>
 </body>
 

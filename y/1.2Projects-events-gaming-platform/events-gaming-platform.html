@@ -13,19 +13,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" />
 </head>
 <style>
-    /* Add this to your CSS file (perhaps in style.css or create a new responsive.css) */
-.project-screenshots img {
-  max-width: 100%;
-  height: auto;
-  width: auto; /* Override any inline width */
-}
+    .project-screenshots img {
+        max-width: 100%;
+        height: auto;
+        width: auto;
+    }
 
-@media screen and (max-width: 768px) {
-  .project-screenshots figure {
-    margin: 1rem 0;
-  }
-}
+    @media screen and (max-width: 768px) {
+        .project-screenshots figure {
+            margin: 1rem 0;
+        }
+    }
 </style>
+
 <body>
 
     <header>
@@ -64,9 +64,10 @@
 
             <section>
                 <p>
-                    Building a platform for gamers to organize and participate in tournaments requires a balance of 
-                    intuitive design and robust functionality. This Events Gaming Platform streamlines the process of 
-                    creating gaming events, managing teams, and fostering community engagement around competitive gaming.
+                    Building a platform for gamers to organize and participate in tournaments requires a balance of
+                    intuitive design and robust functionality. This Events Gaming Platform streamlines the process of
+                    creating gaming events, managing teams, and fostering community engagement around competitive
+                    gaming.
                 </p>
 
                 <div class="project-info">
@@ -82,22 +83,20 @@
 
                 <h2>Project Overview</h2>
                 <p>
-                    The Events Gaming Platform is designed to address the challenges of organizing gaming tournaments 
-                    and building communities around shared gaming interests. This application provides tools for event 
-                    creation, team management, and participant engagement with a focus on user experience and seamless 
+                    The Events Gaming Platform is designed to address the challenges of organizing gaming tournaments
+                    and building communities around shared gaming interests. This application provides tools for event
+                    creation, team management, and participant engagement with a focus on user experience and seamless
                     interactions.
                 </p>
 
                 <div class="project-screenshots">
                     <figure>
-                        <img src="images/home-page.png"
-                            alt="Events Gaming Platform Home Page" />
+                        <img src="images/home-page.png" alt="Events Gaming Platform Home Page" />
                         <figcaption>Home page showcasing featured events and navigation options</figcaption>
                     </figure>
 
                     <figure>
-                        <img src="images/event-creation.png"
-                            alt="Event Creation Interface" />
+                        <img src="images/event-creation.png" alt="Event Creation Interface" />
                         <figcaption>Example of one game from the all games</figcaption>
                     </figure>
 
@@ -344,7 +343,8 @@ Events-Gaming-Platform
 
                 <h3>Firebase Integration</h3>
                 <p>
-                    The application leverages Firebase's real-time capabilities to create a responsive and collaborative experience:
+                    The application leverages Firebase's real-time capabilities to create a responsive and collaborative
+                    experience:
                 </p>
                 <ul>
                     <li>Firestore for real-time data synchronization across users</li>
@@ -357,17 +357,23 @@ Events-Gaming-Platform
 
                 <h3>Tournament Bracket Generation</h3>
                 <p>
-                    Creating dynamic tournament brackets that can handle different formats (elimination, round-robin, etc.) was one of the more complex challenges. The solution involved developing a flexible bracket generation algorithm that could adapt to various tournament sizes and structures.
+                    Creating dynamic tournament brackets that can handle different formats (elimination, round-robin,
+                    etc.) was one of the more complex challenges. The solution involved developing a flexible bracket
+                    generation algorithm that could adapt to various tournament sizes and structures.
                 </p>
 
                 <h3>Real-time Updates</h3>
                 <p>
-                    Ensuring that all participants see tournament progress in real-time required careful implementation of Firestore listeners and state management. The solution uses a combination of Firebase's real-time database capabilities and React's Context API to propagate updates efficiently.
+                    Ensuring that all participants see tournament progress in real-time required careful implementation
+                    of Firestore listeners and state management. The solution uses a combination of Firebase's real-time
+                    database capabilities and React's Context API to propagate updates efficiently.
                 </p>
 
                 <h3>User Experience Across Devices</h3>
                 <p>
-                    Creating a responsive design that works well on both desktop and mobile devices required thoughtful layout planning. Tailwind CSS provided the flexibility needed to adapt the interface to different screen sizes while maintaining consistency.
+                    Creating a responsive design that works well on both desktop and mobile devices required thoughtful
+                    layout planning. Tailwind CSS provided the flexibility needed to adapt the interface to different
+                    screen sizes while maintaining consistency.
                 </p>
 
                 <h2>Future Enhancements</h2>
@@ -378,48 +384,52 @@ Events-Gaming-Platform
 
                 <h2>Conclusion</h2>
                 <p>
-                    The Events Gaming Platform demonstrates how modern web technologies can be leveraged to create specialized community tools. By focusing on the specific needs of gaming tournament organizers and participants, this project provides a streamlined experience for competitive gaming communities.
+                    The Events Gaming Platform demonstrates how modern web technologies can be leveraged to create
+                    specialized community tools. By focusing on the specific needs of gaming tournament organizers and
+                    participants, this project provides a streamlined experience for competitive gaming communities.
                 </p>
                 <p>
-                    This project is continuously evolving based on user feedback and new feature requests. Contributions and suggestions are welcome through the GitHub repository.
+                    This project is continuously evolving based on user feedback and new feature requests. Contributions
+                    and suggestions are welcome through the GitHub repository.
                 </p>
             </section>
 
-            
+
             <section class="comments-section">
                 <h2>Comments</h2>
-                
+
                 <div id="comments-list">
-                  <!-- Comments will be loaded here -->
-                  <p class="no-comments">Be the first to comment!</p>
+                    <p class="no-comments">Be the first to comment!</p>
                 </div>
-                
+
                 <div class="comment-form-container">
-                  <h3>Leave a Comment</h3>
-                  <form id="comment-form">
-                    <div class="form-group">
-                      <label for="name-input">Name</label>
-                      <input type="text" id="name-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="email-input">Email (will not be published)</label>
-                      <input type="email" id="email-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="comment-input">Comment</label>
-                      <textarea id="comment-input" rows="4" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-button">Submit Comment</button>
-                  </form>
+                    <h3>Leave a Comment</h3>
+                    <form id="comment-form">
+                        <div class="form-group">
+                            <label for="name-input">Name</label>
+                            <input type="text" id="name-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email-input">Email (will not be published)</label>
+                            <input type="email" id="email-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comment-input">Comment</label>
+                            <textarea id="comment-input" rows="4" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">Submit Comment</button>
+                    </form>
                 </div>
-              </section>
+
+            </section>
+
         </article>
+
     </main>
 
-    <!-- new footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -481,11 +491,12 @@ Events-Gaming-Platform
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
-    <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="/wolfix-firebase.js"></script>
     <script src="/theme.js"></script>
+    <script src="/wolfix-firebase.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </body>
 
 </html>

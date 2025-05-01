@@ -2,17 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Its WOLFIX Journal
-    </title>
-    <link rel="icon" href="/icon2.png" type="image/icon type">
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="stylesheet" href="/footer.css" />
-    <meta name="description"
-        content="Creating elegant, performant animations with CSS and JavaScript for modern web applications." />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    Its WOLFIX Journal
+  </title>
+  <link rel="icon" href="/icon2.png" type="image/icon type">
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/footer.css" />
+  <meta name="description"
+    content="Creating elegant, performant animations with CSS and JavaScript for modern web applications." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
 </head>
 
 <body>
@@ -21,49 +21,55 @@
       <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
       ItsWOLFIX.Journal</a>
     <nav aria-label="Main navigation">
-        <ul>
-            <a href="/index.html">Home</a>
-            <a href="/Posts.html">Posts</a>
-            <a href="/projects.html">Projects</a>
-            <li><a href="https://github.com/itsW0LFIX">About</a></li>
-        </ul>
+      <ul>
+        <a href="/index.html">Home</a>
+        <a href="/Posts.html">Posts</a>
+        <a href="/projects.html">Projects</a>
+        <li><a href="https://github.com/itsW0LFIX">About</a></li>
+      </ul>
     </nav>
-</header>
+  </header>
 
-<div class="theme-toggle">
-  <button id="daylight" class="theme-button active">🌞 Daylight</button>
-  <button id="night-howl" class="theme-button">🐺 Night Howl</button>
-  <button id="night-mind" class="theme-button">🧠 Night Mind</button>
-</div>
-    <main>
-        <article class="blog-post">
-            <header>
-                <div class="post-meta">April 25, 2025</div>
-                <h1>Web Animation Techniques with CSS and JavaScript</h1>
-                <div class="tags">
-                    <span class="tag">css</span>
-                    <span class="tag">javascript</span>
-                    <span class="tag">animation</span>
-                    <span class="tag">performance</span>
-                </div>
-            </header>
+  <div class="theme-toggle">
+    <button id="daylight" class="theme-button active">🌞 Daylight</button>
+    <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+    <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+  </div>
+  <main>
+    <article class="blog-post">
+      <header>
+        <div class="post-meta">April 25, 2025</div>
+        <h1>Web Animation Techniques with CSS and JavaScript</h1>
+        <div class="tags">
+          <span class="tag">css</span>
+          <span class="tag">javascript</span>
+          <span class="tag">animation</span>
+          <span class="tag">performance</span>
+        </div>
+      </header>
 
-            <section>
-                <p>
-                    Web animations have come a long way from the days of Flash. Today's modern browsers provide powerful, efficient ways to create engaging animations that enhance user experience without sacrificing performance. Understanding when to use CSS versus JavaScript for animations is key to building smooth, responsive interfaces.
-                </p>
+      <section>
+        <p>
+          Web animations have come a long way from the days of Flash. Today's modern browsers provide powerful,
+          efficient ways to create engaging animations that enhance user experience without sacrificing performance.
+          Understanding when to use CSS versus JavaScript for animations is key to building smooth, responsive
+          interfaces.
+        </p>
 
-                <h2>The Evolution of Web Animation</h2>
-                <p>
-                    Web animations have evolved from simple GIFs and Flash animations to sophisticated, hardware-accelerated techniques. Modern browsers now offer multiple ways to create animations, each with its own strengths and ideal use cases.
-                </p>
+        <h2>The Evolution of Web Animation</h2>
+        <p>
+          Web animations have evolved from simple GIFs and Flash animations to sophisticated, hardware-accelerated
+          techniques. Modern browsers now offer multiple ways to create animations, each with its own strengths and
+          ideal use cases.
+        </p>
 
-                <h2>CSS Animations: The First Choice</h2>
-                <p>
-                    CSS animations should typically be your first choice for simple transitions and effects. They're declarative, hardware-accelerated, and run on the browser's compositor thread.
-                </p>
+        <h2>CSS Animations: The First Choice</h2>
+        <p>
+          CSS animations should typically be your first choice for simple transitions and effects. They're declarative,
+          hardware-accelerated, and run on the browser's compositor thread.
+        </p>
 
-<pre><code class="language-css">
+        <pre><code class="language-css">
 .fade-in {
   opacity: 0;
   animation: fadeIn 0.5s ease-in forwards;
@@ -75,11 +81,11 @@
 }
 </code></pre>
 
-                <p>
-                    CSS transitions offer an even simpler approach for state changes:
-                </p>
+        <p>
+          CSS transitions offer an even simpler approach for state changes:
+        </p>
 
-<pre><code class="language-css">
+        <pre><code class="language-css">
 .button {
   background-color: blue;
   transform: scale(1);
@@ -92,17 +98,19 @@
 }
 </code></pre>
 
-                <h2>CSS Animation Limitations</h2>
-                <p>
-                    While powerful, CSS animations have constraints. They're difficult to control once started, can't easily respond to user input mid-animation, and complex sequences can become unwieldy. This is where JavaScript comes in.
-                </p>
+        <h2>CSS Animation Limitations</h2>
+        <p>
+          While powerful, CSS animations have constraints. They're difficult to control once started, can't easily
+          respond to user input mid-animation, and complex sequences can become unwieldy. This is where JavaScript comes
+          in.
+        </p>
 
-                <h2>JavaScript Animation with Web Animations API</h2>
-                <p>
-                    The Web Animations API provides JavaScript control over CSS animations:
-                </p>
+        <h2>JavaScript Animation with Web Animations API</h2>
+        <p>
+          The Web Animations API provides JavaScript control over CSS animations:
+        </p>
 
-<pre><code class="language-javascript">
+        <pre><code class="language-javascript">
 const element = document.querySelector('.box');
 
 const animation = element.animate([
@@ -124,12 +132,13 @@ document.querySelector('.play-button').addEventListener('click', () => {
 });
 </code></pre>
 
-                <h2>RequestAnimationFrame: Fine-Grained Control</h2>
-                <p>
-                    For complete control, <code>requestAnimationFrame</code> allows you to create frame-by-frame animations synchronized with the browser's repaint cycle:
-                </p>
+        <h2>RequestAnimationFrame: Fine-Grained Control</h2>
+        <p>
+          For complete control, <code>requestAnimationFrame</code> allows you to create frame-by-frame animations
+          synchronized with the browser's repaint cycle:
+        </p>
 
-<pre><code class="language-javascript">
+        <pre><code class="language-javascript">
 function animateProgress(element, duration, callback) {
   const startTime = performance.now();
   
@@ -158,12 +167,13 @@ animateProgress(
 );
 </code></pre>
 
-                <h2>Animation Libraries: When to Use Them</h2>
-                <p>
-                    Animation libraries like GSAP, Anime.js, or Framer Motion provide powerful abstractions that handle timing, easing, and sequencing. They're especially valuable for complex animations or cross-browser compatibility:
-                </p>
+        <h2>Animation Libraries: When to Use Them</h2>
+        <p>
+          Animation libraries like GSAP, Anime.js, or Framer Motion provide powerful abstractions that handle timing,
+          easing, and sequencing. They're especially valuable for complex animations or cross-browser compatibility:
+        </p>
 
-<pre><code class="language-javascript">
+        <pre><code class="language-javascript">
 // Example with GSAP
 gsap.to(".box", {
   duration: 1,
@@ -175,143 +185,130 @@ gsap.to(".box", {
 });
 </code></pre>
 
-                <h2>Performance Considerations</h2>
-                <p>Regardless of your approach, keep these performance tips in mind:</p>
-                <ol>
-                    <li>
-                        Animate properties that trigger only compositing (transform, opacity) when possible
-                    </li>
-                    <li>
-                        Avoid animating properties that cause layout recalculation (width, height, top, left)
-                    </li>
-                    <li>
-                        Use <code>will-change</code> sparingly to hint the browser about elements that will animate
-                    </li>
-                    <li>
-                        Test animations on lower-powered devices
-                    </li>
-                </ol>
+        <h2>Performance Considerations</h2>
+        <p>Regardless of your approach, keep these performance tips in mind:</p>
+        <ol>
+          <li>
+            Animate properties that trigger only compositing (transform, opacity) when possible
+          </li>
+          <li>
+            Avoid animating properties that cause layout recalculation (width, height, top, left)
+          </li>
+          <li>
+            Use <code>will-change</code> sparingly to hint the browser about elements that will animate
+          </li>
+          <li>
+            Test animations on lower-powered devices
+          </li>
+        </ol>
 
-                <h2>Conclusion</h2>
-                <p>
-                    Mastering both CSS and JavaScript animation techniques gives you the flexibility to create the right animation for any situation. Start with CSS for simplicity and performance, then reach for JavaScript when you need more control or interactivity.
-                </p>
-                <p>
-                    In my next post, I'll explore creating accessible animations that respect user preferences like reduced motion settings, along with techniques for ensuring animations enhance rather than detract from the user experience.
-                </p>
-            </section>
+        <h2>Conclusion</h2>
+        <p>
+          Mastering both CSS and JavaScript animation techniques gives you the flexibility to create the right animation
+          for any situation. Start with CSS for simplicity and performance, then reach for JavaScript when you need more
+          control or interactivity.
+        </p>
+        <p>
+          In my next post, I'll explore creating accessible animations that respect user preferences like reduced motion
+          settings, along with techniques for ensuring animations enhance rather than detract from the user experience.
+        </p>
+      </section>
 
-            <section class="comments-section">
-              <h2>Comments</h2>
-              
-              <div id="comments-list">
-                <!-- Comments will be loaded here -->
-                <p class="no-comments">Be the first to comment!</p>
-              </div>
-              
-              <div class="comment-form-container">
-                <h3>Leave a Comment</h3>
-                <form id="comment-form">
-                  <div class="form-group">
-                    <label for="name-input">Name</label>
-                    <input type="text" id="name-input" required>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="email-input">Email (will not be published)</label>
-                    <input type="email" id="email-input" required>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="comment-input">Comment</label>
-                    <textarea id="comment-input" rows="4" required></textarea>
-                  </div>
-                  
-                  <button type="submit" class="submit-button">Submit Comment</button>
-                </form>
-              </div>
-            </section>
-        </article>
-    </main>
+      <section class="comments-section">
+        <h2>Comments</h2>
 
-    <footer>
-      <div class="footer-grid">
-        <div class="footer-section">
-          <h4>ItsWOLFIX.Journal</h4>
-          <p>
-            Notes on modern web development and crafting thoughtful user
-            experiences.
-          </p>
-          <div class="social-links">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Twitter</a
-            >
-            <a
-              href="https://github.com/itsW0LFIX"
-              target="_blank"
-              rel="noopener noreferrer"
-              >GitHub</a
-            >
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              >LinkedIn</a
-            >
-          </div>
+        <div id="comments-list">
+          <p class="no-comments">Be the first to comment!</p>
         </div>
 
-        <div class="footer-section">
-          <h4>Navigation</h4>
-          <ul class="footer-nav">
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/Posts.html">All Posts</a></li>
-            <li><a href="https://github.com/itsW0LFIX">About</a></li>
-          </ul>
-        </div>
+        <div class="comment-form-container">
+          <h3>Leave a Comment</h3>
+          <form id="comment-form">
+            <div class="form-group">
+              <label for="name-input">Name</label>
+              <input type="text" id="name-input" required>
+            </div>
 
-        <div class="footer-section">
-          <h4>Popular Tags</h4>
-          <div class="tag-cloud">
-            <a href="/Posts.html" class="footer-tag">javascript</a>
-            <a href="/Posts.html" class="footer-tag">css</a>
-            <a href="/Posts.html" class="footer-tag">react</a>
-            <a href="/Posts.html" class="footer-tag">accessibility</a>
-            <a href="/Posts.html" class="footer-tag">performance</a>
-            <a href="/Posts.html" class="footer-tag">sustainability</a>
-          </div>
-        </div>
+            <div class="form-group">
+              <label for="email-input">Email (will not be published)</label>
+              <input type="email" id="email-input" required>
+            </div>
 
-        <div class="footer-section">
-          <h4>Subscribe</h4>
-          <p>Get notified about new posts and updates.</p>
-          <form class="subscribe-form" id="subscribe-form">
-            <input type="email" placeholder="Your email" required />
-            <button type="submit">Subscribe</button>
+            <div class="form-group">
+              <label for="comment-input">Comment</label>
+              <textarea id="comment-input" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">Submit Comment</button>
           </form>
         </div>
-        
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>ItsWOLFIX.Journal</h4>
+        <p>
+          Notes on modern web development and crafting thoughtful user
+          experiences.
+        </p>
+        <div class="social-links">
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="https://github.com/itsW0LFIX" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
       </div>
 
-      <div class="footer-bottom">
-        <p>© 2025 ItsWOLFIX.Journal</p>
-        <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
+      <div class="footer-section">
+        <h4>Navigation</h4>
+        <ul class="footer-nav">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/Posts.html">All Posts</a></li>
+          <li><a href="https://github.com/itsW0LFIX">About</a></li>
+        </ul>
       </div>
-    </footer>
+
+      <div class="footer-section">
+        <h4>Popular Tags</h4>
+        <div class="tag-cloud">
+          <a href="/Posts.html" class="footer-tag">javascript</a>
+          <a href="/Posts.html" class="footer-tag">css</a>
+          <a href="/Posts.html" class="footer-tag">react</a>
+          <a href="/Posts.html" class="footer-tag">accessibility</a>
+          <a href="/Posts.html" class="footer-tag">performance</a>
+          <a href="/Posts.html" class="footer-tag">sustainability</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h4>Subscribe</h4>
+        <p>Get notified about new posts and updates.</p>
+        <form class="subscribe-form" id="subscribe-form">
+          <input type="email" placeholder="Your email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 ItsWOLFIX.Journal</p>
+      <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
+    </div>
+  </footer>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="/wolfix-firebase.js"></script>
-    <script src="/theme.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="/wolfix-firebase.js"></script>
+  <script src="/theme.js"></script>
 </body>
 
 </html>
