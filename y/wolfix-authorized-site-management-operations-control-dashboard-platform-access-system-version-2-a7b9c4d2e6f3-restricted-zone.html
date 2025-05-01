@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - WOLFIX Journal</title>
+  <link rel="icon" href="/icon2.png" type="image/icon type">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Admin styles */
+    .admin-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .admin-login {
+      max-width: 400px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: var(--card-bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    
+    .submit-button, .admin-button {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .tabs {
+      display: flex;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .tab {
+      padding: 1rem 2rem;
+      cursor: pointer;
+    }
+    
+    .tab.active {
+      color: var(--accent-color);
+      border-bottom: 2px solid var(--accent-color);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .card {
+      background-color: var(--card-bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+      text-align: center;
+      padding: 1.5rem;
+    }
+    
+    .stat-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--muted-color);
+    }
+    
+    .stat-card .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    th {
+      font-weight: 600;
+      background-color: rgba(var(--accent-color-rgb), 0.05);
+    }
+    
+    .comment {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+    }
+    
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    
+    .comment-meta {
+      font-size: 0.9rem;
+      color: var(--muted-color);
+    }
+    
+    .comment-content {
+      margin-bottom: 1rem;
+    }
+    
+    .comment-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .approve-button {
+      background-color: #28a745;
+    }
+    
+    .delete-button {
+      background-color: #dc3545;
+    }
+    
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/index.html" class="logo">
+      <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
+      ItsWOLFIX.Journal Admin
+    </a>
+    <nav id="admin-nav" class="hidden">
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="#" id="logout-button">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="theme-toggle">
+    <button id="daylight" class="theme-button active">🌞 Daylight</button>
+    <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+    <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+  </div>
+
+  <main class="admin-container">
+    <!-- Login form -->
+    <div id="login-section">
+      <div class="admin-login">
+        <h2>Admin Login</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+          </div>
+          <button type="submit" class="submit-button">Login</button>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="hidden">
+      <h1>Admin Dashboard</h1>
+      
+      <div class="tabs">
+        <div class="tab active" data-tab="comments">Comments</div>
+        <div class="tab" data-tab="analytics">Analytics</div>
+      </div>
+      
+      <!-- Comments Tab -->
+
+      <div id="comments-tab" class="tab-content active">
+        <h2>Comment Management</h2>
+        
+        <div class="comment-filters">
+          <div class="search-box">
+            <input type="text" id="comment-search" placeholder="Search comments...">
+          </div>
+          <div class="filter-options">
+            <select id="comment-filter">
+              <option value="all">All Comments</option>
+              <option value="pending">Pending Approval</option>
+              <option value="approved">Approved</option>
+            </select>
+          </div>
+        </div>
+        
+        <div id="admin-comments">
+          <p>Loading comments...</p>
+        </div>
+      </div>
+
+      
+      
+      <!-- Analytics Tab -->
+      <div id="analytics-tab" class="tab-content">
+        <h2>Site Analytics</h2>
+        
+        <div class="stats-grid">
+          <div class="card stat-card">
+            <h3>Total Pageviews</h3>
+            <div id="total-pageviews" class="stat-value">0</div>
+          </div>
+          
+          <div class="card stat-card">
+            <h3>Unique Visitors</h3>
+            <div id="unique-visitors" class="stat-value">0</div>
+          </div>
+          
+          <div class="card stat-card">
+            <h3>Avg. Time on Site</h3>
+            <div id="avg-time" class="stat-value">0m 0s</div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>Popular Pages</h3>
+          <table id="pages-table">
+            <thead>
+              <tr>
+                <th>Page</th>
+                <th>Views</th>
+                <th>Avg. Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3">Loading data...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+            <h3>Real-time Visitors</h3>
+            <div class="realtime-visitors">
+              <div class="visitors-count">
+                <span id="active-visitors">0</span>
+                <span class="visitors-label">active now</span>
+              </div>
+              <div id="realtime-pages">
+                <p>No active visitors</p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  
+  <!-- Our scripts -->
+  <script src="wolfix-firebase.js"></script>
+  <script src="theme.js"></script>
+<script src="wolfix-firebase.js"></script>
+</body>
+</html>

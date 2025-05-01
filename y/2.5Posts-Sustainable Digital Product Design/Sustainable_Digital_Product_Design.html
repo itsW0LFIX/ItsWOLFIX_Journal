@@ -240,6 +240,38 @@ const sum = even.reduce((total, n) => total + n, 0);
                     In my next post, I'll explore practical tools for measuring and monitoring your site's energy efficiency, along with a case study of how we reduced our own site's carbon emissions by 70% through targeted optimizations.
                 </p>
             </section>
+
+            
+            <section class="comments-section">
+                <h2>Comments</h2>
+                
+                <div id="comments-list">
+                  <!-- Comments will be loaded here -->
+                  <p class="no-comments">Be the first to comment!</p>
+                </div>
+                
+                <div class="comment-form-container">
+                  <h3>Leave a Comment</h3>
+                  <form id="comment-form">
+                    <div class="form-group">
+                      <label for="name-input">Name</label>
+                      <input type="text" id="name-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="email-input">Email (will not be published)</label>
+                      <input type="email" id="email-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="comment-input">Comment</label>
+                      <textarea id="comment-input" rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Submit Comment</button>
+                  </form>
+                </div>
+              </section>
         </article>
     </main>
 
@@ -305,7 +337,10 @@ const sum = even.reduce((total, n) => total + n, 0);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
-
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script src="/wolfix-firebase.js"></script>
     <script src="/theme.js"></script>
 </body>
 
