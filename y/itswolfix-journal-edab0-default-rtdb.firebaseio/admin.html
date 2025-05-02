@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WOLFIX Journal Admin</title>
+  <link rel="icon" href="/icon2.png" type="image/icon type">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="admin-style.css">
+</head>
+
+<body>
+  <div class="admin-container">
+    <!-- Login Section -->
+    <div id="login-section">
+      <div class="login-container">
+        <div class="login-header">
+          <img src="/icon2.png" alt="WOLFIX Icon" class="login-logo">
+          <h1>WOLFIX Journal Admin</h1>
+        </div>
+        <div class="login-form-container">
+          <h2>Sign In</h2>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <div class="input-with-icon">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" required autocomplete="email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <div class="input-with-icon">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" required autocomplete="current-password">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </form>
+          <div id="login-error" class="error-message"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard-section" class="hidden">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <img src="/icon2.png" alt="WOLFIX Icon" class="sidebar-logo">
+          <h2>WOLFIX Admin</h2>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="nav-item active" data-target="dashboard">
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </li>
+            <li class="nav-item" data-target="comments">
+              <i class="fas fa-comments"></i>
+              <span>Comments</span>
+              <span class="badge" id="pending-comments-badge">0</span>
+            </li>
+            <li class="nav-item" data-target="analytics">
+              <i class="fas fa-chart-line"></i>
+              <span>Analytics</span>
+            </li>
+            <li class="nav-item" data-target="settings">
+              <i class="fas fa-cog"></i>
+              <span>Settings</span>
+            </li>
+          </ul>
+        </nav>
+        <div class="sidebar-footer">
+          <button id="logout-button" class="btn btn-outline">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+          <button id="toggle-sidebar" class="toggle-sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="user-info">
+            <div class="theme-toggle">
+              <button id="light-theme" class="theme-button active">
+                <i class="fas fa-sun"></i>
+              </button>
+              <button id="dark-theme" class="theme-button">
+                <i class="fas fa-moon"></i>
+              </button>
+            </div>
+            <div class="user-profile">
+              <span id="user-name">Admin User</span>
+              <div class="user-avatar">
+                <i class="fas fa-user-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div id="dashboard-content" class="content-section">
+          <div class="content-header">
+            <h1>Dashboard</h1>
+            <p>Welcome to your admin dashboard</p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon comments-icon">
+                <i class="fas fa-comments"></i>
+              </div>
+              <div class="stat-content">
+                <h3>Comments</h3>
+                <p class="stat-value" id="total-comments">0</p>
+                <p class="stat-label">Total Comments</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon views-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <div class="stat-content">
+                <h3>Page Views</h3>
+                <p class="stat-value" id="dash-total-pageviews">0</p>
+                <p class="stat-label">Total Views</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon visitors-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-content">
+                <h3>Visitors</h3>
+                <p class="stat-value" id="dash-unique-visitors">0</p>
+                <p class="stat-label">Unique Visitors</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon time-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="stat-content">
+                <h3>Avg. Time</h3>
+                <p class="stat-value" id="dash-avg-time">0m 0s</p>
+                <p class="stat-label">Time on Site</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-panels">
+            <div class="panel recent-comments">
+              <div class="panel-header">
+                <h3>Recent Comments</h3>
+                <a href="#" class="view-all" data-target="comments">View All</a>
+              </div>
+              <div class="panel-content" id="recent-comments-list">
+                <p class="empty-message">No recent comments</p>
+              </div>
+            </div>
+            <div class="panel popular-pages">
+              <div class="panel-header">
+                <h3>Popular Pages</h3>
+                <a href="#" class="view-all" data-target="analytics">View All</a>
+              </div>
+              <div class="panel-content" id="popular-pages-list">
+                <p class="empty-message">No page data available</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comments Content -->
+        <div id="comments-content" class="content-section hidden">
+          <div class="content-header">
+            <h1>Comments Management</h1>
+            <div class="actions-container">
+              <div class="search-filter">
+                <div class="search-box">
+                  <i class="fas fa-search"></i>
+                  <input type="text" id="comment-search" placeholder="Search comments...">
+                </div>
+                <div class="filter-select">
+                  <select id="comment-filter">
+                    <option value="all">All Comments</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                  </select>
+                </div>
+              </div>
+              <button id="bulk-approve" class="btn btn-success" disabled>
+                <i class="fas fa-check"></i> Approve Selected
+              </button>
+              <button id="bulk-delete" class="btn btn-danger" disabled>
+                <i class="fas fa-trash"></i> Delete Selected
+              </button>
+            </div>
+          </div>
+
+          <div class="comments-container">
+            <div class="comments-list-header">
+              <div class="checkbox-col">
+                <input type="checkbox" id="select-all-comments">
+              </div>
+              <div class="author-col">Author</div>
+              <div class="content-col">Comment</div>
+              <div class="page-col">Page</div>
+              <div class="date-col">Date</div>
+              <div class="status-col">Status</div>
+              <div class="actions-col">Actions</div>
+            </div>
+            <div id="comments-list">
+              <p class="loading-message">Loading comments...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics Content -->
+        <div id="analytics-content" class="content-section hidden">
+          <div class="content-header">
+            <h1>Analytics</h1>
+            <div class="analytics-actions">
+              <button id="enable-analytics-btn" class="btn btn-success">
+                <i class="fas fa-chart-line"></i> Enable Analytics
+              </button>
+              <button id="clear-analytics-btn" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Clear All Analytics Data
+              </button>
+            </div>
+          </div>
+
+          <div class="analytics-overview">
+            <div class="analytics-card">
+              <h3>Total Pageviews</h3>
+              <div class="analytics-value" id="total-pageviews">0</div>
+            </div>
+            <div class="analytics-card">
+              <h3>Unique Visitors</h3>
+              <div class="analytics-value" id="unique-visitors">0</div>
+            </div>
+            <div class="analytics-card">
+              <h3>Avg. Time on Site</h3>
+              <div class="analytics-value" id="avg-time">0m 0s</div>
+            </div>
+            <div class="analytics-card">
+              <h3>Total Time on Site</h3>
+              <div class="analytics-value" id="total-time">0m 0s</div>
+            </div>
+          </div>
+
+          <div class="analytics-panels">
+            <div class="panel pages-table-panel">
+              <div class="panel-header">
+                <h3>Page Performance</h3>
+              </div>
+              <div class="panel-content">
+                <table id="pages-table" class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Page</th>
+                      <th>Views</th>
+                      <th>Avg. Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="3" class="loading-cell">Loading data...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="panel realtime-panel">
+              <div class="panel-header">
+                <h3>Realtime Activity</h3>
+              </div>
+              <div class="panel-content">
+                <div class="realtime-count">
+                  <span id="active-visitors">0</span>
+                  <span class="visitors-label">active now</span>
+                </div>
+                <div id="realtime-pages">
+                  <p class="empty-message">No active visitors</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Content -->
+        <div id="settings-content" class="content-section hidden">
+          <div class="content-header">
+            <h1>Settings</h1>
+          </div>
+
+          <div class="settings-panels">
+            <div class="panel">
+              <div class="panel-header">
+                <h3>Account Settings</h3>
+              </div>
+              <div class="panel-content">
+                <form id="account-settings-form">
+                  <div class="form-group">
+                    <label for="display-name">Display Name</label>
+                    <input type="text" id="display-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="email-address">Email Address</label>
+                    <input type="email" id="email-address" disabled>
+                  </div>
+                  <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-header">
+                <h3>Security</h3>
+              </div>
+              <div class="panel-content">
+                <form id="security-form">
+                  <div class="form-group">
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password">
+                  </div>
+                  <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password">
+                  </div>
+                  <div class="form-group">
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password">
+                  </div>
+                  <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Update Password</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="confirm-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Confirmation</h3>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="modal-message">Are you sure you want to perform this action?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="modal-cancel" class="btn btn-outline">Cancel</button>
+        <button id="modal-confirm" class="btn btn-danger">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="notification-toast" class="toast hidden">
+    <div class="toast-content">
+      <i id="toast-icon" class="fas fa-info-circle"></i>
+      <span id="toast-message">Notification message</span>
+    </div>
+    <button class="close-toast">&times;</button>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <!-- Admin Scripts -->
+  <script src="admin.js"></script>
+  <script src="theme.js"></script>
+  <script src="wolfix-firebase.js"></script>
+
+</body>
+
+</html>

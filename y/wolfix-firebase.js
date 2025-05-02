@@ -290,32 +290,37 @@ function initAdminDashboard() {
   // Load comments for admin - Updated with toggle approve functionality
   function loadComments() {
     const commentsContainer = document.getElementById('admin-comments');
-    if (!commentsContainer) return;
-
+    if (!commentsContainer) {
+      console.error("Comments container not found");
+      return;
+    }
+  
     const commentsRef = db.ref('comments');
-
+    console.log("Fetching comments from:", commentsRef.toString());
+  
     commentsRef.on('value', function (snapshot) {
       const comments = snapshot.val();
-
+      console.log("Comments data:", comments);
+  
       if (!comments) {
         commentsContainer.innerHTML = '<p>No comments found.</p>';
         return;
       }
-
+  
       let html = '';
-
+  
       // Loop through pages
       Object.entries(comments).forEach(function ([pageKey, pageComments]) {
         const pagePath = pageKey.replace(/_/g, '/').replace(/\/html$/, '.html');
-
+  
         html += `<div class="page-comments card">
                   <h3>Comments for: ${pagePath}</h3>`;
-
+  
         // Loop through comments
         Object.entries(pageComments).forEach(function ([commentId, comment]) {
           const date = new Date(comment.timestamp);
           const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-
+  
           html += `
                     <div class="comment" data-id="${commentId}" data-page="${pageKey}">
                       <div class="comment-header">
@@ -335,37 +340,58 @@ function initAdminDashboard() {
                     </div>
                   `;
         });
-
+  
         html += '</div>';
       });
-
+  
       commentsContainer.innerHTML = html;
-
+      console.log("Comments HTML generated:", html.substring(0, 100) + "...");
+  
       // Set up approve and delete buttons
       setupCommentButtons();
       setupCommentFilters();
     });
   }
 
-  // Set up approve and delete buttons - Updated with toggle functionality
   function setupCommentButtons() {
+    console.log("Setting up comment buttons...");
+    
     // Approve/Unapprove buttons
     document.querySelectorAll('.approve-button').forEach(function (button) {
       button.addEventListener('click', function () {
         const comment = this.closest('.comment');
+        if (!comment) {
+          console.error("Parent comment element not found");
+          return;
+        }
+        
         const commentId = comment.getAttribute('data-id');
         const pageKey = comment.getAttribute('data-page');
-
+        
+        if (!commentId || !pageKey) {
+          console.error("Comment ID or page key missing", { commentId, pageKey });
+          return;
+        }
+  
         // Toggle approval status
         const isCurrentlyApproved = this.getAttribute('data-approved') === 'true';
         const newApprovalStatus = !isCurrentlyApproved;
-
+        
+        console.log("Toggling approval status:", { 
+          commentId, 
+          pageKey, 
+          currentStatus: isCurrentlyApproved, 
+          newStatus: newApprovalStatus 
+        });
+  
         // Update approval status in database
         db.ref(`comments/${pageKey}/${commentId}/approved`).set(newApprovalStatus)
           .then(() => {
+            console.log("Comment approval status updated successfully");
+            
             // Update button
-            this.setAttribute('data-approved', newApprovalStatus);
-
+            this.setAttribute('data-approved', newApprovalStatus.toString());
+  
             if (newApprovalStatus) {
               this.textContent = 'Unapprove';
               this.classList.add('approved');
@@ -373,22 +399,41 @@ function initAdminDashboard() {
               this.textContent = 'Approve';
               this.classList.remove('approved');
             }
+          })
+          .catch(error => {
+            console.error("Error updating comment approval status:", error);
           });
       });
     });
-
+  
     // Delete buttons
     document.querySelectorAll('.delete-button').forEach(function (button) {
       button.addEventListener('click', function () {
         if (confirm('Are you sure you want to delete this comment?')) {
           const comment = this.closest('.comment');
+          if (!comment) {
+            console.error("Parent comment element not found");
+            return;
+          }
+          
           const commentId = comment.getAttribute('data-id');
           const pageKey = comment.getAttribute('data-page');
-
+          
+          if (!commentId || !pageKey) {
+            console.error("Comment ID or page key missing", { commentId, pageKey });
+            return;
+          }
+          
+          console.log("Deleting comment:", { commentId, pageKey });
+  
           // Delete the comment
           db.ref(`comments/${pageKey}/${commentId}`).remove()
             .then(() => {
+              console.log("Comment deleted successfully");
               comment.remove();
+            })
+            .catch(error => {
+              console.error("Error deleting comment:", error);
             });
         }
       });
@@ -397,57 +442,70 @@ function initAdminDashboard() {
 
   // Load analytics data - Fixed to ensure all metrics work
   function loadAnalytics() {
+    console.log("Loading analytics...");
+    
     const totalPageviewsEl = document.getElementById('total-pageviews');
     const uniqueVisitorsEl = document.getElementById('unique-visitors');
     const avgTimeEl = document.getElementById('avg-time');
+    const totalTimeEl = document.getElementById('total-time');
     const pagesTableBody = document.querySelector('#pages-table tbody');
-
-    if (!totalPageviewsEl || !uniqueVisitorsEl || !avgTimeEl || !pagesTableBody) return;
-
+    const activeVisitorsEl = document.getElementById('active-visitors');
+    const realtimePagesEl = document.getElementById('realtime-pages');
+  
+    if (!totalPageviewsEl) console.error("Element 'total-pageviews' not found");
+    if (!uniqueVisitorsEl) console.error("Element 'unique-visitors' not found");
+    if (!avgTimeEl) console.error("Element 'avg-time' not found");
+    if (!pagesTableBody) console.error("Element 'pages-table tbody' not found");
+  
     // Get analytics references
     const pageViewsRef = db.ref('analytics/pageViews');
     const visitorsRef = db.ref('analytics/visitors');
     const timeSpentRef = db.ref('analytics/timeSpent');
     const pageMetaRef = db.ref('analytics/pageMeta');
-
-    // Total pageviews - fixed calculation
+  
+    // Total pageviews
     pageViewsRef.on('value', function (snapshot) {
+      console.log("Pageviews data received:", snapshot.val());
       const pageViews = snapshot.val() || {};
       let total = 0;
-
+  
       // Sum all page views
       Object.values(pageViews).forEach(function (views) {
-        total += Number(views) || 0;
+        if (typeof views === 'number') {
+          total += views;
+        }
       });
-
+  
       // Update the display
-      totalPageviewsEl.textContent = total;
+      if (totalPageviewsEl) totalPageviewsEl.textContent = total;
       console.log("Total pageviews updated:", total);
     });
-
+  
     // Unique visitors
     visitorsRef.on('value', function (snapshot) {
+      console.log("Visitors data received:", snapshot.val());
       const visitors = snapshot.val() || {};
       const count = Object.keys(visitors).length;
-
-      uniqueVisitorsEl.textContent = count;
+  
+      if (uniqueVisitorsEl) uniqueVisitorsEl.textContent = count;
       console.log("Unique visitors updated:", count);
     });
-
-    // Average time on site - fixed calculation
+  
+    // Average time on site
     timeSpentRef.on('value', function (snapshot) {
+      console.log("Time spent data received:", snapshot.val());
       const timeData = snapshot.val() || {};
       let totalSeconds = 0;
       let totalVisits = 0;
-
+  
       // Calculate total time and visits
       Object.values(timeData).forEach(function (data) {
-        if (data && typeof data === 'object') {
+        if (data && typeof data === 'object' && 'totalSeconds' in data && 'visits' in data) {
           totalSeconds += Number(data.totalSeconds) || 0;
           totalVisits += Number(data.visits) || 0;
         }
       });
-
+  
       // Calculate and format average time
       let avgTimeText = '0m 0s';
       if (totalVisits > 0) {
@@ -456,34 +514,45 @@ function initAdminDashboard() {
         const seconds = avgSeconds % 60;
         avgTimeText = `${minutes}m ${seconds}s`;
       }
-
+  
       // Format total time
       const totalMinutes = Math.floor(totalSeconds / 60);
       const totalHours = Math.floor(totalMinutes / 60);
       const displayMinutes = totalMinutes % 60;
       const displaySeconds = totalSeconds % 60;
-
+  
       let totalTimeText = '';
       if (totalHours > 0) {
         totalTimeText = `${totalHours}h ${displayMinutes}m`;
       } else {
         totalTimeText = `${totalMinutes}m ${displaySeconds}s`;
       }
-
+  
       // Update the displays
-      avgTimeEl.textContent = avgTimeText;
-
-      // Update total time display if the element exists
-      const totalTimeEl = document.getElementById('total-time');
-      if (totalTimeEl) {
-        totalTimeEl.textContent = totalTimeText;
-      }
-
-      console.log("Average time updated:", avgTimeText, "Total time:", totalTimeText, "Total seconds:", totalSeconds, "Total visits:", totalVisits);
+      if (avgTimeEl) avgTimeEl.textContent = avgTimeText;
+      if (totalTimeEl) totalTimeEl.textContent = totalTimeText;
+  
+      console.log("Average time updated:", avgTimeText, "Total time:", totalTimeText);
     });
-
-    // Pages table - fixed to ensure proper data loading
+  
+    // Pages table
+    updatePagesTable();
+  
+    // Set up event listeners for real-time updates
+    pageViewsRef.on('child_changed', updatePagesTable);
+    pageViewsRef.on('child_added', updatePagesTable);
+    timeSpentRef.on('child_changed', updatePagesTable);
+    timeSpentRef.on('child_added', updatePagesTable);
+    
+    // Set up real-time visitor monitoring
+    setupRealtimeMonitor();
+  
     function updatePagesTable() {
+      if (!pagesTableBody) {
+        console.error("Pages table body element not found");
+        return;
+      }
+      
       // Get all data at once to ensure consistency
       Promise.all([
         new Promise(resolve => pageViewsRef.once('value', resolve)),
@@ -493,21 +562,27 @@ function initAdminDashboard() {
         const pageViewsSnapshot = results[0];
         const timeSpentSnapshot = results[1];
         const pageMetaSnapshot = results[2];
-
+  
+        console.log("Pages data received:", {
+          pageViews: pageViewsSnapshot.val(),
+          timeSpent: timeSpentSnapshot.val(),
+          pageMeta: pageMetaSnapshot.val()
+        });
+  
         const pageViews = pageViewsSnapshot.val() || {};
         const timeSpent = timeSpentSnapshot.val() || {};
         const pageMeta = pageMetaSnapshot.val() || {};
-
+  
         // Combine data
         const pagesData = [];
-
+  
         Object.entries(pageViews).forEach(function ([pageKey, views]) {
           // Skip keys that aren't page data
           if (typeof views !== 'number') return;
-
+  
           const meta = pageMeta[pageKey] || { title: pageKey.replace(/_/g, '/'), path: pageKey.replace(/_/g, '/') };
           const time = timeSpent[pageKey] || { totalSeconds: 0, visits: 0 };
-
+  
           // Calculate average time
           let avgTimeText = '0m 0s';
           if (time.visits > 0) {
@@ -516,7 +591,7 @@ function initAdminDashboard() {
             const seconds = avgSeconds % 60;
             avgTimeText = `${minutes}m ${seconds}s`;
           }
-
+  
           pagesData.push({
             title: meta.title || 'Unnamed Page',
             path: meta.path || pageKey.replace(/_/g, '/'),
@@ -524,18 +599,18 @@ function initAdminDashboard() {
             avgTime: avgTimeText
           });
         });
-
+  
         // Sort by views (descending)
         pagesData.sort((a, b) => b.views - a.views);
-
+  
         // Build table
         if (pagesData.length === 0) {
           pagesTableBody.innerHTML = '<tr><td colspan="3">No data available</td></tr>';
           return;
         }
-
+  
         let tableHTML = '';
-
+  
         pagesData.forEach(function (page) {
           tableHTML += `
             <tr>
@@ -545,63 +620,82 @@ function initAdminDashboard() {
             </tr>
           `;
         });
-
+  
         pagesTableBody.innerHTML = tableHTML;
         console.log("Pages table updated with", pagesData.length, "pages");
+      }).catch(error => {
+        console.error("Error updating pages table:", error);
+        pagesTableBody.innerHTML = '<tr><td colspan="3">Error loading data</td></tr>';
       });
     }
-
-    // Initial load
-    updatePagesTable();
-
-    // Set up event listeners for real-time updates
-    pageViewsRef.on('child_changed', updatePagesTable);
-    pageViewsRef.on('child_added', updatePagesTable);
-    timeSpentRef.on('child_changed', updatePagesTable);
-    timeSpentRef.on('child_added', updatePagesTable);
   }
 }
 
-
 // Add to initAdminDashboard function
 function setupRealtimeMonitor() {
+  console.log("Setting up realtime monitor...");
+  
   const activeVisitorsEl = document.getElementById('active-visitors');
   const realtimePagesEl = document.getElementById('realtime-pages');
 
-  if (!activeVisitorsEl || !realtimePagesEl) return;
+  if (!activeVisitorsEl) {
+    console.error("Element 'active-visitors' not found");
+    return;
+  }
+  
+  if (!realtimePagesEl) {
+    console.error("Element 'realtime-pages' not found");
+    return;
+  }
 
   // Consider visitors "active" if they've loaded a page in the last 5 minutes
   const activeTimeframe = 5 * 60 * 1000; // 5 minutes in milliseconds
 
-  setInterval(function () {
+  // Initial update
+  updateActiveVisitors();
+  
+  // Set interval for updates
+  setInterval(updateActiveVisitors, 10000); // Update every 10 seconds
+  
+  function updateActiveVisitors() {
     db.ref('analytics/visitors').once('value', function (snapshot) {
+      console.log("Active visitors data received");
+      
       const visitors = snapshot.val() || {};
       const now = Date.now();
       const activeSessions = {};
-      let totalActive = 0;
+      let totalActiveVisitors = 0;
 
       // Process all visitors
       Object.entries(visitors).forEach(function ([visitorId, data]) {
         if (!data.pages) return;
 
+        let isVisitorActive = false;
+        
         // Check each page the visitor has viewed
         Object.entries(data.pages).forEach(function ([pageKey, pageData]) {
           // Consider recent page loads as "active"
-          if (now - pageData.timestamp < activeTimeframe) {
+          if (pageData && pageData.timestamp && (now - pageData.timestamp < activeTimeframe)) {
+            isVisitorActive = true;
+            
             // Add to active count for this page
             activeSessions[pageKey] = activeSessions[pageKey] || {
               count: 0,
-              title: pageData.title || pageKey.replace(/_/g, '/')
+              title: pageKey.replace(/_/g, '/')
             };
 
             activeSessions[pageKey].count++;
-            totalActive = Object.keys(activeSessions).length > 0 ? 1 : 0;
           }
         });
+        
+        if (isVisitorActive) {
+          totalActiveVisitors++;
+        }
       });
 
       // Update active visitors count
-      activeVisitorsEl.textContent = totalActive;
+      activeVisitorsEl.textContent = totalActiveVisitors;
+      console.log("Active visitors updated:", totalActiveVisitors);
 
       // Update list of pages with active visitors
       if (Object.keys(activeSessions).length === 0) {
@@ -617,27 +711,35 @@ function setupRealtimeMonitor() {
 
       sortedPages.forEach(function ([pageKey, data]) {
         pagesHTML += `
-            <div class="realtime-page">
-              <div class="page-title">${data.title}</div>
-              <div class="page-visitors">${data.count} visitor${data.count !== 1 ? 's' : ''}</div>
-            </div>
-          `;
+          <div class="realtime-page">
+            <div class="page-title">${data.title}</div>
+            <div class="page-visitors">${data.count} visitor${data.count !== 1 ? 's' : ''}</div>
+          </div>
+        `;
       });
 
       realtimePagesEl.innerHTML = pagesHTML;
+      console.log("Real-time pages updated with", sortedPages.length, "pages");
+    }).catch(error => {
+      console.error("Error updating active visitors:", error);
     });
-  }, 10000); // Update every 10 seconds
+  }
 }
 
-// Add to setupCommentButtons function
-// Comment filtering functionality
 function setupCommentFilters() {
   console.log("Setting up comment filters");
   const searchInput = document.getElementById('comment-search');
   const filterSelect = document.getElementById('comment-filter');
 
+  if (!searchInput) {
+    console.error("Comment search input element not found");
+  }
+  
+  if (!filterSelect) {
+    console.error("Comment filter select element not found");
+  }
+  
   if (!searchInput || !filterSelect) {
-    console.log("Filter elements not found:", { searchInput, filterSelect });
     return;
   }
 
@@ -655,9 +757,12 @@ function setupCommentFilters() {
 
     comments.forEach(function (comment) {
       // Get text content from comment
-      const name = comment.querySelector('strong')?.textContent.toLowerCase() || '';
+      const nameEl = comment.querySelector('strong');
+      const name = nameEl ? nameEl.textContent.toLowerCase() : '';
+      
       const emailEl = comment.querySelector('.comment-meta');
       const email = emailEl ? emailEl.textContent.toLowerCase() : '';
+      
       const contentEl = comment.querySelector('.comment-content');
       const content = contentEl ? contentEl.textContent.toLowerCase() : '';
 
@@ -665,7 +770,7 @@ function setupCommentFilters() {
       const approveButton = comment.querySelector('.approve-button');
       const isApproved = approveButton ?
         (approveButton.getAttribute('data-approved') === 'true' ||
-          approveButton.classList.contains('approved')) : false;
+         approveButton.classList.contains('approved')) : false;
 
       // Check if matches search
       const matchesSearch = !searchText ||
@@ -697,4 +802,3 @@ function setupCommentFilters() {
   // Initial filtering
   filterComments();
 }
-
