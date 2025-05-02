@@ -15,24 +15,7 @@
 
 <body>
 
-  <header>
-    <a href="/index.html" class="logo">
-      <img style="width: 25px; margin: -6px" src="/icon2.png" alt="icon logo" />ItsWOLFIX.Journal</a>
-    <nav aria-label="Main navigation">
-      <ul>
-        <a href="/index.html">Home</a>
-        <a href="/Posts.html">Posts</a>
-        <a href="/projects.html">Projects</a>
-        <li><a href="https://github.com/itsW0LFIX">About</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <div class="theme-toggle">
-    <button id="daylight" class="theme-button active">🌞 Daylight</button>
-    <button id="night-howl" class="theme-button">🐺 Night Howl</button>
-    <button id="night-mind" class="theme-button">🧠 Night Mind</button>
-  </div>
+  <div id="header-placeholder"></div>
 
   <main>
     <article class="blog-post">
@@ -712,103 +695,53 @@ service cloud.firestore {
 
       <section class="comments-section">
         <h2>Comments</h2>
-
         <div id="comments-list">
-          <p class="no-comments">Be the first to comment!</p>
+            <p class="no-comments">Be the first to comment!</p>
         </div>
-
         <div class="comment-form-container">
-          <h3>Leave a Comment</h3>
-          <form id="comment-form">
-            <div class="form-group">
-              <label for="name-input">Name</label>
-              <input type="text" id="name-input" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email-input">Email (will not be published)</label>
-              <input type="email" id="email-input" required>
-            </div>
-
-            <div class="form-group">
-              <label for="comment-input">Comment</label>
-              <textarea id="comment-input" rows="4" required></textarea>
-            </div>
-
-            <button type="submit" class="submit-button">Submit Comment</button>
-          </form>
+            <h3>Leave a Comment</h3>
+            <form id="comment-form">
+                <div class="form-group">
+                    <label for="name-input">Name</label>
+                    <input type="text" id="name-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-input">Email (will not be published)</label>
+                    <input type="email" id="email-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="comment-input">Comment</label>
+                    <textarea id="comment-input" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Submit Comment</button>
+            </form>
         </div>
-      </section>
+    </section>
+
     </article>
-  </main>
+
+</main>
 
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <!-- About Section -->
-        <div class="footer-section">
-          <h3>About WOLFIX Journal</h3>
-          <p>A community-driven platform focused on technology, science, and innovation.</p>
-          <a href="/community.html">Learn more about us</a>
-        </div>
+<div id="footer-placeholder"></div>
 
-        <!-- Resources Section -->
-        <div class="footer-section">
-          <h3>GitHub Resources</h3>
-          <ul>
-            <li>
-              <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CODE_OF_CONDUCT.md">Code of
-                Conduct</a>
-            </li>
-            <li>
-              <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CONTRIBUTING.md">Contributing
-                Guidelines</a>
-            </li>
-            <li>
-              <a href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/ISSUE_TEMPLATE/bug_report.md">Report
-                a Bug</a>
-            </li>
-            <li>
-              <a href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md">Submit
-                a Pull Request</a>
-            </li>
-          </ul>
-        </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
 
-        <!-- Connect Section -->
-        <div class="footer-section">
-          <h3>Connect with Us</h3>
-          <ul>
-            <li>
-              <a href="https://github.com/WOLFIX-Journal">GitHub</a>
-            </li>
-            <li>
-              <a href="https://github.com/itsW0LFIX">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-      <div class="footer-bottom">
-        <p>&copy; 2025 WOLFIX Journal. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+<script src="/wolfix-firebase.js"></script>
+<script src="/theme.js"></script>
 
+<!-- Load components AFTER other scripts -->
+<script src="/components/header.js"></script>
+<script src="/components/footer.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-yaml.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-bash.min.js"></script>
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-  <script src="/wolfix-firebase.js"></script>
-  <script src="/theme.js"></script>
 </body>
 
 </html>

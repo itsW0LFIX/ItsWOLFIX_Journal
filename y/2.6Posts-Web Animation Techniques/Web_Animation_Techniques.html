@@ -216,99 +216,49 @@ gsap.to(".box", {
 
       <section class="comments-section">
         <h2>Comments</h2>
-
         <div id="comments-list">
-          <p class="no-comments">Be the first to comment!</p>
+            <p class="no-comments">Be the first to comment!</p>
         </div>
-
         <div class="comment-form-container">
-          <h3>Leave a Comment</h3>
-          <form id="comment-form">
-            <div class="form-group">
-              <label for="name-input">Name</label>
-              <input type="text" id="name-input" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email-input">Email (will not be published)</label>
-              <input type="email" id="email-input" required>
-            </div>
-
-            <div class="form-group">
-              <label for="comment-input">Comment</label>
-              <textarea id="comment-input" rows="4" required></textarea>
-            </div>
-
-            <button type="submit" class="submit-button">Submit Comment</button>
-          </form>
+            <h3>Leave a Comment</h3>
+            <form id="comment-form">
+                <div class="form-group">
+                    <label for="name-input">Name</label>
+                    <input type="text" id="name-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-input">Email (will not be published)</label>
+                    <input type="email" id="email-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="comment-input">Comment</label>
+                    <textarea id="comment-input" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Submit Comment</button>
+            </form>
         </div>
-      </section>
+    </section>
+
     </article>
   </main>
 
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-section">
-        <h4>ItsWOLFIX.Journal</h4>
-        <p>
-          Notes on modern web development and crafting thoughtful user
-          experiences.
-        </p>
-        <div class="social-links">
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-          <a href="https://github.com/itsW0LFIX" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
-      </div>
+    <div id="footer-placeholder"></div>
 
-      <div class="footer-section">
-        <h4>Navigation</h4>
-        <ul class="footer-nav">
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="/Posts.html">All Posts</a></li>
-          <li><a href="https://github.com/itsW0LFIX">About</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h4>Popular Tags</h4>
-        <div class="tag-cloud">
-          <a href="/Posts.html" class="footer-tag">javascript</a>
-          <a href="/Posts.html" class="footer-tag">css</a>
-          <a href="/Posts.html" class="footer-tag">react</a>
-          <a href="/Posts.html" class="footer-tag">accessibility</a>
-          <a href="/Posts.html" class="footer-tag">performance</a>
-          <a href="/Posts.html" class="footer-tag">sustainability</a>
-        </div>
-      </div>
-
-      <div class="footer-section">
-        <h4>Subscribe</h4>
-        <p>Get notified about new posts and updates.</p>
-        <form class="subscribe-form" id="subscribe-form">
-          <input type="email" placeholder="Your email" required />
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <p>© 2025 ItsWOLFIX.Journal</p>
-      <p class="footer-meta">Built with Yara/WOLFIX using modern web technologies</p>
-    </div>
-  </footer>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-  <script src="/wolfix-firebase.js"></script>
-  <script src="/theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="/wolfix-firebase.js"></script>
+    <script src="/theme.js"></script>
+    
+    <!-- Load components AFTER other scripts -->
+    <script src="/components/header.js"></script>
+    <script src="/components/footer.js"></script>
 </body>
 
 </html>

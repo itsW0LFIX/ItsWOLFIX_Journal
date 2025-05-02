@@ -486,31 +486,7 @@
 </style>
 
 <body>
-    <header>
-        <a href="/index.html" class="logo">
-            <img style="width: 25px; margin-right: 8px;" src="icon2.png" alt="icon logo">
-            ItsWOLFIX.Journal
-        </a>
-
-        <div class="search-container">
-            <input type="search" id="post-search" class="search-bar" placeholder="Search posts..." aria-label="Search">
-        </div>
-
-        <nav aria-label="Main navigation">
-            <ul>
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/Posts.html">Posts</a></li>
-                <li><a href="/projects.html">Projects</a></li>
-                <li><a href="https://github.com/itsW0LFIX">About</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="theme-toggle">
-        <button id="daylight" class="theme-button active">🌞 Daylight</button>
-        <button id="night-howl" class="theme-button">🐺 Night Howl</button>
-        <button id="night-mind" class="theme-button">🧠 Night Mind</button>
-    </div>
+    <div id="header-placeholder"></div>
 
     <main>
         <section>
@@ -522,279 +498,12 @@
                 <button class="category-button" data-category="other">Other</button>
             </div>
 
-            <div class="post-grid" id="posts-container">
-                <!-- 2.1 Posts -->
-                <div class="post-card" data-categories="design ethics" data-title="Ethical Web Design Principles"
-                    data-tags="ethics privacy accessibility">
-                    <div class="post-icon-container">
-                        <div class="post-icon" style="background-color: rgba(130, 80, 223, 0.1);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" style="color: #8250df;">
-                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-header">
-                            <h3 class="post-title">Ethical Web Design Principles</h3>
-                            <p class="post-description">Exploring privacy-focused design, sustainable web practices, and
-                                accessibility as an ethical imperative</p>
-                        </div>
-                        <div class="post-footer">
-                            <a href="2.1Posts-Ethical Web Design Principles/Ethical_Web_Design_Principles.html"
-                                class="post-action">Open</a>
-                        </div>
-                    </div>
-                </div>
+            <div id="Posts-placeholder"></div>
 
-                <!-- 2.2 Posts -->
-                <div class="post-card" data-categories="tech tutorials" data-title="Firebase Hosting"
-                    data-tags="firebase hosting deployment">
-                    <div class="post-icon-container">
-                        <div class="post-icon" style="background-color: rgba(251, 146, 60, 0.1);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" style="color: #fb923c;">
-                                <path d="m6 9 6-6 6 6"></path>
-                                <path d="M12 3v18"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-header">
-                            <h3 class="post-title">Firebase Hosting</h3>
-                            <p class="post-description">Firebase Hosting: Building and Deploying High-Performance Web
-                                Applications.</p>
-                        </div>
-                        <div class="post-footer">
-                            <a href="2.2Posts-Firebase Hosting/Firebase-Hosting.html" class="post-action">Open</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.3 Posts -->
-                <div class="post-card" data-categories="design tech"
-                    data-title="Modern CSS Features You Should Be Using Today" data-tags="css web-design frontend">
-                    <div class="post-icon-container">
-                        <div class="post-icon" style="background-color: rgba(14, 165, 233, 0.1);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" style="color: #0ea5e9;">
-                                <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z">
-                                </path>
-                                <path d="m8 10 4 4 4-4"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-header">
-                            <h3 class="post-title">Modern CSS Features You Should Be Using Today</h3>
-                            <p class="post-description">Powerful CSS capabilities that solve complex layout and design
-                                challenges with less code.</p>
-                        </div>
-                        <div class="post-footer">
-                            <a href="2.3Posts-Modern CSS Features/Modern_CSS_Features.html" class="post-action">Open</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.4 Posts -->
-                <div class="post-card" data-categories="tech tutorials"
-                    data-title="Building Offline-Capable Web Applications" data-tags="progressive-web-apps javascript">
-                    <div class="post-icon-container">
-                        <div class="post-icon" style="background-color: rgba(34, 197, 94, 0.1);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" style="color: #22c55e;">
-                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-header">
-                            <h3 class="post-title">Building Offline-Capable Web Applications</h3>
-                            <p class="post-description">Create resilient web apps that work regardless of network
-                                conditions using service workers and modern APIs.</p>
-                        </div>
-                        <div class="post-footer">
-                            <a href="2.4Posts-Offline Capable Web Applications/Offline_Capable_Web_Applications.html"
-                                class="post-action">Open</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.5 Posts -->
-                <div class="post-card" data-categories="design" data-title="Sustainable Digital Product Design"
-                    data-tags="sustainability performance green-web">
-                    <div class="post-icon-container">
-                        <div class="post-icon" style="background-color: rgba(16, 185, 129, 0.1);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" style="color: #10b981;">
-                                <path d="M2 22v-5l5-5 5 5-5 5z"></path>
-                                <path d="M9.5 14.5 16 8"></path>
-                                <path d="m17 2 5 5-5 5-5-5z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-header">
-                            <h3 class="post-title">Sustainable Digital Product Design</h3>
-                            <p class="post-description">Reducing digital carbon footprints, energy-efficient web design,
-                                and environmentally conscious development choices.</p>
-                        </div>
-                        <div class="post-footer">
-                            <a href="2.5Posts-Sustainable Digital Product Design/Sustainable_Digital_Product_Design.html"
-                                class="post-action">Open</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.6 Posts -->
-                <div class="post-card" data-categories="design tech"
-                    data-title="Web Animation Techniques with CSS and JavaScript" data-tags="css javascript animation">
-                    <div class="post-icon-container">
-                        <div class="post-icon" style="background-color: rgba(236, 72, 153, 0.1);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" style="color: #ec4899;">
-                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-header">
-                            <h3 class="post-title">Web Animation Techniques with CSS and JavaScript</h3>
-                            <p class="post-description">Creating elegant, performant animations for modern web
-                                interfaces using CSS and JavaScript.</p>
-                        </div>
-                        <div class="post-footer">
-                            <a href="2.6Posts-Web Animation Techniques/Web_Animation_Techniques.html"
-                                class="post-action">Open</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.7 Posts -->
-                <div class="post-card" data-categories="other" data-title="Web Development Podcasts"
-                    data-tags="resources podcasts learning">
-                    <div class="post-icon-container">
-                        <div class="post-icon" style="background-color: rgba(139, 92, 246, 0.1);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" style="color: #8b5cf6;">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polygon points="10 8 16 12 10 16 10 8"></polygon>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-header">
-                            <h3 class="post-title">Web Development Podcasts</h3>
-                            <p class="post-description">Stay up to date with web development and entertained with these
-                                top podcasts for developers.</p>
-                        </div>
-                        <div class="post-footer">
-                            <a href="2.7Posts-Web Development Podcasts/Web_Development_Podcasts.html"
-                                class="post-action">Open</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.8 Posts -->
-                <div class="post-card" data-categories="css tech" data-title="Simple Trick To Debug Your CSS"
-                    data-tags="css debugging web-development">
-                    <div class="post-icon-container">
-                        <div class="post-icon" style="background-color: rgba(20, 184, 166, 0.1);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" style="color: #14b8a6;">
-                                <path d="M2 12c0 5.523 4.477 10 10 10s10-4.477 10-10S17.523 2 12 2 2 6.477 2 12z">
-                                </path>
-                                <circle cx="12" cy="12" r="1"></circle>
-                                <path d="M12 7v4"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-header">
-                            <h3 class="post-title">Simple Trick To Debug Your CSS</h3>
-                            <p class="post-description">The fastest way to find misbehaving elements on the page using
-                                the outline trick in CSS.</p>
-                        </div>
-                        <div class="post-footer">
-                            <a href="2.7Posts-Simple Trick To Debug Your CSS/Simple_Trick_To_Debug_Your_CSS.html"
-                                class="post-action">Open</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- No results message -->
-                <div class="no-results hidden">
-                    <p>No posts match your search. Try different keywords or categories.</p>
-                </div>
-            </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- About Section -->
-                <div class="footer-section">
-                    <h3>About WOLFIX Journal</h3>
-                    <p>A community-driven platform focused on technology, science, and innovation.</p>
-                    <a href="/community.html">Learn more about us</a>
-                </div>
-
-                <!-- Resources Section -->
-                <div class="footer-section">
-                    <h3>GitHub Resources</h3>
-                    <ul>
-                        <li>
-                            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CODE_OF_CONDUCT.md">Code of
-                                Conduct</a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/WOLFIX-Journal/.github/blob/main/CONTRIBUTING.md">Contributing
-                                Guidelines</a>
-                        </li>
-                        <li>
-                            <a
-                                href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/ISSUE_TEMPLATE/bug_report.md">Report
-                                a Bug</a>
-                        </li>
-                        <li>
-                            <a
-                                href="https://github.com/WOLFIX-Journal/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md">Submit
-                                a Pull Request</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Connect Section -->
-                <div class="footer-section">
-                    <h3>Connect with Us</h3>
-                    <ul>
-                        <li>
-                            <a href="https://github.com/WOLFIX-Journal">GitHub</a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/itsW0LFIX">Contact Us</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 WOLFIX Journal. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -870,6 +579,11 @@
 
     <script src="wolfix-firebase.js"></script>
     <script src="theme.js"></script>
+
+        <!-- Load components AFTER other scripts -->
+        <script src="/components/header.js"></script>
+        <script src="/components/footer.js"></script>
+        <script src="/components/PostsHosting.js"></script>
 </body>
 
 </html>
