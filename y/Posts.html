@@ -486,8 +486,25 @@
 </style>
 
 <body>
-    <div id="header-placeholder"></div>
+    <header>
+        <a href="/index.html" class="logo">
+            <img style="width: 25px; margin-right: 8px;" src="icon2.png" alt="icon logo">
+            ItsWOLFIX.Journal
+        </a>
 
+        <div class="search-container">
+            <input type="search" id="post-search" class="search-bar" placeholder="Search posts..." aria-label="Search">
+        </div>
+
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/Posts.html">Posts</a></li>
+                <li><a href="/projects.html">Projects</a></li>
+                <li><a href="https://github.com/itsW0LFIX">About</a></li>
+            </ul>
+        </nav>
+    </header>
     <main>
         <section>
             <div class="category-filters">
@@ -581,7 +598,7 @@
     <script src="theme.js"></script>
 
         <!-- Load components AFTER other scripts -->
-        <script src="/components/header.js"></script>
+
         <script src="/components/footer.js"></script>
         <script src="/components/PostsHosting.js"></script>
 </body>
