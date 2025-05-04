@@ -14,16 +14,219 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
 
     <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #222222;
+            --accent-color: #5f4b8b;
+            --muted-color: #777777;
+            --border-color: #eaeaea;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        }
+        
+        /* Default theme = Daylight */
+        body.daylight {
+            --bg-color: #ffffff;
+            --text-color: #222222;
+            --accent-color: #5f4b8b;
+            --muted-color: #777777;
+            --border-color: #eaeaea;
+        }
+        
+        /* Night Howl theme */
+        body.night-howl {
+            --bg-color: #0f111a;
+            --text-color: #d8e1ea;
+            --accent-color: #9575cd;
+            --muted-color: #a0aec0;
+            --border-color: #2d3748;
+        }
+        
+        /* Night Mind theme */
+        body.night-mind {
+            --bg-color: #181221;
+            --accent-color: #FFBAAD;
+            --text-color: #E4DEED;
+            --muted-color: #E4DEED;
+            --border-color: #2d3748;
+        }
+
+        .project-screenshots{
+            text-align: center;
+        }
         .project-screenshots img {
-            max-width: 100%;
+            max-width: 80%;
             height: auto;
             width: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         @media screen and (max-width: 768px) {
             .project-screenshots figure {
                 margin: 1rem 0;
             }
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--muted-color);
+            margin-top: 8px;
+        }
+
+        /* Custom color swatch examples */
+        .color-swatches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .color-swatch {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .color-swatch::after {
+            content: attr(data-color);
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-color);
+        }
+        
+        .gradient-example {
+            height: 100px;
+            border-radius: 8px;
+            margin: 20px 0;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+        }
+        
+        .color-wheel {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background-image: conic-gradient(
+                red, orange, yellow, lime, cyan, blue, magenta, red
+            );
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .color-wheel::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30%;
+            height: 30%;
+            background: var(--bg-color);
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-example {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .theme-item {
+            background-color: rgba(127, 127, 127, 0.05);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-item-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .theme-item-content {
+            color: var(--text-color);
+        }
+
+        .color-space-container {
+            background-color: rgba(127, 127, 127, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: rgba(127, 127, 127, 0.05);
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        tr:hover {
+            background-color: rgba(127, 127, 127, 0.03);
+        }
+
+        code {
+            background-color: rgba(127, 127, 127, 0.1);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+        }
+
+        .contrast-example {
+            display: flex;
+            margin: 20px 0;
+            gap: 20px;
+        }
+
+        .contrast-item {
+            flex: 1;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .good-contrast {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .poor-contrast {
+            background-color: #e0e0e0;
+            color: #a0a0a0;
+        }
+
+        .contrast-ratio {
+            margin-top: 10px;
+            font-size: 12px;
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -70,6 +273,12 @@
                 <p>
                     Color is one of the most crucial elements in design and development. Whether you're creating a website, a user interface, or a graphic tool, <strong>color pickers</strong> play a key role in allowing users to select, customize, and implement colors with precision and ease.
                 </p>
+                
+                <!-- Generated color swatches instead of an external image -->
+                <div class="project-screenshots">
+                    <img src="images/xzc4vvt.bmp" alt="Debugging CSS" loading="lazy">
+                </div>
+                <p class="image-caption">Color swatch examples commonly found in design applications</p>
 
                 <h2 id="what-is-a-color-picker">🔍 What Is a Color Picker?</h2>
                 <p>
@@ -84,14 +293,32 @@
                     <li><strong>Eyedropper Tools</strong>: Sample colors from the screen.</li>
                     <li><strong>Gradient Editors</strong>: For complex transitions and effects.</li>
                 </ul>
+                
+                <!-- Color wheel visualization -->
+                <div class="color-wheel"></div>
+                <p class="image-caption">A typical HSL color wheel interface</p>
 
                 <h2 id="implementation-in-development">🛠️ Implementation in Development</h2>
 
                 <h3 id="web-development">🧑‍💻 Web Development</h3>
-                
-                <pre><code class="language-html">
-&lt;!-- HTML5 Color Input: --&gt;
-&lt;input type="color" id="favcolor" name="favcolor" value="#ff0000"&gt;</code></pre>
+                <p><strong>HTML5 Color Input:</strong></p>
+                <pre><code class="language-html">&lt;input type="color" id="favcolor" name="favcolor" value="#ff0000"&gt;</code></pre>
+
+                <div class="theme-example">
+                    <div class="theme-item">
+                        <div class="theme-item-title">CSS Variables for Theming</div>
+                        <div class="theme-item-content">
+                            <pre><code class="language-css">:root {
+  --bg-color: #ffffff;
+  --text-color: #222222;
+  --accent-color: #5f4b8b;
+  --muted-color: #777777;
+  --border-color: #eaeaea;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
                 <h4>JavaScript Libraries</h4>
                 <ul>
                     <li><a href="https://github.com/Simonwep/pickr">Pickr</a> – Highly customizable and modern color picker</li>
@@ -99,13 +326,28 @@
                     <li><a href="https://bgrins.github.io/spectrum/">Spectrum</a> – jQuery color picker with alpha support</li>
                     <li><a href="https://casesandberg.github.io/react-color/">React Color</a> – Component set for React apps</li>
                 </ul>
+                
+                <!-- Gradient example -->
+                <div class="gradient-example"></div>
+                <p class="image-caption">Example gradient that might be created with a color picker tool</p>
 
                 <h3 id="mobile-development">📲 Mobile Development</h3>
-
-                <pre><code class="language-swift">
-// iOS (Swift) 
-let colorPicker = UIColorPickerViewController()
+                <h4>iOS (Swift)</h4>
+                <pre><code class="language-swift">let colorPicker = UIColorPickerViewController()
 present(colorPicker, animated: true)</code></pre>
+
+                <!-- Custom color blocks for mobile -->
+                <div style="display: flex; gap: 15px; margin: 20px 0;">
+                    <div style="flex: 1; height: 150px; background-color: rgba(127, 127, 127, 0.05); border-radius: 15px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid var(--border-color);">
+                        <div style="width: 60px; height: 60px; background-color: #007AFF; border-radius: 10px; margin-bottom: 10px;"></div>
+                        <span style="font-size: 14px; color: var(--text-color);">iOS</span>
+                    </div>
+                    <div style="flex: 1; height: 150px; background-color: rgba(127, 127, 127, 0.05); border-radius: 15px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid var(--border-color);">
+                        <div style="width: 60px; height: 60px; background-color: #3DDC84; border-radius: 10px; margin-bottom: 10px;"></div>
+                        <span style="font-size: 14px; color: var(--text-color);">Android</span>
+                    </div>
+                </div>
+                <p class="image-caption">Mobile platform color picker representations</p>
 
                 <h4>Android (Kotlin)</h4>
                 <p>Use libraries like <a href="https://github.com/yukuku/ambilwarna">AmbilWarna</a> to embed color pickers in Android apps.</p>
@@ -116,6 +358,19 @@ present(colorPicker, animated: true)</code></pre>
                     <li><strong>Photoshop</strong>: Professional-grade color space support including LAB, CMYK.</li>
                     <li><strong>Electron apps</strong>: Can use web-based pickers like Pickr or iro.js.</li>
                 </ul>
+                
+                <!-- Design tool representation -->
+                <div style="background-color: rgba(127, 127, 127, 0.05); border-radius: 10px; padding: 20px; margin: 20px 0; border: 1px solid var(--border-color);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                        <div style="height: 30px; width: 30px; background-color: #FF5252; border-radius: 5px;"></div>
+                        <div style="height: 30px; width: 30px; background-color: #FF4081; border-radius: 5px;"></div>
+                        <div style="height: 30px; width: 30px; background-color: #7C4DFF; border-radius: 5px;"></div>
+                        <div style="height: 30px; width: 30px; background-color: #536DFE; border-radius: 5px;"></div>
+                        <div style="height: 30px; width: 30px; background-color: #448AFF; border-radius: 5px;"></div>
+                    </div>
+                    <div style="height: 20px; background: linear-gradient(to right, #f44336, #2196f3); border-radius: 10px;"></div>
+                </div>
+                <p class="image-caption">Professional design tool color management interface</p>
 
                 <h2 id="use-cases-in-development">🔧 Use Cases in Development</h2>
                 <ul>
@@ -157,6 +412,16 @@ present(colorPicker, animated: true)</code></pre>
                         </tr>
                     </tbody>
                 </table>
+                
+                <!-- Color palette demo -->
+                <div style="display: flex; height: 100px; margin: 20px 0; border-radius: 8px; overflow: hidden;">
+                    <div style="flex: 1; background-color: #264653;"></div>
+                    <div style="flex: 1; background-color: #2a9d8f;"></div>
+                    <div style="flex: 1; background-color: #e9c46a;"></div>
+                    <div style="flex: 1; background-color: #f4a261;"></div>
+                    <div style="flex: 1; background-color: #e76f51;"></div>
+                </div>
+                <p class="image-caption">Example of a color palette from Coolors.co</p>
 
                 <h2 id="educational-videos">🎥 Educational Videos</h2>
                 <ul>
@@ -172,6 +437,23 @@ present(colorPicker, animated: true)</code></pre>
                     <li><strong>Colorblindness:</strong> Avoid using color alone to convey meaning</li>
                     <li><strong>Semantic color:</strong> Use red for errors, green for success, etc.</li>
                 </ul>
+                
+                <!-- Accessibility visualization -->
+                <div class="contrast-example">
+                    <div class="contrast-item good-contrast">
+                        <strong>Good Contrast</strong>
+                        <div class="contrast-ratio">4.5:1 ratio</div>
+                    </div>
+                    <div class="contrast-item poor-contrast">
+                        <strong>Poor Contrast</strong>
+                        <div class="contrast-ratio">1.5:1 ratio</div>
+                    </div>
+                </div>
+                <p class="image-caption">Contrast example for accessibility considerations</p>
+                <div class="project-screenshots">
+                    <img src="images/9856dicg.png" alt="" loading="lazy">
+                </div>
+                <p class="image-caption">some more</p>
 
                 <h2 id="advanced-topics">🧠 Advanced Topics</h2>
                 <ul>
@@ -180,6 +462,34 @@ present(colorPicker, animated: true)</code></pre>
                     <li>Saving palettes in localStorage or backend</li>
                     <li>Canvas-based pixel pickers</li>
                 </ul>
+                
+                <!-- Color space visualization -->
+                <div class="color-space-container">
+                    <div style="display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 120px; padding: 15px; background-color: rgba(127, 127, 127, 0.05); border-radius: 8px; text-align: center; border: 1px solid var(--border-color);">
+                            <strong style="color: var(--text-color);">RGB</strong>
+                            <div style="margin-top: 10px; display: flex; gap: 5px; justify-content: center;">
+                                <div style="width: 20px; height: 20px; background-color: #ff0000; border-radius: 4px;"></div>
+                                <div style="width: 20px; height: 20px; background-color: #00ff00; border-radius: 4px;"></div>
+                                <div style="width: 20px; height: 20px; background-color: #0000ff; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        <div style="flex: 1; min-width: 120px; padding: 15px; background-color: rgba(127, 127, 127, 0.05); border-radius: 8px; text-align: center; border: 1px solid var(--border-color);">
+                            <strong style="color: var(--text-color);">CMYK</strong>
+                            <div style="margin-top: 10px; display: flex; gap: 5px; justify-content: center;">
+                                <div style="width: 20px; height: 20px; background-color: #00FFFF; border-radius: 4px;"></div>
+                                <div style="width: 20px; height: 20px; background-color: #FF00FF; border-radius: 4px;"></div>
+                                <div style="width: 20px; height: 20px; background-color: #FFFF00; border-radius: 4px;"></div>
+                                <div style="width: 20px; height: 20px; background-color: #000000; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                        <div style="flex: 1; min-width: 120px; padding: 15px; background-color: rgba(127, 127, 127, 0.05); border-radius: 8px; text-align: center; border: 1px solid var(--border-color);">
+                            <strong style="color: var(--text-color);">HSL</strong>
+                            <div style="margin-top: 10px; height: 20px; background: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="image-caption">Common color spaces used in digital design</p>
 
                 <h2 id="summary">✅ Summary</h2>
                 <table>
@@ -220,6 +530,21 @@ present(colorPicker, animated: true)</code></pre>
                     <li><a href="https://tailwindcss.com/docs/customizing-colors">Tailwind CSS Colors</a></li>
                     <li><a href="https://chrome.google.com/webstore/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp">ColorZilla Chrome Extension</a></li>
                 </ul>
+                
+                <!-- Example of a color picker tool -->
+                <div style="background-color: rgba(127, 127, 127, 0.05); border-radius: 10px; padding: 20px; margin: 20px 0; border: 1px solid var(--border-color);">
+                    <div style="display: flex; gap: 15px;">
+                        <div style="flex: 1; height: 100px; background: linear-gradient(to bottom, #ffffff, #000000); border-radius: 8px;"></div>
+                        <div style="flex: 2;">
+                            <div style="height: 60px; background-color: var(--accent-color); border-radius: 8px; margin-bottom: 10px;"></div>
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1; font-family: var(--font-mono); background-color: var(--bg-color); padding: 5px; border-radius: 4px; text-align: center; font-size: 14px; color: var(--text-color); border: 1px solid var(--border-color);">#5f4b8b</div>
+                                <div style="flex: 1; font-family: var(--font-mono); background-color: var(--bg-color); padding: 5px; border-radius: 4px; text-align: center; font-size: 14px; color: var(--text-color); border: 1px solid var(--border-color);">RGB(95,75,139)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="image-caption">Typical interface of a color picker browser extension (using the current theme's accent color)</p>
             </section>
 
             <section class="comments-section">
