@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const headerPlaceholder = document.getElementById('Posts-placeholder');
     if (headerPlaceholder) {
-      headerPlaceholder.innerHTML = `
+        headerPlaceholder.innerHTML = `
 
                   <div class="post-grid" id="posts-container">
                 <!-- 2.1 Posts -->
@@ -214,6 +214,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
 
+                                                    <!-- 2.9 Posts -->
+    <div class="post-card" data-categories="design tools" data-title="Mastering Color Pickers for Web Development"
+        data-tags="color-pickers design web-development tools">
+        <div class="post-icon-container">
+            <div class="post-icon" style="background-color: rgba(52, 152, 219, 0.1);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" style="color: #3498db;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 12a4 4 0 0 1 8 0c0 1.5 0 2 -2 3h-4c-2 -1 -2 -1.5 -2 -3"></path>
+                    <line x1="12" y1="17" x2="12" y2="17"></line>
+                </svg>
+            </div>
+        </div>
+        <div class="post-content">
+            <div class="post-header">
+                <h3 class="post-title">Mastering Color Pickers for Web Development</h3>
+                <p class="post-description">Learn about different types of color pickers, how to implement them, and best practices for color selection in web projects.</p>
+            </div>
+            <div class="post-footer">
+                <a href="2.9Posts-Mastering Color Pickers for Web Development/color-pickers.html" class="post-action">Open</a>
+            </div>
+        </div>
+    </div>
+
                 <!-- No results message -->
                 <div class="no-results hidden">
                     <p>No posts match your search. Try different keywords or categories.</p>
@@ -222,4 +247,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
       `;
     }
-  });
+});
