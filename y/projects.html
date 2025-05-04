@@ -497,11 +497,6 @@
             </ul>
         </nav>
     </header>
-    <div class="theme-toggle">
-        <button id="daylight" class="theme-button active">🌞 Daylight</button>
-        <button id="night-howl" class="theme-button">🐺 Night Howl</button>
-        <button id="night-mind" class="theme-button">🧠 Night Mind</button>
-    </div>
     <main>
         <section>
             <div class="category-filters">
@@ -521,69 +516,87 @@
     <div id="footer-placeholder"></div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const categoryButtons = document.querySelectorAll('.category-button');
-            const postCards = document.querySelectorAll('.post-card');
-            const searchInput = document.getElementById('post-search');
-            const noResultsElement = document.querySelector('.no-results');
-
-            // Current active category
-            let activeCategory = 'all';
-            let searchQuery = '';
-
-            // Search functionality
-            searchInput.addEventListener('input', function () {
-                searchQuery = this.value.toLowerCase().trim();
-                filterPosts();
-            });
-
-            // Category button events
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    activeCategory = this.dataset.category;
-                    filterPosts();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to initialize filters
+            function initializeFilters() {
+                // Get elements
+                const categoryButtons = document.querySelectorAll('.category-button');
+                const postCards = document.querySelectorAll('.post-card');
+                const searchInput = document.getElementById('post-search');
+                const noResultsElement = document.querySelector('.no-results');
+        
+                // If no post cards found, try again in a moment
+                if (postCards.length === 0) {
+                    setTimeout(initializeFilters, 200);
+                    return;
+                }
+        
+                // Current active category
+                let activeCategory = 'all';
+                let searchQuery = '';
+        
+                // Search functionality
+                if (searchInput) {
+                    searchInput.addEventListener('input', function() {
+                        searchQuery = this.value.toLowerCase().trim();
+                        filterPosts();
+                    });
+                }
+        
+                // Category button events
+                categoryButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        categoryButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                        activeCategory = this.dataset.category;
+                        filterPosts();
+                    });
                 });
-            });
-
-            // Post filtering function
-            function filterPosts() {
-                let visibleCount = 0;
-
-                postCards.forEach(card => {
-                    const cardTitle = card.dataset.title?.toLowerCase() || '';
-                    const cardTags = card.dataset.tags?.toLowerCase() || '';
-                    const cardCategories = card.dataset.categories?.toLowerCase() || '';
-                    const cardText = card.querySelector('.post-description')?.textContent.toLowerCase() || '';
-
-                    const matchesSearch = searchQuery === '' ||
-                        cardTitle.includes(searchQuery) ||
-                        cardTags.includes(searchQuery) ||
-                        cardText.includes(searchQuery);
-
-                    const matchesCategory = activeCategory === 'all' ||
-                        cardCategories.includes(activeCategory);
-
-                    if (matchesSearch && matchesCategory) {
-                        card.classList.remove('hidden');
-                        visibleCount++;
-
-                        // Animate card
-                        card.style.opacity = '0.6';
-                        card.style.transform = 'scale(0.95)';
-
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0) scale(1)';
-                        }, 100);
-                    } else {
-                        card.classList.add('hidden');
+        
+                // Post filtering function
+                function filterPosts() {
+                    let visibleCount = 0;
+        
+                    postCards.forEach(card => {
+                        const cardTitle = card.dataset.title?.toLowerCase() || '';
+                        const cardTags = card.dataset.tags?.toLowerCase() || '';
+                        const cardCategories = card.dataset.categories?.toLowerCase() || '';
+                        const cardText = card.querySelector('.post-description')?.textContent.toLowerCase() || '';
+        
+                        const matchesSearch = searchQuery === '' ||
+                            cardTitle.includes(searchQuery) ||
+                            cardTags.includes(searchQuery) ||
+                            cardText.includes(searchQuery);
+        
+                        const matchesCategory = activeCategory === 'all' ||
+                            cardCategories.includes(activeCategory);
+        
+                        if (matchesSearch && matchesCategory) {
+                            card.classList.remove('hidden');
+                            visibleCount++;
+        
+                            // Animate card
+                            card.style.opacity = '0.6';
+                            card.style.transform = 'scale(0.95)';
+        
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0) scale(1)';
+                            }, 100);
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+        
+                    // Check for no results message
+                    if (noResultsElement) {
+                        noResultsElement.classList.toggle('hidden', visibleCount > 0);
                     }
-                });
-
-                noResultsElement.classList.toggle('hidden', visibleCount > 0);
+                }
             }
+        
+            // Try to initialize right away
+            setTimeout(initializeFilters, 100);
         });
     </script>
     
