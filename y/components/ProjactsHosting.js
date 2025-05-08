@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const headerPlaceholder = document.getElementById('Projacts-placeholder');
     if (headerPlaceholder) {
-      headerPlaceholder.innerHTML = `
+        headerPlaceholder.innerHTML = `
             <div class="post-grid" id="posts-container">
 
                 <!-- Discord Clone -->
@@ -62,6 +62,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 </div>
 
+                <!-- Random Numbers Guessing Game -->
+                <div class="post-card" data-categories="programming" data-title="Random Numbers Guessing Game" 
+    data-tags="c algorithms game-development">
+    <div class="post-icon-container">
+        <div class="post-icon" style="background-color: rgba(255, 118, 36, 0.1);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="color: #ff7624;">
+                <path d="M4 3h16a2 2 0 0 1 2 2v6a10 10 0 0 1-10 10A10 10 0 0 1 2 11V5a2 2 0 0 1 2-2z"></path>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <circle cx="15.5" cy="8.5" r="1.5"></circle>
+            </svg>
+        </div>
+    </div>
+    <div class="post-content">
+        <div class="post-header">
+            <h3 class="post-title">Random Numbers Guessing Game</h3>
+            <p class="post-description">A C programming challenge with customizable difficulty levels, smart feedback, and a persistent leaderboard system.</p>
+        </div>
+        <div class="post-footer">
+            <a href="1.3Projects-Random-Numbers-Guessing-Game/random-numbers-guessing-game.html" class="post-action">Open</a>
+        </div>
+    </div>
+</div>
+
       `;
     }
-  });
+});

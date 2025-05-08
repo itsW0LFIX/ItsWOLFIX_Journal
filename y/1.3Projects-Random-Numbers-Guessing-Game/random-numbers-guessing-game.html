@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Its WOLFIX Journal - Random Numbers Guessing Game</title>
+    <link rel="icon" href="/icon2.png" type="image/icon type">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/footer.css">
+    <meta name="description"
+        content="A detailed look at my Random Numbers Guessing Game project built in C, featuring multiple difficulty levels, scoring system, and top scores tracking.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" />
+</head>
+<style>
+    .project-screenshots img {
+        max-width: 100%;
+        height: auto;
+        width: auto;
+    }
+
+    @media screen and (max-width: 768px) {
+        .project-screenshots figure {
+            margin: 1rem 0;
+        }
+    }
+</style>
+
+<body>
+
+    <header>
+        <a href="/index.html" class="logo">
+            <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
+            ItsWOLFIX.Journal
+        </a>
+        <nav aria-label="Main navigation">
+            <ul>
+                <a href="/index.html">Home</a>
+                <a href="/Posts.html">Posts</a>
+                <a href="/projects.html">Projects</a>
+                <li><a href="https://github.com/itsW0LFIX">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="theme-toggle">
+        <button id="daylight" class="theme-button active">🌞 Daylight</button>
+        <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+        <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+    </div>
+
+    <main>
+        <article class="blog-post">
+            <header>
+                <div class="post-meta">May 8, 2025</div>
+                <h1>Random Numbers Guessing Game - A C Programming Challenge</h1>
+                <div class="tags">
+                    <span class="tag">c</span>
+                    <span class="tag">game</span>
+                    <span class="tag">programming</span>
+                    <span class="tag">algorithms</span>
+                    <span class="tag">file-io</span>
+                </div>
+            </header>
+
+            <section>
+                <p>
+                    Developing a number guessing game may seem simple at first glance, but creating one with multiple 
+                    difficulty levels, a sophisticated scoring system, and persistent data storage presented an 
+                    interesting programming challenge. This project showcases fundamental programming concepts while 
+                    delivering an engaging gaming experience.
+                </p>
+
+                <div class="project-info">
+                    <p><strong>Project Type:</strong> Console Application<br>
+                        <strong>Language Used:</strong> C<br>
+                        <strong>Status:</strong> Completed<br>
+                        <strong>Source Code:</strong> <a href="https://github.com/itsW0LFIX/Random-numbers-guessing-game"
+                            target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+                    </p>
+                </div>
+
+                <h2>Project Overview</h2>
+                <p>
+                    This Random Numbers Guessing Game challenges players to guess a sequence of random numbers. Unlike 
+                    simpler guessing games, this implementation provides feedback on both the correctness of the digits 
+                    and their positions, similar to the classic Mastermind game. The project combines algorithm design, 
+                    random number generation, file I/O operations, and user interface considerations.
+                </p>
+
+                <div class="project-screenshots">
+                    <figure>
+                        <img src="images/random-game-menu.png" alt="Main menu interface of the guessing game" />
+                        <figcaption>Main menu interface with options to play, view top scores, or exit</figcaption>
+                    </figure>
+
+                    <figure>
+                        <img src="images/random-game-gameplay.png" alt="Gameplay screen showing number guessing" />
+                        <figcaption>Gameplay screen showing user guesses and feedback</figcaption>
+                    </figure>
+
+                    <figure>
+                        <img src="images/random-game-leaderboard.png" alt="Leaderboard displaying top scores" />
+                        <figcaption>Leaderboard screen showing top 10 player scores</figcaption>
+                    </figure>
+                </div>
+
+                <h2>Key Features</h2>
+
+                <h3>Customizable Difficulty 🎮</h3>
+                <p>
+                    The game offers multiple difficulty settings:
+                </p>
+                <ul>
+                    <li>Variable digit length (1-7 digits) for the random number sequence</li>
+                    <li>Configurable maximum number of attempts</li>
+                    <li>Scoring system that scales with difficulty settings</li>
+                </ul>
+
+                <pre><code class="language-c">
+// Sample code for difficulty selection
+void selectDifficulty(int *numDigits, int *maxAttempts) {
+    printf("\n--- Select Difficulty ---\n");
+    printf("Enter the number of digits (1-7): ");
+    scanf("%d", numDigits);
+    
+    // Validate input range
+    if (*numDigits < 1 || *numDigits > 7) {
+        printf("Invalid input. Setting to default: 4 digits.\n");
+        *numDigits = 4;
+    }
+    
+    printf("Enter maximum attempts: ");
+    scanf("%d", maxAttempts);
+    
+    if (*maxAttempts < 1) {
+        printf("Invalid input. Setting to default: 10 attempts.\n");
+        *maxAttempts = 10;
+    }
+}
+</code></pre>
+
+                <h3>Smart Feedback System 🧩</h3>
+                <p>
+                    The game provides detailed feedback on each guess:
+                </p>
+                <ul>
+                    <li>Indicates digits that are correct and in the right position</li>
+                    <li>Identifies digits that are correct but in the wrong position</li>
+                    <li>Progressive hints system that makes each attempt more informative</li>
+                </ul>
+
+                <h3>Persistent Leaderboard 🏆</h3>
+                <p>
+                    The top scores system adds a competitive element:
+                </p>
+                <ul>
+                    <li>Scores saved to a file for persistence between game sessions</li>
+                    <li>Leaderboard displays the top 10 scores in descending order</li>
+                    <li>Score calculation based on difficulty level, attempts used, and time taken</li>
+                </ul>
+
+                <pre><code class="language-c">
+// Sample code for file operations with the leaderboard
+void saveScore(int score, char *playerName) {
+    FILE *file = fopen("top_scores.txt", "a");
+    if (file == NULL) {
+        printf("Error opening file for saving score.\n");
+        return;
+    }
+    
+    fprintf(file, "%s %d\n", playerName, score);
+    fclose(file);
+    printf("Score saved successfully!\n");
+}
+
+void displayTopScores() {
+    FILE *file = fopen("top_scores.txt", "r");
+    if (file == NULL) {
+        printf("No top scores available yet.\n");
+        return;
+    }
+    
+    // Sort and display top 10 scores
+    // ...code for reading, sorting and displaying...
+    
+    fclose(file);
+}
+</code></pre>
+
+                <h3>Random Number Generation Algorithm 🎲</h3>
+                <p>
+                    The core of the game relies on sophisticated random number generation:
+                </p>
+                <ul>
+                    <li>Time-seeded random generator for true randomness</li>
+                    <li>Algorithm ensures no repeated digits in the sequence (optional mode)</li>
+                    <li>Efficient verification of user guesses against the generated number</li>
+                </ul>
+
+                <h2>Implementation Details</h2>
+
+                <h3>Code Structure</h3>
+                <pre><code class="language-text">
+random-numbers-guessing-game/
+├── main.c             # Main program file
+├── game_logic.c       # Core game mechanics
+├── game_logic.h       # Function declarations and constants
+├── file_operations.c  # Score file handling functions
+├── file_operations.h  # File I/O declarations
+├── top_scores.txt     # Persistent storage for scores
+└── Makefile           # Compilation instructions
+</code></pre>
+
+                <h3>Game Flow</h3>
+                <p>
+                    The program follows a clear execution flow:
+                </p>
+                <ol>
+                    <li>Player starts the game from the main menu</li>
+                    <li>Difficulty settings are configured</li>
+                    <li>The program generates a random number sequence</li>
+                    <li>Player makes guesses with feedback after each attempt</li>
+                    <li>Game ends when the player guesses correctly or runs out of attempts</li>
+                    <li>Score is calculated and player has the option to save it</li>
+                    <li>Player can view the leaderboard or play again</li>
+                </ol>
+
+                <h2>Challenges & Solutions</h2>
+
+                <h3>Ensuring True Randomness</h3>
+                <p>
+                    One challenge was generating truly random sequences that felt fair to players. The solution involved 
+                    implementing a time-seeded random generator and adding validation to ensure the generated numbers met
+                    the game's requirements, such as preventing duplicate digits when playing in "unique digits" mode.
+                </p>
+
+                <h3>Efficient Feedback Algorithm</h3>
+                <p>
+                    Creating an algorithm that could efficiently compare the player's guess to the target number and 
+                    provide accurate feedback about correct digits and positions required careful implementation. The 
+                    solution uses a combination of digit-by-digit comparison and frequency counting to identify both 
+                    exact matches and misplaced digits.
+                </p>
+
+                <h3>File I/O Error Handling</h3>
+                <p>
+                    Working with file operations for the leaderboard introduced potential failure points. The 
+                    implementation includes robust error handling to deal with situations like missing files or 
+                    permission issues, ensuring the game remains playable even if score saving fails.
+                </p>
+
+                <h2>Future Enhancements</h2>
+                <p>
+                    While the current implementation provides a complete gaming experience, future versions could include:
+                </p>
+                <ul>
+                    <li>Graphical user interface for a more visually appealing experience</li>
+                    <li>Time-based gameplay mode with countdown timer</li>
+                    <li>Additional difficulty modes (e.g., allowing negative numbers or decimal points)</li>
+                    <li>Multiplayer functionality where players compete to guess the same number</li>
+                    <li>Cross-platform compatibility improvements</li>
+                </ul>
+
+                <h2>Conclusion</h2>
+                <p>
+                    This Random Numbers Guessing Game demonstrates how fundamental programming concepts in C can be 
+                    combined to create an engaging, feature-rich application. The project showcases algorithms for 
+                    random number generation, input validation, score calculation, and file operations while providing 
+                    an entertaining gaming experience that challenges players' logical thinking and deduction skills.
+                </p>
+                <p>
+                    The project is open source and available on GitHub. Contributions, bug reports, and feature 
+                    suggestions are welcome through the repository.
+                </p>
+            </section>
+
+
+            <section class="comments-section">
+                <h2>Comments</h2>
+                <div id="comments-list">
+                    <p class="no-comments">Be the first to comment!</p>
+                </div>
+                <div class="comment-form-container">
+                    <h3>Leave a Comment</h3>
+                    <form id="comment-form">
+                        <div class="form-group">
+                            <label for="name-input">Name</label>
+                            <input type="text" id="name-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email-input">Email (will not be published)</label>
+                            <input type="email" id="email-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment-input">Comment</label>
+                            <textarea id="comment-input" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Submit Comment</button>
+                    </form>
+                </div>
+            </section>
+        </article>
+
+    </main>
+
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-c.min.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script src="/wolfix-firebase.js"></script>
+    <script src="/theme.js"></script>
+
+    <!-- Load components AFTER other scripts -->
+    <script src="/components/footer.js"></script>
+
+</body>
+
+</html>
