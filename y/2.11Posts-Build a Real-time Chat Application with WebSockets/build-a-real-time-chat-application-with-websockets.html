@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    Its WOLFIX Journal
+  </title>
+  <link rel="icon" href="/icon2.png" type="image/icon type">
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/footer.css" />
+  <meta name="description"
+    content="A step-by-step guide to building a real-time chat application using WebSockets, with focus on data flow and handling multiple connections." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+</head>
+
+<body>
+  <header>
+    <a href="/index.html" class="logo">
+      <img style="width: 25px; margin: -6px;" src="/icon2.png" alt="icon logo">
+      ItsWOLFIX.Journal</a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <a href="/index.html">Home</a>
+        <a href="/Posts.html">Posts</a>
+        <a href="/projects.html">Projects</a>
+        <li><a href="https://github.com/itsW0LFIX">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="theme-toggle">
+    <button id="daylight" class="theme-button active">🌞 Daylight</button>
+    <button id="night-howl" class="theme-button">🐺 Night Howl</button>
+    <button id="night-mind" class="theme-button">🧠 Night Mind</button>
+  </div>
+  <main>
+    <article class="blog-post">
+      <header>
+        <div class="post-meta">May 12, 2025</div>
+        <h1>Build a Real-time Chat Application with WebSockets</h1>
+        <div class="tags">
+          <span class="tag">javascript</span>
+          <span class="tag">websockets</span>
+          <span class="tag">node.js</span>
+          <span class="tag">real-time</span>
+        </div>
+      </header>
+
+      <section>
+        <p>
+          Traditional web applications communicate through a request-response pattern — the client requests data, 
+          and the server responds. But what if you need real-time updates without constantly refreshing or polling the server? 
+          Enter WebSockets, a technology that enables bidirectional communication between clients and servers over a 
+          single, long-lived connection.
+        </p>
+
+        <p>
+          In this tutorial, we'll build a simple chat application that allows multiple users to communicate in real-time. 
+          We'll create both a server using Node.js and a client interface with vanilla JavaScript. By the end, you'll 
+          understand the core concepts of WebSockets and how to implement real-time features in your own applications.
+        </p>
+
+        <h2>Understanding WebSockets</h2>
+        <p>
+          Before diving into code, let's understand how WebSockets differ from traditional HTTP connections:
+        </p>
+
+        <ul>
+          <li><strong>Persistent connection:</strong> Unlike HTTP where connections are closed after each request/response cycle, 
+            WebSockets maintain an open connection.</li>
+          <li><strong>Full-duplex communication:</strong> Both the client and server can send messages to each other at any time.</li>
+          <li><strong>Low latency:</strong> Since the connection is always open, messages are delivered immediately with minimal overhead.</li>
+          <li><strong>Protocol shift:</strong> WebSockets start as an HTTP request that's upgraded to the WebSocket protocol (WS or WSS).</li>
+        </ul>
+
+        <p>
+          This makes WebSockets ideal for applications requiring real-time updates like chat apps, live dashboards, 
+          collaborative editing tools, and multiplayer games.
+        </p>
+
+        <h2>Setting Up the Project</h2>
+        <p>
+          Let's start by setting up our project structure. We'll have separate directories for the server and client:
+        </p>
+
+        <div class="code-container">
+          <div class="code-header">
+            <span class="code-language">Bash</span>
+          </div>
+          <pre><code>mkdir websocket-chat
+cd websocket-chat
+mkdir server client
+touch server/index.js client/index.html client/styles.css client/app.js
+npm init -y
+cd server
+npm install ws</code></pre>
+        </div>
+
+        <p>
+          We're using the lightweight <code>ws</code> package for our WebSocket server. For production applications, 
+          you might consider more feature-rich libraries like Socket.IO, but <code>ws</code> is perfect for learning 
+          the fundamentals.
+        </p>
+
+        <h2>Creating the WebSocket Server</h2>
+        <p>
+          Let's build our WebSocket server. This will handle client connections, broadcast messages to all connected clients, 
+          and manage disconnections.
+        </p>
+
+        <div class="code-container">
+          <div class="code-header">
+            <span class="code-language">JavaScript</span>
+          </div>
+          <pre><code>// server/index.js
+const WebSocket = require('ws');
+
+// Create a WebSocket server that listens on port 8080
+const wss = new WebSocket.Server({ port: 8080 });
+
+// Keep track of all connected clients
+const clients = new Set();
+
+// Handle new client connections
+wss.on('connection', (ws) => {
+  // Add this client to our set of connected clients
+  clients.add(ws);
+  
+  console.log('New client connected');
+  console.log(`Total connected clients: ${clients.size}`);
+  
+  // Send a welcome message to the new client
+  ws.send(JSON.stringify({
+    type: 'system',
+    message: 'Welcome to the chat!',
+    timestamp: Date.now()
+  }));
+  
+  // Broadcast to all clients that someone joined
+  broadcastMessage({
+    type: 'system',
+    message: 'A new user has joined the chat',
+    timestamp: Date.now()
+  });
+
+  // Handle incoming messages from this client
+  ws.on('message', (messageData) => {
+    try {
+      // Parse the incoming message
+      const message = JSON.parse(messageData);
+      
+      // Add a timestamp to the message
+      message.timestamp = Date.now();
+      
+      // Broadcast this message to all connected clients
+      broadcastMessage(message);
+    } catch (error) {
+      console.error('Error processing message:', error);
+    }
+  });
+
+  // Handle client disconnection
+  ws.on('close', () => {
+    // Remove this client from our set
+    clients.delete(ws);
+    
+    console.log('Client disconnected');
+    console.log(`Total connected clients: ${clients.size}`);
+    
+    // Broadcast to all remaining clients that someone left
+    broadcastMessage({
+      type: 'system',
+      message: 'A user has left the chat',
+      timestamp: Date.now()
+    });
+  });
+  
+  // Handle connection errors
+  ws.on('error', (error) => {
+    console.error('WebSocket error:', error);
+    clients.delete(ws);
+  });
+});
+
+// Function to broadcast a message to all connected clients
+function broadcastMessage(message) {
+  const messageString = JSON.stringify(message);
+  
+  clients.forEach((client) => {
+    // Only send to clients that are still connected
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(messageString);
+    }
+  });
+}
+
+console.log('WebSocket server started on port 8080');</code></pre>
+        </div>
+
+        <p>
+          Our server handles four key aspects of WebSocket communication:
+        </p>
+        
+        <ol>
+          <li><strong>Connection management:</strong> Adding new clients to a set and removing them when they disconnect</li>
+          <li><strong>Message reception:</strong> Handling incoming messages from clients</li>
+          <li><strong>Message broadcasting:</strong> Sending messages to all connected clients</li>
+          <li><strong>Error handling:</strong> Managing connection errors and ensuring robustness</li>
+        </ol>
+
+        <p>
+          The server is structured around event handlers that respond to different WebSocket events: 
+          <code>connection</code>, <code>message</code>, <code>close</code>, and <code>error</code>.
+        </p>
+
+        <h2>Building the Chat Client</h2>
+        <p>
+          Now let's create the client-side interface for our chat application. We'll need an HTML structure, CSS for styling, 
+          and JavaScript to handle the WebSocket communication.
+        </p>
+
+        <h3>HTML Structure</h3>
+
+        <div class="code-container">
+          <div class="code-header">
+            <span class="code-language">HTML</span>
+          </div>
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;WebSocket Chat&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="chat-container"&gt;
+    &lt;div class="chat-header"&gt;
+      &lt;h1&gt;WebSocket Chat&lt;/h1&gt;
+      &lt;div class="connection-status" id="status"&gt;Disconnected&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="chat-messages" id="chat-messages"&gt;
+      &lt;div class="welcome-message"&gt;Welcome to the chat! Enter your username to get started.&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="user-input" id="username-container"&gt;
+      &lt;input type="text" id="username-input" placeholder="Enter your username..." /&gt;
+      &lt;button id="username-button"&gt;Join Chat&lt;/button&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="user-input" id="message-container" style="display: none;"&gt;
+      &lt;input type="text" id="message-input" placeholder="Type your message..." /&gt;
+      &lt;button id="send-button"&gt;Send&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <h3>CSS Styling</h3>
+
+        <div class="code-container">
+          <div class="code-header">
+            <span class="code-language">CSS</span>
+          </div>
+          <pre><code>* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f5f5f5;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-header {
+  padding: 15px;
+  background-color: #4a6cf7;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h1 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.connection-status {
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.connection-status.connected {
+  background-color: #2ecc71;
+}
+
+.connection-status.disconnected {
+  background-color: #e74c3c;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.welcome-message {
+  text-align: center;
+  padding: 10px;
+  margin: 10px 0;
+  color: #666;
+  font-style: italic;
+}
+
+.message {
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 75%;
+  word-break: break-word;
+  position: relative;
+}
+
+.message .username {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.message .timestamp {
+  font-size: 0.7rem;
+  color: #999;
+  position: absolute;
+  bottom: 3px;
+  right: 10px;
+}
+
+.message.system-message {
+  align-self: center;
+  background-color: #f1f1f1;
+  color: #666;
+  font-style: italic;
+  border-radius: 10px;
+  max-width: 80%;
+  text-align: center;
+}
+
+.message.user-message {
+  align-self: flex-end;
+  background-color: #4a6cf7;
+  color: white;
+  margin-right: 10px;
+}
+
+.message.other-message {
+  align-self: flex-start;
+  background-color: #e9e9eb;
+  color: #333;
+  margin-left: 10px;
+}
+
+.user-input {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #eee;
+}
+
+.user-input input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.user-input input:focus {
+  border-color: #4a6cf7;
+}
+
+.user-input button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.user-input button:hover {
+  background-color: #3a5ce4;
+}
+
+.user-input button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}</code></pre>
+        </div>
+
+        <h3>JavaScript Client Logic</h3>
+
+        <div class="code-container">
+          <div class="code-header">
+            <span class="code-language">JavaScript</span>
+          </div>
+          <pre><code>// client/app.js
+document.addEventListener('DOMContentLoaded', () => {
+  // DOM elements
+  const statusElement = document.getElementById('status');
+  const messagesContainer = document.getElementById('chat-messages');
+  const usernameContainer = document.getElementById('username-container');
+  const usernameInput = document.getElementById('username-input');
+  const usernameButton = document.getElementById('username-button');
+  const messageContainer = document.getElementById('message-container');
+  const messageInput = document.getElementById('message-input');
+  const sendButton = document.getElementById('send-button');
+  
+  // State variables
+  let socket;
+  let username = '';
+  let reconnectAttempts = 0;
+  const MAX_RECONNECT_ATTEMPTS = 5;
+  
+  // Setup username form
+  usernameButton.addEventListener('click', () => {
+    setupUsername();
+  });
+  
+  usernameInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      setupUsername();
+    }
+  });
+  
+  function setupUsername() {
+    const value = usernameInput.value.trim();
+    if (value) {
+      username = value;
+      usernameContainer.style.display = 'none';
+      messageContainer.style.display = 'flex';
+      connectWebSocket();
+    }
+  }
+  
+  // Setup message sending
+  sendButton.addEventListener('click', () => {
+    sendMessage();
+  });
+  
+  messageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  });
+  
+  function sendMessage() {
+    const message = messageInput.value.trim();
+    if (message && socket && socket.readyState === WebSocket.OPEN) {
+      socket.send(JSON.stringify({
+        type: 'user',
+        username: username,
+        message: message
+      }));
+      messageInput.value = '';
+    }
+  }
+  
+  // WebSocket connection management
+  function connectWebSocket() {
+    try {
+      socket = new WebSocket('ws://localhost:8080');
+      
+      socket.addEventListener('open', () => {
+        statusElement.textContent = 'Connected';
+        statusElement.classList.add('connected');
+        statusElement.classList.remove('disconnected');
+        reconnectAttempts = 0;
+        
+        addMessage({
+          type: 'system',
+          message: `Connected to chat server as ${username}`,
+          timestamp: Date.now()
+        });
+      });
+      
+      socket.addEventListener('message', (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          addMessage(data);
+        } catch (error) {
+          console.error('Error parsing message:', error);
+        }
+      });
+      
+      socket.addEventListener('close', (event) => {
+        statusElement.textContent = 'Disconnected';
+        statusElement.classList.add('disconnected');
+        statusElement.classList.remove('connected');
+        
+        addMessage({
+          type: 'system',
+          message: 'Disconnected from server',
+          timestamp: Date.now()
+        });
+        
+        // Try to reconnect if the connection was closed unexpectedly
+        if (!event.wasClean && reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
+          reconnectAttempts++;
+          const delay = Math.min(1000 * reconnectAttempts, 5000);
+          
+          addMessage({
+            type: 'system',
+            message: `Attempting to reconnect in ${delay/1000} seconds...`,
+            timestamp: Date.now()
+          });
+          
+          setTimeout(connectWebSocket, delay);
+        }
+      });
+      
+      socket.addEventListener('error', (error) => {
+        console.error('WebSocket error:', error);
+        addMessage({
+          type: 'system',
+          message: 'Connection error',
+          timestamp: Date.now()
+        });
+      });
+    } catch (error) {
+      console.error('Failed to connect:', error);
+      addMessage({
+        type: 'system',
+        message: 'Failed to connect to server',
+        timestamp: Date.now()
+      });
+    }
+  }
+  
+  // Message handling
+  function addMessage(data) {
+    const messageElement = document.createElement('div');
+    const timestampStr = new Date(data.timestamp).toLocaleTimeString();
+    
+    // Determine message type and add appropriate classes
+    if (data.type === 'system') {
+      messageElement.classList.add('message', 'system-message');
+      messageElement.innerHTML = `
+        <div class="message-content">${data.message}</div>
+        <div class="timestamp">${timestampStr}</div>
+      `;
+    } else if (data.type === 'user') {
+      if (data.username === username) {
+        messageElement.classList.add('message', 'user-message');
+      } else {
+        messageElement.classList.add('message', 'other-message');
+      }
+      
+      messageElement.innerHTML = `
+        <div class="username">${data.username}</div>
+        <div class="message-content">${data.message}</div>
+        <div class="timestamp">${timestampStr}</div>
+      `;
+    }
+    
+    messagesContainer.appendChild(messageElement);
+    
+    // Scroll to the newest message
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+});</code></pre>
+        </div>
+
+        <p>
+          The client-side JavaScript handles:
+        </p>
+        
+        <ol>
+          <li>Establishing and maintaining the WebSocket connection</li>
+          <li>Sending messages to the server</li>
+          <li>Receiving and displaying messages from other users</li>
+          <li>Managing the connection state (connected/disconnected)</li>
+          <li>Implementing reconnection logic for a better user experience</li>
+        </ol>
+
+        <p>
+          For simplicity, this example uses username-based identification rather than a full authentication system, 
+          which would be necessary in a production application.
+        </p>
+
+        <h2>Running the Application</h2>
+        <p>
+          Now that we have both our server and client code ready, let's run the application:
+        </p>
+
+        <div class="code-container">
+          <div class="code-header">
+            <span class="code-language">Bash</span>
+          </div>
+          <pre><code># Start the WebSocket server
+cd server
+node index.js</code></pre>
+        </div>
+
+        <p>
+          Then, open the <code>client/index.html</code> file in multiple browser windows to simulate different users 
+          chatting with each other. You should be able to send messages from one window and see them appear in all others.
+        </p>
+
+        <h2>How It Works: Understanding the Data Flow</h2>
+        <p>
+          Let's walk through what happens when a message is sent in our chat application:
+        </p>
+
+        <ol>
+          <li>
+            <strong>Message Creation:</strong> A user types a message and clicks "Send" or presses Enter.
+          </li>
+          <li>
+            <strong>Message Serialization:</strong> The client converts the message and metadata into a JSON string.
+          </li>
+          <li>
+            <strong>WebSocket Transmission:</strong> The JSON string is sent through the open WebSocket connection.
+          </li>
+          <li>
+            <strong>Server Reception:</strong> The server receives the message and parses the JSON.
+          </li>
+          <li>
+            <strong>Message Broadcasting:</strong> The server sends the message to all connected clients, including the original sender.
+          </li>
+          <li>
+            <strong>Client Reception:</strong> Each client receives the message, parses the JSON, and updates the UI.
+          </li>
+        </ol>
+
+        <p>
+          This entire process happens nearly instantaneously, which is why WebSockets feel so responsive compared to 
+          traditional request-response patterns.
+        </p>
+
+        <h2>Handling Multiple Connections</h2>
+        <p>
+          A key aspect of our server is how it manages multiple client connections. Let's explore the important parts:
+        </p>
+
+        <h3>Connection Storage</h3>
+        <p>
+          We use a JavaScript <code>Set</code> to store WebSocket connections:
+        </p>
+
+        <div class="code-container">
+          <div class="code-header">
+            <span class="code-language">JavaScript</span>
+          </div>
+          <pre><code>const clients = new Set();</code></pre>
+        </div>
+
+        <p>
+          A <code>Set</code> is perfect for this because:
+        </p>
+        <ul>
+          <li>It automatically ensures each connection is stored only once</li>
+          <li>It provides methods for adding and removing items efficiently</li>
+          <li>It's iterable, making it easy to send messages to all clients</li>
+        </ul>
+
+        <h3>Broadcasting to Multiple Clients</h3>
+        <p>
+          The <code>broadcastMessage</code> function handles sending a message to all connected clients:
+        </p>
+
+        <div class="code-container">
+          <div class="code-header">
+            <span class="code-language">JavaScript</span>
+          </div>
+          <pre><code>function broadcastMessage(message) {
+  const messageString = JSON.stringify(message);
+  
+  clients.forEach((client) => {
+    // Only send to clients that are still connected
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(messageString);
+    }
+  });
+}</code></pre>
+        </div>
+
+        <p>
+          Note the check for <code>client.readyState === WebSocket.OPEN</code>. WebSocket connections have four possible states:
+        </p>
+        <ul>
+          <li><code>CONNECTING</code> (0): The connection is being established</li>
+          <li><code>OPEN</code> (1): The connection is open and ready for communication</li>
+          <li><code>CLOSING</code> (2): The connection is closing</li>
+          <li><code>CLOSED</code> (3): The connection is closed or couldn't be opened</li>
+        </ul>
+
+        <p>
+          Checking the connection state before sending prevents errors if a connection is in the process of closing 
+          but hasn't been removed from our set yet.
+        </p>
+
+        <h2>Scaling WebSocket Applications</h2>
+        <p>
+          While our simple chat application works well for demonstration purposes, real-world WebSocket applications 
+          often face scaling challenges. Here are some considerations for production environments:
+        </p>
+
+        <h3>Multiple Server Instances</h3>
+        <p>
+          For high-traffic applications, you'll need multiple server instances. This introduces the challenge of 
+          message routing across instances. Solutions typically involve:
+        </p>
+
+        <ul>
+          <li><strong>Message Brokers:</strong> Using systems like Redis, RabbitMQ, or Kafka to pass messages between instances</li>
+          <li><strong>Sticky Sessions:</strong> Ensuring users consistently connect to the same server instance</li>
+          <li><strong>Shared State:</strong> Storing connection information in a shared database</li>
+        </ul>
+
+        <h3>Connection Limits</h3>
+        <p>
+          WebSocket servers have limits on how many simultaneous connections they can handle. To manage this:
+        </p>
+
+        <ul>
+          <li>Implement connection pooling and load balancing</li>
+          <li>Consider using a specialized WebSocket service like AWS WebSockets API or Pusher</li>
+          <li>Implement heartbeat mechanisms to detect and close stale connections</li>
+        </ul>
+
+        <h3>Security Considerations</h3>
+        <p>
+          Production WebSocket applications need robust security measures:
+        </p>
+
+        <ul>
+          <li>Use secure WebSockets (WSS) with proper SSL/TLS certificates</li>
+          <li>Implement token-based authentication for connections</li>
+          <li>Validate and sanitize all incoming message data</li>
+          <li>Set appropriate timeouts and rate limits to prevent abuse</li>
+        </ul>
+
+        <h2>Enhancing the Chat Application</h2>
+        <p>
+          There are many ways to improve our basic chat application:
+        </p>
+
+        <ul>
+          <li><strong>User Authentication:</strong> Implement a proper login system instead of just usernames</li>
+          <li><strong>Persistent Messages:</strong> Store chat history in a database</li>
+          <li><strong>Typing Indicators:</strong> Show when other users are typing</li>
+          <li><strong>Read Receipts:</strong> Indicate when messages have been seen</li>
+          <li><strong>Private Messaging:</strong> Allow users to send direct messages</li>
+          <li><strong>Rich Media:</strong> Support for images, emojis, and file attachments</li>
+          <li><strong>Chat Rooms:</strong> Create multiple channels or rooms for different topics</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          WebSockets provide a powerful way to create real-time web applications with bidirectional communication. 
+          In this tutorial, we've built a simple but functional chat application that demonstrates the core concepts 
+          of WebSocket programming:
+        </p>
+
+        <ul>
+          <li>Establishing and maintaining WebSocket connections</li>
+          <li>Sending and receiving messages in real-time</li>
+          <li>Broadcasting messages to multiple clients</li>
+          <li>Handling connection events (connect, disconnect, errors)</li>
+        </ul>
+
+        <p>
+          With these fundamentals, you can now expand on this knowledge to build more sophisticated real-time 
+          applications. WebSockets open up a world of possibilities beyond traditional request-response web applications, 
+          allowing for truly interactive experiences.
+        </p>
+
+        <p>
+          In my next post, we'll explore how to add features like user authentication, persistent storage, and private 
+          messaging to our chat application. Stay tuned!
+        </p>
+      </section>
+
+      <section class="comments-section">
+        <h2>Comments</h2>
+        <div id="comments-list">
+          <p class="no-comments">Be the first to comment!</p>
+        </div>
+        <div class="comment-form-container">
+          <h3>Leave a Comment</h3>
+          <form id="comment-form">
+            <div class="form-group">
+              <label for="name-input">Name</label>
+              <input type="text" id="name-input" required>
+            </div>
+            <div class="form-group">
+              <label for="email-input">Email (will not be published)</label>
+              <input type="email" id="email-input" required>
+            </div>
+            <div class="form-group">
+              <label for="comment-input">Comment</label>
+              <textarea id="comment-input" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Submit Comment</button>
+          </form>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-bash.min.js"></script>
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="/wolfix-firebase.js"></script>
+  <script src="/theme.js"></script>
+
+  <!-- Load components AFTER other scripts -->
+  <script src="/components/footer.js"></script>
+</body>
+
+</html>

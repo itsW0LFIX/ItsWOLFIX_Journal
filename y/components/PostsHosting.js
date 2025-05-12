@@ -214,30 +214,71 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
 
-                                                    <!-- 2.9 Posts -->
-    <div class="post-card" data-categories="design tools" data-title="Mastering Color Pickers for Web Development"
-        data-tags="color-pickers design web-development tools">
-        <div class="post-icon-container">
-            <div class="post-icon" style="background-color: rgba(52, 152, 219, 0.1);">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" style="color: #3498db;">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M8 12a4 4 0 0 1 8 0c0 1.5 0 2 -2 3h-4c-2 -1 -2 -1.5 -2 -3"></path>
-                    <line x1="12" y1="17" x2="12" y2="17"></line>
-                </svg>
-            </div>
-        </div>
-        <div class="post-content">
-            <div class="post-header">
-                <h3 class="post-title">Mastering Color Pickers for Web Development</h3>
-                <p class="post-description">Learn about different types of color pickers, how to implement them, and best practices for color selection in web projects.</p>
-            </div>
-            <div class="post-footer">
-                <a href="2.9Posts-Mastering Color Pickers for Web Development/color-pickers.html" class="post-action">Open</a>
-            </div>
-        </div>
-    </div>
+                <!-- 2.9 Posts -->
+                <div class="post-card" data-categories="design tools" data-title="Mastering Color Pickers for Web Development"
+                    data-tags="color-pickers design web-development tools">
+                    <div class="post-icon-container">
+                        <div class="post-icon" style="background-color: rgba(52, 152, 219, 0.1);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="color: #3498db;">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 12a4 4 0 0 1 8 0c0 1.5 0 2 -2 3h-4c-2 -1 -2 -1.5 -2 -3"></path>
+                                <line x1="12" y1="17" x2="12" y2="17"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">Mastering Color Pickers for Web Development</h3>
+                            <p class="post-description">Learn about different types of color pickers, how to implement them, and best practices for color selection in web projects.</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="2.9Posts-Mastering Color Pickers for Web Development/color-pickers.html" class="post-action">Open</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2.10 Posts -->
+                <div class="post-card" data-categories="javascript,development,beginner" data-title="How to Think Like a Developer" data-tags="javascript,problem-solving,beginner,mindset">
+                    <div class="post-icon-container">
+                        <div class="post-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">How to Think Like a Developer</h3>
+                            <p class="post-description">Break down problems, build solutions step by step, and develop the mindset needed to solve coding challenges effectively.</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="2.10Posts-how-to-think-like-a-developer/how-to-think-like-a-developer.html" class="post-action">Open</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2.11 Posts -->
+                <div class="post-card" data-categories="javascript,websockets,node.js,real-time" data-title="Build a Real-time Chat Application with WebSockets" data-tags="javascript,websockets,node.js,real-time">
+                    <div class="post-icon-container">
+                        <div class="post-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <h3 class="post-title">Build a Real-time Chat Application with WebSockets</h3>
+                            <p class="post-description">Learn how to create a bidirectional chat application using WebSockets, handling multiple connections and real-time communication.</p>
+                        </div>
+                        <div class="post-footer">
+                            <a href="2.11Posts-Build a Real-time Chat Application with WebSockets/build-a-real-time-chat-application-with-websockets.html" class="post-action">Open</a>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- No results message -->
                 <div class="no-results hidden">
